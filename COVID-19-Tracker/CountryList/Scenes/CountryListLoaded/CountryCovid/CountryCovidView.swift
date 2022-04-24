@@ -69,7 +69,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             CountryCovidView(
                 store: Store(
                     initialState: .templateFirst,
-                    reducer: .noop,
+                    reducer: .empty,
                     environment: ()
                 )
             )
@@ -78,7 +78,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             CountryCovidView(
                 store: Store(
                     initialState: .templateSecond,
-                    reducer: .noop,
+                    reducer: .empty,
                     environment: ()
                 )
             )
@@ -87,7 +87,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             CountryCovidView(
                 store: Store(
                     initialState: .templateThird,
-                    reducer: .noop,
+                    reducer: .empty,
                     environment: ()
                 )
             )
@@ -96,7 +96,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             CountryCovidView(
                 store: Store(
                     initialState: .templateNormal,
-                    reducer: .noop,
+                    reducer: .empty,
                     environment: ()
                 )
             )

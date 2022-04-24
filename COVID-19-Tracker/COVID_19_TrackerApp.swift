@@ -10,6 +10,14 @@ import ComposableArchitecture
 
 @main
 struct COVID_19_TrackerApp: App {
+    
+    init() {
+        // Restoring pre-iOS 15 appearance.
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+    }
+    
     var body: some Scene {
         WindowGroup {
             CountryListView(

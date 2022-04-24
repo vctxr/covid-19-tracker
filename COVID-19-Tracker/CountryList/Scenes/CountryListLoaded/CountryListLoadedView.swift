@@ -26,7 +26,16 @@ struct CountryListLoadedView: View {
                 ) { store in
                     CountryCovidView(store: store)
                         .listRowSeparator(.hidden)
+                        .listRowInsets(
+                            EdgeInsets(
+                                top: 3,
+                                leading: 16,
+                                bottom: 3,
+                                trailing: 16
+                            )
+                        )
                 }
+                .padding(.top, 8)
             }
             .listStyle(.plain)
             .animation(.default, value: viewStore.countryCovidStates)
@@ -46,7 +55,7 @@ struct CountryListLoadedView_Previews: PreviewProvider {
             CountryListLoadedView(
                 store: Store(
                     initialState: .template,
-                    reducer: .noop,
+                    reducer: .empty,
                     environment: ()
                 )
             )
@@ -55,7 +64,7 @@ struct CountryListLoadedView_Previews: PreviewProvider {
             CountryListLoadedView(
                 store: Store(
                     initialState: .template,
-                    reducer: .noop,
+                    reducer: .empty,
                     environment: ()
                 )
             )
