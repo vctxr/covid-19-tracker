@@ -13,11 +13,39 @@ import Networking
 struct CountryListState: Equatable {
     let titleText = "COVID-19 Tracker"
     var searchText = ""
-    var uiState = UIState.loading
+    
+    // Child states.
+    private var _uiState: UIState
+    var uiState: UIState {
+        get {
+            var state = _uiState
+            state.loadedState?.searchText = searchText
+            return state
+        }
+        set {
+            _uiState = newValue
+            guard let newSearchText = newValue.loadedState?.searchText else { return }
+            searchText = newSearchText
+        }
+    }
     
     enum UIState: Equatable {
         case loading
         case loaded(state: CountryListLoadedState)
+        
+        var loadedState: CountryListLoadedState? {
+            get { (/UIState.loaded).extract(from: self) }
+            set {
+                guard let countryListLoadedState = newValue else { return }
+                self = .loaded(state: countryListLoadedState)
+            }
+        }
+    }
+    
+    // MARK: - Inits 🐣
+    
+    init(uiState: UIState = .loading) {
+        self._uiState = uiState
     }
 }
 
@@ -57,7 +85,13 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         switch result {
         case .success(let timeseriesData):
             let sortedTimeseriesData = timeseriesData.sorted(by: { $0.latestConfirmed > $1.latestConfirmed })
-            state.uiState = .loaded(state: CountryListLoadedState(timeseriesData: sortedTimeseriesData))
+            state.uiState = .loaded(
+                state: CountryListLoadedState(
+                    timeseriesData: sortedTimeseriesData,
+                    searchText: state.searchText
+                )
+            )
+            
         case .failure(let error):
             break
         }

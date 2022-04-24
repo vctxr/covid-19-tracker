@@ -1,5 +1,5 @@
 //
-//  CountryList+Stubs.swift
+//  CountryListStubs.swift
 //  COVID-19-Tracker
 //
 //  Created by Victor Samuel Cuaca on 23/04/22.
@@ -59,7 +59,7 @@ extension CountryListState {
 
 extension CountryListLoadedState {
     static var template: CountryListLoadedState {
-        CountryListLoadedState(timeseriesData: .template)
+        CountryListLoadedState(timeseriesData: .template, searchText: "")
     }
 }
 

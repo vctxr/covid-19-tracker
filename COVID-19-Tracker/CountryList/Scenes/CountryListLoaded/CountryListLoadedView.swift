@@ -29,6 +29,7 @@ struct CountryListLoadedView: View {
                     }
                 }
                 .padding(.horizontal, 16)
+                .animation(.spring(), value: viewStore.countryCovidStates)
             }
         }
     }

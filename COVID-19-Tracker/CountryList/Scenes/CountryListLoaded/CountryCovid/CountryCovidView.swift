@@ -11,6 +11,8 @@ import ComposableArchitecture
 struct CountryCovidView: View {
     // MARK: - Variables 📦
     
+    @State var isLongPressed = false
+    
     let store: Store<CountryCovidState, Never>
     
     // MARK: - Body 🎨
@@ -40,12 +42,22 @@ struct CountryCovidView: View {
                     .frame(width: 10, height: 10)
                     .foregroundColor(viewStore.style.confirmedTextColor)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 20)
+            .padding(.init(top: 20, leading: 16, bottom: 20, trailing: 16))
             .background(viewStore.style.backgroundColor)
             .cornerRadius(8)
             .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
         }
+        .scaleEffect(isLongPressed ? 0.98 : 1)
+        .animation(
+            .spring(response: 0.3, dampingFraction: 0.6),
+            value: isLongPressed
+        )
+        .onTapGesture {}    // To make scrolling works with long press gesture.
+        .onLongPressGesture(
+            minimumDuration: .greatestFiniteMagnitude,
+            perform: {},
+            onPressingChanged: { isLongPressed = $0 }
+        )
     }
 }
 

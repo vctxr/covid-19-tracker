@@ -24,7 +24,7 @@
 		57DB774B28145D12004C052B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 57DB774A28145D12004C052B /* ComposableArchitecture */; };
 		57DB775028145E5F004C052B /* CountryListLoadedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB774F28145E5F004C052B /* CountryListLoadedView.swift */; };
 		57DB775228145E7E004C052B /* CountryListLoaded+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775128145E7E004C052B /* CountryListLoaded+Reducer.swift */; };
-		57DB775428146199004C052B /* CountryList+Stubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775328146199004C052B /* CountryList+Stubs.swift */; };
+		57DB775428146199004C052B /* CountryListStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775328146199004C052B /* CountryListStubs.swift */; };
 		57DB775828146A43004C052B /* CountryCovidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775728146A43004C052B /* CountryCovidView.swift */; };
 		57DB775B2814E2E1004C052B /* CountryCovid+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775A2814E2E1004C052B /* CountryCovid+Reducer.swift */; };
 		57DB775F281559CB004C052B /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775E281559CB004C052B /* Color+Extensions.swift */; };
@@ -58,7 +58,7 @@
 		57DB773B28145CD3004C052B /* CountryListEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryListEndpoint.swift; sourceTree = "<group>"; };
 		57DB774F28145E5F004C052B /* CountryListLoadedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListLoadedView.swift; sourceTree = "<group>"; };
 		57DB775128145E7E004C052B /* CountryListLoaded+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryListLoaded+Reducer.swift"; sourceTree = "<group>"; };
-		57DB775328146199004C052B /* CountryList+Stubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryList+Stubs.swift"; sourceTree = "<group>"; };
+		57DB775328146199004C052B /* CountryListStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListStubs.swift; sourceTree = "<group>"; };
 		57DB775728146A43004C052B /* CountryCovidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCovidView.swift; sourceTree = "<group>"; };
 		57DB775A2814E2E1004C052B /* CountryCovid+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryCovid+Reducer.swift"; sourceTree = "<group>"; };
 		57DB775E281559CB004C052B /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
@@ -158,7 +158,6 @@
 				57DB773628145CD3004C052B /* CountryListView.swift */,
 				57DB773428145CD3004C052B /* CountryList+Reducer.swift */,
 				57DB773528145CD3004C052B /* CountryList+Environment.swift */,
-				57DB775328146199004C052B /* CountryList+Stubs.swift */,
 				57DB774C28145E34004C052B /* CountryListLoaded */,
 			);
 			path = Scenes;
@@ -169,6 +168,7 @@
 			children = (
 				57DB773A28145CD3004C052B /* CountryListUseCase.swift */,
 				57DB773B28145CD3004C052B /* CountryListEndpoint.swift */,
+				57DB775328146199004C052B /* CountryListStubs.swift */,
 				57DB773828145CD3004C052B /* Models */,
 			);
 			path = Domain;
@@ -340,7 +340,7 @@
 				57DB774028145CD4004C052B /* CountryListView.swift in Sources */,
 				57DB776128155C31004C052B /* UIColor+Extensions.swift in Sources */,
 				57DB774128145CD4004C052B /* CovidTimeseriesResponse.swift in Sources */,
-				57DB775428146199004C052B /* CountryList+Stubs.swift in Sources */,
+				57DB775428146199004C052B /* CountryListStubs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

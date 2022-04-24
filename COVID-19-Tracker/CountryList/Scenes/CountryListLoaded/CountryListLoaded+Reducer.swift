@@ -12,15 +12,33 @@ import IdentifiedCollections
 
 struct CountryListLoadedState: Equatable {
     private let timeseriesData: [CountryCovidTimeseries]
+    var searchText: String
     
+    // Computed properties.
     var countryCovidStates: IdentifiedArrayOf<CountryCovidState> {
-        IdentifiedArray(uniqueElements: timeseriesData.enumerated().map { index, data in
-            CountryCovidState(data: data, style: .init(index: index))
-        })
+        let generateStates: ([CountryCovidTimeseries]) -> IdentifiedArrayOf<CountryCovidState> = { timeseriesData in
+            IdentifiedArray(uniqueElements: timeseriesData
+                .enumerated()
+                .map { index, data in
+                    CountryCovidState(data: data, style: .init(index: index))
+                }
+            )
+        }
+        
+        // If there is no search text, just return the timeseries data without filtering.
+        guard !searchText.isEmpty else { return generateStates(timeseriesData) }
+        
+        let filteredData = timeseriesData
+            .filter { $0.country.range(of: searchText, options: .caseInsensitive) != nil }
+
+        return generateStates(filteredData)
     }
     
-    init(timeseriesData: [CountryCovidTimeseries]) {
+    // MARK: - Inits 🐣
+    
+    init(timeseriesData: [CountryCovidTimeseries], searchText: String) {
         self.timeseriesData = timeseriesData
+        self.searchText = searchText
     }
 }
 
