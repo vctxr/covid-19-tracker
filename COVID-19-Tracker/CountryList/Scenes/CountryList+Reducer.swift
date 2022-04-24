@@ -11,7 +11,7 @@ import Networking
 // MARK: - State
 
 struct CountryListState: Equatable {
-    let titleText = "COVID-19 Tracker"
+    let titleText = "Countries"
     var searchText = ""
     
     // Child states.
@@ -85,6 +85,7 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         switch result {
         case .success(let timeseriesData):
             let sortedTimeseriesData = timeseriesData.sorted(by: { $0.latestConfirmed > $1.latestConfirmed })
+            
             state.uiState = .loaded(
                 state: CountryListLoadedState(
                     timeseriesData: sortedTimeseriesData,
@@ -95,6 +96,7 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         case .failure(let error):
             break
         }
+        
         return .none
         
     // MARK: - Unhandled

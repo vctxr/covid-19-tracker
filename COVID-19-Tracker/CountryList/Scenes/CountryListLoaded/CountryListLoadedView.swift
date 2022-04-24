@@ -17,19 +17,22 @@ struct CountryListLoadedView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            ScrollView {
-                LazyVStack(spacing: 10) {
-                    ForEachStore(
-                        store.scope(
-                            state: \.countryCovidStates,
-                            action: CountryListLoadedAction.countryCovid
-                        )
-                    ) { store in
-                        CountryCovidView(store: store)
-                    }
+            List {
+                ForEachStore(
+                    store.scope(
+                        state: \.countryCovidStates,
+                        action: CountryListLoadedAction.countryCovid
+                    )
+                ) { store in
+                    CountryCovidView(store: store)
+                        .listRowSeparator(.hidden)
                 }
-                .padding(.horizontal, 16)
-                .animation(.spring(), value: viewStore.countryCovidStates)
+            }
+            .listStyle(.plain)
+            .animation(.default, value: viewStore.countryCovidStates)
+            .ignoresSafeArea(.keyboard)
+            .onAppear {
+                UITableView.appearance().keyboardDismissMode = .onDrag
             }
         }
     }

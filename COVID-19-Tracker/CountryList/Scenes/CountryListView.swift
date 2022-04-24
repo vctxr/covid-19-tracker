@@ -24,23 +24,30 @@ struct CountryListView: View {
                         CountryListLoadedView(store: .redacted)
                             .redacted(reason: .placeholder)
                     }
-                    
+
                     CaseLet(state: /CountryListState.UIState.loaded,
                             action: CountryListAction.loaded) { loadedStore in
                         CountryListLoadedView(store: loadedStore)
                     }
                 }
                 .navigationTitle(viewStore.titleText)
-                .searchable(
-                    text: viewStore.binding(
-                        get: \.searchText,
-                        send: CountryListAction.onSearchTextChanged
-                    ),
-                    prompt: "Search for countries"
-                )
-                .onAppear {
-                    viewStore.send(.onAppear)
+                .toolbar {
+                    Menu {
+                        Button("Test Button", action: {})
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down.circle")
+                    }
                 }
+            }
+            .searchable(
+                text: viewStore.binding(
+                    get: \.searchText,
+                    send: CountryListAction.onSearchTextChanged
+                ),
+                prompt: "Search for countries"
+            )
+            .onAppear {
+                viewStore.send(.onAppear)
             }
         }
     }
