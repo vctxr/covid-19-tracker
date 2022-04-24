@@ -69,31 +69,17 @@ extension Array where Element == CountryCovidTimeseries {
         [
             .template(country: "Indonesia"),
             .template(country: "United Kingdom"),
-            .template(country: "Malaysia"),
             .template(country: "Japan"),
             .template(country: "Korea"),
             .template(country: "US"),
             .template(country: "Canada"),
-            .template(country: "France"),
-            .template(country: "Brazil"),
-            .template(country: "Denmark"),
-            .template(country: "Germany"),
             .template(country: "Diamond Princess"),
             .template(country: "Taiwan"),
             .template(country: "Switzerland"),
-            .template(country: "Singapore"),
-            .template(country: "Kenya"),
-            .template(country: "India"),
-            .template(country: "Uruguay"),
-            .template(country: "San Marino"),
             .template(country: "Marshall Islands"),
             .template(country: "Antartica"),
-            .template(country: "Finland"),
-            .template(country: "Hungary"),
             .template(country: "Sierra Leone"),
-            .template(country: "Colombia"),
-            .template(country: "Chile"),
-            .template(country: "Phillipines")
+
         ]
     }
 }
