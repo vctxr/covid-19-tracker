@@ -21,13 +21,13 @@ struct CountryListView: View {
                 SwitchStore(store.scope(state: \.uiState)) {
                     CaseLet(state: /CountryListState.UIState.loading,
                             action: CountryListAction.loading) { _ in
-                        CountryListLoadedView(store: .redacted)
+                        CountryListContentView(store: .redacted)
                             .redacted(reason: .placeholder)
                     }
 
                     CaseLet(state: /CountryListState.UIState.loaded,
                             action: CountryListAction.loaded) { loadedStore in
-                        CountryListLoadedView(store: loadedStore)
+                        CountryListContentView(store: loadedStore)
                     }
                 }
                 .navigationTitle(viewStore.titleText)

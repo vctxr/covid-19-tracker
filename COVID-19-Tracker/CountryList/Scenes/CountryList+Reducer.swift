@@ -31,9 +31,9 @@ struct CountryListState: Equatable {
     
     enum UIState: Equatable {
         case loading
-        case loaded(state: CountryListLoadedState)
+        case loaded(state: CountryListContentState)
         
-        var loadedState: CountryListLoadedState? {
+        var loadedState: CountryListContentState? {
             get { (/UIState.loaded).extract(from: self) }
             set {
                 guard let countryListLoadedState = newValue else { return }
@@ -57,7 +57,7 @@ enum CountryListAction: Equatable {
     
     // Child actions.
     case loading(Never)
-    case loaded(CountryListLoadedAction)
+    case loaded(CountryListContentAction)
     
     // Side-effects.
     case receiveCovidTimeseries(Result<[CountryCovidTimeseries], NetworkError>)
@@ -87,7 +87,7 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
             let sortedTimeseriesData = timeseriesData.sorted(by: { $0.latestConfirmed > $1.latestConfirmed })
             
             state.uiState = .loaded(
-                state: CountryListLoadedState(
+                state: CountryListContentState(
                     timeseriesData: sortedTimeseriesData,
                     searchText: state.searchText
                 )

@@ -100,15 +100,15 @@ extension Array where Element == CountryCovidTimeseries {
 
 // MARK: - CountryListLoadedState
 
-extension CountryListLoadedState {
-    static var template: CountryListLoadedState {
-        CountryListLoadedState(timeseriesData: .template, searchText: "")
+extension CountryListContentState {
+    static var template: CountryListContentState {
+        CountryListContentState(timeseriesData: .template, searchText: "")
     }
 }
 
 // MARK: - CountryListLoadedState Redacted Store
 
-extension Store where State == CountryListLoadedState, Action == CountryListLoadedAction {
+extension Store where State == CountryListContentState, Action == CountryListContentAction {
     static var redacted: Self {
         Self(
             initialState: .template,

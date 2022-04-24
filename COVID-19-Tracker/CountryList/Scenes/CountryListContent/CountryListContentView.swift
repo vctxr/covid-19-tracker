@@ -1,5 +1,5 @@
 //
-//  CountryListLoadedView.swift
+//  CountryListContentView.swift
 //  COVID-19-Tracker
 //
 //  Created by Victor Samuel Cuaca on 23/04/22.
@@ -8,10 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CountryListLoadedView: View {
+struct CountryListContentView: View {
     // MARK: - Variables 📦
     
-    let store: Store<CountryListLoadedState, CountryListLoadedAction>
+    let store: Store<CountryListContentState, CountryListContentAction>
     
     // MARK: - Body 🎨
     
@@ -21,7 +21,7 @@ struct CountryListLoadedView: View {
                 ForEachStore(
                     store.scope(
                         state: \.countryCovidStates,
-                        action: CountryListLoadedAction.countryCovid
+                        action: CountryListContentAction.countryCovid
                     )
                 ) { store in
                     CountryCovidView(store: store)
@@ -52,7 +52,7 @@ struct CountryListLoadedView: View {
 struct CountryListLoadedView_Previews: PreviewProvider {
     static var groupPreviews: some View {
         Group {
-            CountryListLoadedView(
+            CountryListContentView(
                 store: Store(
                     initialState: .template,
                     reducer: .empty,
@@ -61,7 +61,7 @@ struct CountryListLoadedView_Previews: PreviewProvider {
             )
             .redacted(reason: .placeholder)
 
-            CountryListLoadedView(
+            CountryListContentView(
                 store: Store(
                     initialState: .template,
                     reducer: .empty,
