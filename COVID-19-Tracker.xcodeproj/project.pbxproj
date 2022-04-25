@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		57D53C082816C85A00BFB1D1 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C072816C85A00BFB1D1 /* SortType.swift */; };
+		57D53C0A2816D1FF00BFB1D1 /* CountryFlagMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C092816D1FF00BFB1D1 /* CountryFlagMapper.swift */; };
 		57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */; };
 		57DB770A28145CAB004C052B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DB770928145CAB004C052B /* Assets.xcassets */; };
 		57DB770D28145CAB004C052B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DB770C28145CAB004C052B /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		57D53C072816C85A00BFB1D1 /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
+		57D53C092816D1FF00BFB1D1 /* CountryFlagMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFlagMapper.swift; sourceTree = "<group>"; };
 		57DB770228145CAA004C052B /* COVID-19-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID_19_TrackerApp.swift; sourceTree = "<group>"; };
 		57DB770928145CAB004C052B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				57DB773928145CD3004C052B /* CovidTimeseriesResponse.swift */,
 				57D53C072816C85A00BFB1D1 /* SortType.swift */,
+				57D53C092816D1FF00BFB1D1 /* CountryFlagMapper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				57DB775028145E5F004C052B /* CountryListContentView.swift in Sources */,
 				57DB773F28145CD4004C052B /* CountryList+Environment.swift in Sources */,
 				57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */,
+				57D53C0A2816D1FF00BFB1D1 /* CountryFlagMapper.swift in Sources */,
 				57DB775F281559CB004C052B /* Color+Extensions.swift in Sources */,
 				57DB775B2814E2E1004C052B /* CountryCovid+Reducer.swift in Sources */,
 				57DB773E28145CD4004C052B /* CountryList+Reducer.swift in Sources */,

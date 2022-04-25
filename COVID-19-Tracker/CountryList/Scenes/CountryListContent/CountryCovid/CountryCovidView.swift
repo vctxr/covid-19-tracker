@@ -20,7 +20,7 @@ struct CountryCovidView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             HStack(spacing: 16) {
-                Text(viewStore.data.country)
+                Text("\(viewStore.data.country) \(viewStore.data.country.flag)")
                     .font(.title2.bold())
                     .foregroundColor(viewStore.style.countryTextColor)
                 

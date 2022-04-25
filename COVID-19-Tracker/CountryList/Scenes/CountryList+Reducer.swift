@@ -11,7 +11,7 @@ import Networking
 // MARK: - State
 
 struct CountryListState: Equatable {
-    let titleText = "Countries"
+    let titleText = "Countries 🦠"
     var searchText = ""
     var sortType = SortType.cases(.descending)
     
@@ -75,6 +75,7 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         
     case .onAppear:
         return env.useCase.getCovidTimeseries()
+            .receive(on: DispatchQueue.main.animation())
             .catchToEffect(CountryListAction.receiveCovidTimeseries)
         
     // MARK: - Navigation Bar
