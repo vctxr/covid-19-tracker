@@ -9,13 +9,23 @@
 import Foundation
 import ComposableArchitecture
 
+// MARK: - CountryListState
+
 extension CountryListState {
     static var templateRedacted: CountryListState {
         CountryListState(uiState: .loading)
     }
     
     static var templateLoaded: CountryListState {
-        CountryListState(uiState: .loaded(state: .template))
+        CountryListState(uiState: .loaded(state: .templateAvailable))
+    }
+}
+
+// MARK: - CountryListAvailableState
+
+extension CountryListAvailableState {
+    static var template: CountryListAvailableState {
+        CountryListAvailableState(timeseriesData: .template, searchText: "")
     }
 }
 
@@ -87,8 +97,12 @@ extension Array where Element == CountryCovidTimeseries {
 // MARK: - CountryListLoadedState
 
 extension CountryListContentState {
-    static var template: CountryListContentState {
+    static var templateAvailable: CountryListContentState {
         CountryListContentState(timeseriesData: .template, searchText: "", sortType: .cases(.descending))
+    }
+    
+    static var templateEmpty: CountryListContentState {
+        CountryListContentState(timeseriesData: [], searchText: "", sortType: .cases(.descending))
     }
 }
 
@@ -97,7 +111,7 @@ extension CountryListContentState {
 extension Store where State == CountryListContentState, Action == CountryListContentAction {
     static var redacted: Self {
         Self(
-            initialState: .template,
+            initialState: .templateAvailable,
             reducer: .empty,
             environment: ()
         )

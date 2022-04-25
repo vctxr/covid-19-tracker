@@ -20,14 +20,15 @@ struct CountryListState: Equatable {
     var uiState: UIState {
         get {
             var state = _uiState
-            state.loadedState?.searchText = searchText
-            state.loadedState?.sortType = sortType
+            let sortedTimeseriesData = state.loadedState?.contentState.availableState?.timeseriesData.sorted(by: sortType.sorter)
+            state.loadedState?.contentState.availableState?.timeseriesData = sortedTimeseriesData ?? []
+            state.loadedState?.contentState.availableState?.searchText = searchText
             return state
         }
         set {
             _uiState = newValue
-            guard let loadedState = newValue.loadedState else { return }
-            searchText = loadedState.searchText
+            guard let availableState = newValue.loadedState?.contentState.availableState else { return }
+            searchText = availableState.searchText
         }
     }
     

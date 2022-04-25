@@ -16,32 +16,30 @@ struct CountryListContentView: View {
     // MARK: - Body 🎨
     
     var body: some View {
-        WithViewStore(store) { viewStore in
-            List {
-                ForEachStore(
-                    store.scope(
-                        state: \.countryCovidStates,
-                        action: CountryListContentAction.countryCovid
-                    )
-                ) { store in
-                    CountryCovidView(store: store)
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(
-                            EdgeInsets(
-                                top: 3,
-                                leading: 16,
-                                bottom: 3,
-                                trailing: 16
-                            )
+        SwitchStore(store.scope(state: \.contentState)) {
+            CaseLet(state: /CountryListContentState.ContentState.empty,
+                    action: CountryListContentAction.empty) { _ in
+                Text("No Results.\nSearch for another country.")
+                    .multilineTextAlignment(.center)
+                    .font(.title2)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: "F06744"),
+                                Color(hex: "EE4C53"),
+                                Color(hex: "D35E94"),
+                                Color(hex: "9C6CA5"),
+                                Color(hex: "6782BE"),
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
                         )
-                }
-                .padding(.top, 8)
+                    )
             }
-            .listStyle(.plain)
-            .animation(.default, value: viewStore.countryCovidStates)
-            .ignoresSafeArea(.keyboard)
-            .onAppear {
-                UITableView.appearance().keyboardDismissMode = .onDrag
+
+            CaseLet(state: /CountryListContentState.ContentState.available,
+                    action: CountryListContentAction.available) { availableStore in
+                CountryListAvailableView(store: availableStore)
             }
         }
     }
@@ -54,7 +52,7 @@ struct CountryListLoadedView_Previews: PreviewProvider {
         Group {
             CountryListContentView(
                 store: Store(
-                    initialState: .template,
+                    initialState: .templateAvailable,
                     reducer: .empty,
                     environment: ()
                 )
@@ -63,7 +61,15 @@ struct CountryListLoadedView_Previews: PreviewProvider {
 
             CountryListContentView(
                 store: Store(
-                    initialState: .template,
+                    initialState: .templateAvailable,
+                    reducer: .empty,
+                    environment: ()
+                )
+            )
+            
+            CountryListContentView(
+                store: Store(
+                    initialState: .templateEmpty,
                     reducer: .empty,
                     environment: ()
                 )
