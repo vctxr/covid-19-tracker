@@ -11,7 +11,7 @@ import CasePaths
 // MARK: - State
 
 struct CountryListContentState: Equatable {
-    var _contentState: ContentState
+    private var _contentState: ContentState
     var contentState: ContentState {
         get {
             if _contentState.availableState?.countryCovidStates.isEmpty == true {

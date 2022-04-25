@@ -82,7 +82,15 @@ struct ContentView_Previews: PreviewProvider {
             
             CountryListView(
                 store: Store(
-                    initialState: .templateLoaded,
+                    initialState: .templateAvailable,
+                    reducer: countryListReducer,
+                    environment: .live
+                )
+            )
+            
+            CountryListView(
+                store: Store(
+                    initialState: .templateEmpty,
                     reducer: countryListReducer,
                     environment: .live
                 )
