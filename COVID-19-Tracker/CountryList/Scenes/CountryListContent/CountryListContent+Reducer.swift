@@ -11,7 +11,7 @@ import IdentifiedCollections
 // MARK: - State
 
 struct CountryListContentState: Equatable {
-    private let timeseriesData: [CountryCovidTimeseries]
+    var timeseriesData: [CountryCovidTimeseries]
     var searchText: String
     
     // Computed properties.
@@ -32,13 +32,6 @@ struct CountryListContentState: Equatable {
             .filter { $0.country.range(of: searchText, options: .caseInsensitive) != nil }
 
         return generateStates(filteredData)
-    }
-    
-    // MARK: - Inits 🐣
-    
-    init(timeseriesData: [CountryCovidTimeseries], searchText: String) {
-        self.timeseriesData = timeseriesData
-        self.searchText = searchText
     }
 }
 

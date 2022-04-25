@@ -13,19 +13,22 @@ import Networking
 struct CountryListState: Equatable {
     let titleText = "Countries"
     var searchText = ""
+    var sortType = SortType.cases(.descending)
     
     // Child states.
     private var _uiState: UIState
     var uiState: UIState {
         get {
             var state = _uiState
+            let sortedTimeseriesData = state.loadedState?.timeseriesData.sorted(by: sortType.sorter)
+            state.loadedState?.timeseriesData = sortedTimeseriesData ?? []
             state.loadedState?.searchText = searchText
             return state
         }
         set {
             _uiState = newValue
-            guard let newSearchText = newValue.loadedState?.searchText else { return }
-            searchText = newSearchText
+            guard let loadedState = newValue.loadedState else { return }
+            searchText = loadedState.searchText
         }
     }
     
@@ -54,6 +57,7 @@ struct CountryListState: Equatable {
 enum CountryListAction: Equatable {
     case onAppear
     case onSearchTextChanged(String)
+    case onSortTypeChanged(SortType)
     
     // Child actions.
     case loading(Never)
@@ -73,10 +77,14 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         return env.useCase.getCovidTimeseries()
             .catchToEffect(CountryListAction.receiveCovidTimeseries)
         
-    // MARK: - Search Bar
+    // MARK: - Navigation Bar
         
     case .onSearchTextChanged(let text):
         state.searchText = text
+        return .none
+        
+    case .onSortTypeChanged(let sortType):
+        state.sortType = sortType
         return .none
         
     // MARK: - Timeseries Response
@@ -84,11 +92,9 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
     case .receiveCovidTimeseries(let result):
         switch result {
         case .success(let timeseriesData):
-            let sortedTimeseriesData = timeseriesData.sorted(by: { $0.latestConfirmed > $1.latestConfirmed })
-            
             state.uiState = .loaded(
                 state: CountryListContentState(
-                    timeseriesData: sortedTimeseriesData,
+                    timeseriesData: timeseriesData.sorted(by: state.sortType.sorter),
                     searchText: state.searchText
                 )
             )

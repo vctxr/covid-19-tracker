@@ -33,7 +33,21 @@ struct CountryListView: View {
                 .navigationTitle(viewStore.titleText)
                 .toolbar {
                     Menu {
-                        Button("Test Button", action: {})
+                        Picker(
+                            selection: viewStore.binding(
+                                get: \.sortType,
+                                send: CountryListAction.onSortTypeChanged
+                            )
+                        ) {
+                            Text("Most Cases 🤧")
+                                .tag(SortType.cases(.descending))
+                            Text("Least Cases 😷")
+                                .tag(SortType.cases(.ascending))
+                            Text("Highest Fatality 💀")
+                                .tag(SortType.fatality(.descending))
+                            Text("Lowest Fatality 💉")
+                                .tag(SortType.fatality(.ascending))
+                        } label: {}
                     } label: {
                         Image(systemName: "arrow.up.arrow.down.circle")
                     }

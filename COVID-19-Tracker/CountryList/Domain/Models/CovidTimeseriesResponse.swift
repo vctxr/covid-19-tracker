@@ -49,6 +49,10 @@ struct CountryCovidTimeseries: Equatable, Identifiable {
     var latestConfirmed: Int {
         timeseriesData.last?.confirmed ?? 0
     }
+    
+    var latestDeaths: Int {
+        timeseriesData.last?.deaths ?? 0
+    }
 }
 
 // MARK: - CovidDayData

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57D53C082816C85A00BFB1D1 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C072816C85A00BFB1D1 /* SortType.swift */; };
 		57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */; };
 		57DB770A28145CAB004C052B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DB770928145CAB004C052B /* Assets.xcassets */; };
 		57DB770D28145CAB004C052B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57DB770C28145CAB004C052B /* Preview Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57D53C072816C85A00BFB1D1 /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
 		57DB770228145CAA004C052B /* COVID-19-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID_19_TrackerApp.swift; sourceTree = "<group>"; };
 		57DB770928145CAB004C052B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				57DB773928145CD3004C052B /* CovidTimeseriesResponse.swift */,
+				57D53C072816C85A00BFB1D1 /* SortType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				57DB774028145CD4004C052B /* CountryListView.swift in Sources */,
 				57DB776128155C31004C052B /* UIColor+Extensions.swift in Sources */,
 				57DB774128145CD4004C052B /* CovidTimeseriesResponse.swift in Sources */,
+				57D53C082816C85A00BFB1D1 /* SortType.swift in Sources */,
 				57DB775428146199004C052B /* CountryListStubs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
