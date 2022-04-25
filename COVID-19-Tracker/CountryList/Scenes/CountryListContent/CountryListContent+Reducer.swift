@@ -11,13 +11,15 @@ import IdentifiedCollections
 // MARK: - State
 
 struct CountryListContentState: Equatable {
-    var timeseriesData: [CountryCovidTimeseries]
+    private let timeseriesData: [CountryCovidTimeseries]
     var searchText: String
+    var sortType: SortType
     
     // Computed properties.
     var countryCovidStates: IdentifiedArrayOf<CountryCovidState> {
         let generateStates: ([CountryCovidTimeseries]) -> IdentifiedArrayOf<CountryCovidState> = { timeseriesData in
             IdentifiedArray(uniqueElements: timeseriesData
+                .sorted(by: sortType.sorter)
                 .enumerated()
                 .map { index, data in
                     CountryCovidState(data: data, style: .init(index: index))
@@ -32,6 +34,14 @@ struct CountryListContentState: Equatable {
             .filter { $0.country.range(of: searchText, options: .caseInsensitive) != nil }
 
         return generateStates(filteredData)
+    }
+    
+    // MARK: - Inits 🐣
+    
+    init(timeseriesData: [CountryCovidTimeseries], searchText: String, sortType: SortType) {
+        self.timeseriesData = timeseriesData
+        self.searchText = searchText
+        self.sortType = sortType
     }
 }
 

@@ -20,9 +20,8 @@ struct CountryListState: Equatable {
     var uiState: UIState {
         get {
             var state = _uiState
-            let sortedTimeseriesData = state.loadedState?.timeseriesData.sorted(by: sortType.sorter)
-            state.loadedState?.timeseriesData = sortedTimeseriesData ?? []
             state.loadedState?.searchText = searchText
+            state.loadedState?.sortType = sortType
             return state
         }
         set {
@@ -95,8 +94,9 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         case .success(let timeseriesData):
             state.uiState = .loaded(
                 state: CountryListContentState(
-                    timeseriesData: timeseriesData.sorted(by: state.sortType.sorter),
-                    searchText: state.searchText
+                    timeseriesData: timeseriesData,
+                    searchText: state.searchText,
+                    sortType: state.sortType
                 )
             )
             

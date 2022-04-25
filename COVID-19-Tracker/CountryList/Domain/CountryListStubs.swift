@@ -88,7 +88,7 @@ extension Array where Element == CountryCovidTimeseries {
 
 extension CountryListContentState {
     static var template: CountryListContentState {
-        CountryListContentState(timeseriesData: .template, searchText: "")
+        CountryListContentState(timeseriesData: .template, searchText: "", sortType: .cases(.descending))
     }
 }
 
