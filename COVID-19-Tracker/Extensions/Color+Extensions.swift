@@ -43,4 +43,16 @@ extension Color {
             dark: UIColor(darkModeColor())
         ))
     }
+    
+    static var appRed: Color {
+        Color(hex: "F6412D")
+    }
+    
+    static var appOrange: Color {
+        Color(hex: "FF9800")
+    }
+    
+    static var appYellow: Color {
+        Color(hex: "FFC100")
+    }
 }

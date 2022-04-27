@@ -34,6 +34,8 @@
 		57DB776128155C31004C052B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB776028155C31004C052B /* UIColor+Extensions.swift */; };
 		57DE706B28171FD60042591F /* CountryListAvailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706A28171FD60042591F /* CountryListAvailableView.swift */; };
 		57DE706D2819BB8E0042591F /* CountryListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */; };
+		57DE70722819C6660042591F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE70712819C6660042591F /* AlertToast */; };
+		57DE70742819C6A10042591F /* ToastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE70732819C6A10042591F /* ToastState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,7 @@
 		57DB776028155C31004C052B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		57DE706A28171FD60042591F /* CountryListAvailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListAvailableView.swift; sourceTree = "<group>"; };
 		57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListNavigationView.swift; sourceTree = "<group>"; };
+		57DE70732819C6A10042591F /* ToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57DB774828145CE8004C052B /* SharedDateFormatter in Frameworks */,
+				57DE70722819C6660042591F /* AlertToast in Frameworks */,
 				57DB774628145CE8004C052B /* Networking in Frameworks */,
 				57DB774B28145D12004C052B /* ComposableArchitecture in Frameworks */,
 			);
@@ -202,6 +206,7 @@
 				57DB773928145CD3004C052B /* CovidTimeseriesResponse.swift */,
 				57D53C072816C85A00BFB1D1 /* SortType.swift */,
 				57D53C092816D1FF00BFB1D1 /* CountryFlagMapper.swift */,
+				57DE70732819C6A10042591F /* ToastState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				57DB774528145CE8004C052B /* Networking */,
 				57DB774728145CE8004C052B /* SharedDateFormatter */,
 				57DB774A28145D12004C052B /* ComposableArchitecture */,
+				57DE70712819C6660042591F /* AlertToast */,
 			);
 			productName = "COVID-19-Tracker";
 			productReference = 57DB770228145CAA004C052B /* COVID-19-Tracker.app */;
@@ -321,6 +327,7 @@
 			mainGroup = 57DB76F928145CAA004C052B;
 			packageReferences = (
 				57DB774928145D12004C052B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				57DE70702819C6650042591F /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 57DB770328145CAA004C052B /* Products */;
 			projectDirPath = "";
@@ -369,6 +376,7 @@
 				57DE706B28171FD60042591F /* CountryListAvailableView.swift in Sources */,
 				57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */,
 				57D53C0A2816D1FF00BFB1D1 /* CountryFlagMapper.swift in Sources */,
+				57DE70742819C6A10042591F /* ToastState.swift in Sources */,
 				57DB775F281559CB004C052B /* Color+Extensions.swift in Sources */,
 				57DB775B2814E2E1004C052B /* CountryCovidCard+Reducer.swift in Sources */,
 				57DB773E28145CD4004C052B /* CountryList+Reducer.swift in Sources */,
@@ -652,6 +660,14 @@
 				minimumVersion = 0.9.0;
 			};
 		};
+		57DE70702819C6650042591F /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -667,6 +683,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 57DB774928145D12004C052B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		57DE70712819C6660042591F /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57DE70702819C6650042591F /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

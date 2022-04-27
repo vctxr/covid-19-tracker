@@ -57,14 +57,11 @@ extension CountryCovidCardState {
         internal var backgroundColor: Color {
             switch self {
             case .first:
-                let color = Color(hex: "F6412D")
-                return Color(light: color, dark: color.opacity(0.95))
+                return Color(light: .appRed, dark: .appRed.opacity(0.95))
             case .second:
-                let color = Color(hex: "FF9800")
-                return Color(light: color, dark: color.opacity(0.95))
+                return Color(light: .appOrange, dark: .appOrange.opacity(0.95))
             case .third:
-                let color = Color(hex: "FFC100")
-                return Color(light: color, dark: color.opacity(0.95))
+                return Color(light: .appYellow, dark: .appYellow.opacity(0.95))
             case .normal:
                 return Color(uiColor: .systemBackground)
             }

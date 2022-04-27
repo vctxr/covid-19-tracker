@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import AlertToast
 
 struct CountryListView: View {
     // MARK: - Variables 📦
@@ -28,9 +29,24 @@ struct CountryListView: View {
                     CaseLet(state: /CountryListState.UIState.loaded,
                             action: CountryListAction.loaded) { loadedStore in
                         CountryListContentView(store: loadedStore)
-                            .transition(.opacity)
                     }
                 }
+                .toast(
+                    isPresenting: viewStore.binding(
+                        get: \.isShowingToast,
+                        send: CountryListAction.onDismissToast
+                    ),
+                    duration: 3,
+                    alert: {
+                        AlertToast(
+                            displayMode: viewStore.toastState?.mode ?? .banner(.pop),
+                            type: viewStore.toastState?.type ?? .error(.appRed),
+                            title: viewStore.toastState?.title,
+                            subTitle: viewStore.toastState?.subtitle,
+                            style: viewStore.toastState?.style
+                        )
+                    }
+                )
             }
             .onAppear {
                 viewStore.send(.onAppear)

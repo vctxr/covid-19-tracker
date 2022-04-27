@@ -15,6 +15,12 @@ struct CountryListState: Equatable {
     var searchText = ""
     var sortType = SortType.cases(.descending)
     var uiState = UIState.loading
+    var toastState: ToastState?
+    
+    // Computed properties.
+    var isShowingToast: Bool {
+        toastState != nil
+    }
     
     enum UIState: Equatable {
         case loading
@@ -41,6 +47,7 @@ enum CountryListAction: Equatable {
     case onAppear
     case onSearchTextChanged(String)
     case onSortTypeChanged(SortType)
+    case onDismissToast
     
     // Child actions.
     case loading(Never)
@@ -93,10 +100,19 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
 
         case .failure(let error):
-            // TODO: Handle error
-            break
+            state.toastState = ToastState(
+                mode: .banner(.pop),
+                type: .error(.appRed),
+                title: error.localizedDescription
+            )
+            
+            return .none
         }
         
+    // MARK: - Toast
+        
+    case .onDismissToast:
+        state.toastState = nil
         return .none
         
     // MARK: - Unhandled

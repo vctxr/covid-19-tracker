@@ -34,7 +34,7 @@ public class NetworkingService {
                 logger.log(response: response, data: data)
                 
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                    throw NetworkError.noResponse
+                    throw NetworkError.ErrorStatus.noResponse
                 }
                 
                 guard 0..<300 ~= statusCode else {
