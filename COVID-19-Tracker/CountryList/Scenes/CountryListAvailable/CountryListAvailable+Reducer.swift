@@ -6,11 +6,13 @@
 //
 
 import IdentifiedCollections
+import ComposableArchitecture
 
 // MARK: - State
 
 struct CountryListAvailableState: Equatable {
     var timeseriesData: [CountryCovidTimeseries]
+    var isRefreshing = false
     
     // Computed properties.
     var countryCovidStates: IdentifiedArrayOf<CountryCovidCardState> {
@@ -26,6 +28,18 @@ struct CountryListAvailableState: Equatable {
 // MARK: - Action
 
 enum CountryListAvailableAction: Equatable {
+    case onRefresh
+    
     // Child actions.
     case countryCovid(id: CountryCovidCardState.ID, action: Never)
+}
+
+// MARK: - Reducer
+
+let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void> { state, action, _ in
+    switch action {
+    case .onRefresh:
+        state.isRefreshing = true
+        return .none
+    }
 }

@@ -54,6 +54,7 @@ enum CountryListAction: Equatable {
     case loaded(CountryListContentAction)
     
     // Side-effects.
+    case fetchCovidTimeseries
     case receiveCovidTimeseries(Result<[CountryCovidTimeseries], NetworkError>)
 }
 
@@ -64,6 +65,11 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
     // MARK: - Lifecycle ♻️
         
     case .onAppear:
+        return Effect(value: .fetchCovidTimeseries)
+        
+    // MARK: - Fetch Covid Timeseries
+        
+    case .fetchCovidTimeseries:
         return env.useCase.getCovidTimeseries()
             .catchToEffect(CountryListAction.receiveCovidTimeseries)
         
@@ -109,6 +115,11 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             return .none
         }
         
+    // MARK: - Refresh
+        
+    case .loaded(.available(.onRefresh)):
+        return Effect(value: .fetchCovidTimeseries)
+        
     // MARK: - Toast
         
     case .onDismissToast:
@@ -128,7 +139,7 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
 // MARK: - Master Reducer
 
 internal let countryListMasterReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment>.combine(
-    countryListContentReducer
+    countryListContentMasterReducer
         .pullback(
             state: /CountryListState.UIState.loaded,
             action: /CountryListAction.loaded,

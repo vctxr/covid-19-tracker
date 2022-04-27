@@ -54,11 +54,8 @@ enum CountryListContentAction: Equatable {
 
 // MARK: - Reducer
 
-let countryListContentReducer = Reducer<CountryListContentState, CountryListContentAction, Void> { state, action, _ in
+private let countryListContentReducer = Reducer<CountryListContentState, CountryListContentAction, Void> { state, action, _ in
     switch action {
-    case .available:
-        return .none
-        
     case .filterCountry(let searchText, let sortType):
         // If there is no search text, just return the timeseries data without filtering.
         guard !searchText.isEmpty else {
@@ -78,5 +75,29 @@ let countryListContentReducer = Reducer<CountryListContentState, CountryListCont
         }
         
         return .none
+        
+    // MARK: - Unhandled
+        
+    case .available:
+        return .none
     }
 }
+
+// MARK: - Master Reducer
+
+internal let countryListContentMasterReducer = Reducer<CountryListContentState, CountryListContentAction, Void>.combine(
+    countryListAvailableReducer
+        .pullback(
+            state: /CountryListContentState.ContentState.available,
+            action: /CountryListContentAction.available,
+            environment: { _ in }
+        )
+        .pullback(
+            state: \.contentState,
+            action: /CountryListContentAction.self,
+            environment: { $0 }
+        ),
+    
+    countryListContentReducer
+)
+

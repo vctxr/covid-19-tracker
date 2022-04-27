@@ -38,6 +38,9 @@ struct CountryListAvailableView: View {
                 .padding(.top, 8)
             }
             .listStyle(.plain)
+            .refreshable {
+                await viewStore.send(.onRefresh, while: \.isRefreshing)
+            }
             .animation(.default, value: viewStore.countryCovidStates)
             .ignoresSafeArea(.keyboard)
             .onAppear {
