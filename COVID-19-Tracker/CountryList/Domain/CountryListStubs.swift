@@ -29,27 +29,27 @@ extension CountryListState {
 
 extension CountryListAvailableState {
     static var template: CountryListAvailableState {
-        CountryListAvailableState(timeseriesData: .template, searchText: "")
+        CountryListAvailableState(timeseriesData: .template)
     }
 }
 
-// MARK: - CountryCovidState
+// MARK: - CountryCovidCardState
 
-extension CountryCovidState {
-    static var templateFirst: CountryCovidState {
-        CountryCovidState(data: .template, style: .first)
+extension CountryCovidCardState {
+    static var templateFirst: CountryCovidCardState {
+        CountryCovidCardState(data: .template, style: .first)
     }
 
-    static var templateSecond: CountryCovidState {
-        CountryCovidState(data: .template, style: .second)
+    static var templateSecond: CountryCovidCardState {
+        CountryCovidCardState(data: .template, style: .second)
     }
 
-    static var templateThird: CountryCovidState {
-        CountryCovidState(data: .template, style: .third)
+    static var templateThird: CountryCovidCardState {
+        CountryCovidCardState(data: .template, style: .third)
     }
 
-    static var templateNormal: CountryCovidState {
-        CountryCovidState(data: .template, style: .normal)
+    static var templateNormal: CountryCovidCardState {
+        CountryCovidCardState(data: .template, style: .normal)
     }
 }
 #endif
@@ -79,23 +79,20 @@ extension CountryCovidTimeseries {
 // MARK: - CountryCovidTimeseries Array
 
 extension Array where Element == CountryCovidTimeseries {
-    static var template: Self {
-        [
-            .template(country: "Indonesia"),
-            .template(country: "United Kingdom"),
-            .template(country: "Japan"),
-            .template(country: "Korea"),
-            .template(country: "US"),
-            .template(country: "Canada"),
-            .template(country: "Diamond Princess"),
-            .template(country: "Taiwan"),
-            .template(country: "Switzerland"),
-            .template(country: "Marshall Islands"),
-            .template(country: "Antartica"),
-            .template(country: "Sierra Leone"),
-
-        ]
-    }
+    static let template: [CountryCovidTimeseries] = [
+        .template(country: "Indonesia"),
+        .template(country: "United Kingdom"),
+        .template(country: "Japan"),
+        .template(country: "Korea"),
+        .template(country: "US"),
+        .template(country: "Canada"),
+        .template(country: "Diamond Princess"),
+        .template(country: "Taiwan"),
+        .template(country: "Switzerland"),
+        .template(country: "Marshall Islands"),
+        .template(country: "Antartica"),
+        .template(country: "Sierra Leone")
+    ]
 }
 
 // MARK: - CountryListLoadedState
@@ -110,10 +107,10 @@ extension CountryListContentState {
     }
 }
 
-// MARK: - CountryListLoadedState Redacted Store
+// MARK: - CountryListLoadedState Empty Store
 
 extension Store where State == CountryListContentState, Action == CountryListContentAction {
-    static var redacted: Self {
+    static var empty: Self {
         Self(
             initialState: .templateAvailable,
             reducer: .empty,

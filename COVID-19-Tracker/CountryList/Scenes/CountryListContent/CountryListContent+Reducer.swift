@@ -7,23 +7,13 @@
 
 import IdentifiedCollections
 import CasePaths
+import ComposableArchitecture
 
 // MARK: - State
 
 struct CountryListContentState: Equatable {
-    private var _contentState: ContentState
-    var contentState: ContentState {
-        get {
-            if _contentState.availableState?.countryCovidStates.isEmpty == true {
-                return .empty
-            } else {
-                return _contentState
-            }
-        }
-        set {
-            _contentState = newValue
-        }
-    }
+    internal var timeseriesData: [CountryCovidTimeseries]
+    internal var contentState: ContentState
 
     enum ContentState: Equatable {
         case empty
@@ -41,14 +31,13 @@ struct CountryListContentState: Equatable {
     // MARK: - Inits 🐣
     
     init(timeseriesData: [CountryCovidTimeseries], searchText: String, sortType: SortType) {
-        _contentState = timeseriesData.isEmpty ?
-            .empty :
-            .available(
-                state: CountryListAvailableState(
-                    timeseriesData: timeseriesData,
-                    searchText: searchText
-                )
-            )
+        self.timeseriesData = timeseriesData
+        
+        if timeseriesData.isEmpty {
+            contentState = .empty
+        } else {
+            contentState = .available(state: .init(timeseriesData: timeseriesData))
+        }
     }
 }
 
@@ -58,4 +47,36 @@ enum CountryListContentAction: Equatable {
     // Child actions.
     case empty(Never)
     case available(CountryListAvailableAction)
+    
+    // Side-effects.
+    case filterCountry(searchText: String, sortedBy: SortType)
+}
+
+// MARK: - Reducer
+
+let countryListContentReducer = Reducer<CountryListContentState, CountryListContentAction, Void> { state, action, _ in
+    switch action {
+    case .available:
+        return .none
+        
+    case .filterCountry(let searchText, let sortType):
+        // If there is no search text, just return the timeseries data without filtering.
+        guard !searchText.isEmpty else {
+            state.contentState = .available(state: .init(timeseriesData: state.timeseriesData.sorted(by: sortType.sorter)))
+            return .none
+        }
+        
+        // Filter and sort the data.
+        let filteredTimeseriesData = state.timeseriesData
+            .filter { $0.country.range(of: searchText, options: .caseInsensitive) != nil }
+            .sorted(by: sortType.sorter)
+
+        if filteredTimeseriesData.isEmpty {
+            state.contentState = .empty
+        } else {
+            state.contentState = .available(state: .init(timeseriesData: filteredTimeseriesData))
+        }
+        
+        return .none
+    }
 }

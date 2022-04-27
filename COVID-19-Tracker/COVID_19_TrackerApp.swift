@@ -23,7 +23,7 @@ struct COVID_19_TrackerApp: App {
             CountryListView(
                 store: Store(
                     initialState: CountryListState(),
-                    reducer: countryListReducer,
+                    reducer: countryListMasterReducer,
                     environment: .live
                 )
             )

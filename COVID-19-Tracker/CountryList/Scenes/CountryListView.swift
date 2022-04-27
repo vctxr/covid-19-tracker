@@ -17,49 +17,21 @@ struct CountryListView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            NavigationView {
+            CountryListNavigationView(viewStore: viewStore) {
                 SwitchStore(store.scope(state: \.uiState)) {
                     CaseLet(state: /CountryListState.UIState.loading,
                             action: CountryListAction.loading) { _ in
-                        CountryListContentView(store: .redacted)
+                        CountryListContentView(store: .empty)
                             .redacted(reason: .placeholder)
                     }
-
+                    
                     CaseLet(state: /CountryListState.UIState.loaded,
                             action: CountryListAction.loaded) { loadedStore in
                         CountryListContentView(store: loadedStore)
-                    }
-                }
-                .navigationTitle(viewStore.titleText)
-                .toolbar {
-                    Menu {
-                        Picker(
-                            selection: viewStore.binding(
-                                get: \.sortType,
-                                send: CountryListAction.onSortTypeChanged
-                            )
-                        ) {
-                            Text("Most Cases 🤧")
-                                .tag(SortType.cases(.descending))
-                            Text("Least Cases 😷")
-                                .tag(SortType.cases(.ascending))
-                            Text("Highest Fatality 💀")
-                                .tag(SortType.fatality(.descending))
-                            Text("Lowest Fatality 💉")
-                                .tag(SortType.fatality(.ascending))
-                        } label: {}
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down.circle")
+                            .transition(.opacity)
                     }
                 }
             }
-            .searchable(
-                text: viewStore.binding(
-                    get: \.searchText,
-                    send: CountryListAction.onSearchTextChanged
-                ),
-                prompt: "Search for countries"
-            )
             .onAppear {
                 viewStore.send(.onAppear)
             }
@@ -75,7 +47,7 @@ struct ContentView_Previews: PreviewProvider {
             CountryListView(
                 store: Store(
                     initialState: .templateRedacted,
-                    reducer: countryListReducer,
+                    reducer: countryListMasterReducer,
                     environment: .live
                 )
             )
@@ -83,7 +55,7 @@ struct ContentView_Previews: PreviewProvider {
             CountryListView(
                 store: Store(
                     initialState: .templateAvailable,
-                    reducer: countryListReducer,
+                    reducer: countryListMasterReducer,
                     environment: .live
                 )
             )
@@ -91,7 +63,7 @@ struct ContentView_Previews: PreviewProvider {
             CountryListView(
                 store: Store(
                     initialState: .templateEmpty,
-                    reducer: countryListReducer,
+                    reducer: countryListMasterReducer,
                     environment: .live
                 )
             )

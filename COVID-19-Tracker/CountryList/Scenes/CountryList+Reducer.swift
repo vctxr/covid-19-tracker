@@ -14,23 +14,7 @@ struct CountryListState: Equatable {
     let titleText = "Countries 🦠"
     var searchText = ""
     var sortType = SortType.cases(.descending)
-    
-    // Child states.
-    private var _uiState: UIState
-    var uiState: UIState {
-        get {
-            var state = _uiState
-            let sortedTimeseriesData = state.loadedState?.contentState.availableState?.timeseriesData.sorted(by: sortType.sorter)
-            state.loadedState?.contentState.availableState?.timeseriesData = sortedTimeseriesData ?? []
-            state.loadedState?.contentState.availableState?.searchText = searchText
-            return state
-        }
-        set {
-            _uiState = newValue
-            guard let availableState = newValue.loadedState?.contentState.availableState else { return }
-            searchText = availableState.searchText
-        }
-    }
+    var uiState = UIState.loading
     
     enum UIState: Equatable {
         case loading
@@ -43,12 +27,11 @@ struct CountryListState: Equatable {
                 self = .loaded(state: countryListLoadedState)
             }
         }
-    }
-    
-    // MARK: - Inits 🐣
-    
-    init(uiState: UIState = .loading) {
-        self._uiState = uiState
+        
+        var isLoaded: Bool {
+            guard case .loaded = self else { return false }
+            return true
+        }
     }
 }
 
@@ -69,25 +52,30 @@ enum CountryListAction: Equatable {
 
 // MARK: - Reducer
 
-let countryListReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment> { state, action, env in
+private let countryListReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment> { state, action, env in
     switch action {
     // MARK: - Lifecycle ♻️
         
     case .onAppear:
         return env.useCase.getCovidTimeseries()
-            .receive(on: DispatchQueue.main.animation())
             .catchToEffect(CountryListAction.receiveCovidTimeseries)
         
     // MARK: - Navigation Bar
         
     case .onSearchTextChanged(let text):
         state.searchText = text
-        return .none
+        
+        // Only filter if it is loaded.
+        guard state.uiState.isLoaded else { return .none }
+        return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
         
     case .onSortTypeChanged(let sortType):
         state.sortType = sortType
-        return .none
         
+        // Only filter if it is loaded.
+        guard state.uiState.isLoaded else { return .none }
+        return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
+
     // MARK: - Timeseries Response
         
     case .receiveCovidTimeseries(let result):
@@ -101,7 +89,11 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
                 )
             )
             
+            // After getting the timeseries data, we need to trigger a filter.
+            return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
+
         case .failure(let error):
+            // TODO: Handle error
             break
         }
         
@@ -116,3 +108,21 @@ let countryListReducer = Reducer<CountryListState, CountryListAction, CountryLis
         return .none
     }
 }
+
+// MARK: - Master Reducer
+
+internal let countryListMasterReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment>.combine(
+    countryListContentReducer
+        .pullback(
+            state: /CountryListState.UIState.loaded,
+            action: /CountryListAction.loaded,
+            environment: { _ in }
+        )
+        .pullback(
+            state: \.uiState,
+            action: /CountryListAction.self,
+            environment: { $0 }
+        ),
+    
+    countryListReducer
+)

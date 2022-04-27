@@ -1,5 +1,5 @@
 //
-//  CountryCovidView.swift
+//  CountryCovidCardView.swift
 //  COVID-19-Tracker
 //
 //  Created by Victor Samuel Cuaca on 24/04/22.
@@ -8,12 +8,12 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CountryCovidView: View {
+struct CountryCovidCardView: View {
     // MARK: - Variables 📦
     
     @State private var isLongPressed = false
     
-    let store: Store<CountryCovidState, Never>
+    let store: Store<CountryCovidCardState, Never>
     
     // MARK: - Body 🎨
     
@@ -66,7 +66,7 @@ struct CountryCovidView: View {
 struct CountryCovidView_Previews: PreviewProvider {
     private static var groupPreviews: some View {
         Group {
-            CountryCovidView(
+            CountryCovidCardView(
                 store: Store(
                     initialState: .templateFirst,
                     reducer: .empty,
@@ -75,7 +75,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             )
             .previewLayout(.sizeThatFits)
             
-            CountryCovidView(
+            CountryCovidCardView(
                 store: Store(
                     initialState: .templateSecond,
                     reducer: .empty,
@@ -84,7 +84,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             )
             .previewLayout(.sizeThatFits)
             
-            CountryCovidView(
+            CountryCovidCardView(
                 store: Store(
                     initialState: .templateThird,
                     reducer: .empty,
@@ -93,7 +93,7 @@ struct CountryCovidView_Previews: PreviewProvider {
             )
             .previewLayout(.sizeThatFits)
             
-            CountryCovidView(
+            CountryCovidCardView(
                 store: Store(
                     initialState: .templateNormal,
                     reducer: .empty,

@@ -24,7 +24,7 @@ struct CountryListAvailableView: View {
                         action: CountryListAvailableAction.countryCovid
                     )
                 ) { store in
-                    CountryCovidView(store: store)
+                    CountryCovidCardView(store: store)
                         .listRowSeparator(.hidden)
                         .listRowInsets(
                             EdgeInsets(
