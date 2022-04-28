@@ -32,15 +32,6 @@ public class NetworkingService {
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryMap { [logger] data, response -> T in
                 logger.log(response: response, data: data)
-                
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                    throw NetworkError.ErrorStatus.noResponse
-                }
-                
-                guard 0..<300 ~= statusCode else {
-                    throw NetworkError(errorCode: statusCode)
-                }
-                
                 return try JSONDecoder().decode(T.self, from: data)
             }
             .mapError { [logger] error in

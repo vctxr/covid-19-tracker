@@ -29,6 +29,7 @@ struct CountryListView: View {
                     CaseLet(state: /CountryListState.UIState.loaded,
                             action: CountryListAction.loaded) { loadedStore in
                         CountryListContentView(store: loadedStore)
+                            .environment(\.isRefreshable, true)
                     }
                 }
                 .toast(

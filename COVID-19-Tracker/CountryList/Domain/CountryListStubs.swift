@@ -62,7 +62,7 @@ extension CountryCovidTimeseries {
             country: country,
             timeseriesData: [
                 .init(
-                    date: Date(),
+                    dateString: "2022-1-22",
                     confirmed: Int.random(in: 0...99_999_999),
                     deaths: Int.random(in: 0...99_999_999),
                     recovered: Int.random(in: 0...99_999_999)

@@ -36,6 +36,8 @@
 		57DE706D2819BB8E0042591F /* CountryListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */; };
 		57DE70722819C6660042591F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE70712819C6660042591F /* AlertToast */; };
 		57DE70742819C6A10042591F /* ToastState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE70732819C6A10042591F /* ToastState.swift */; };
+		57DE7079281AC58B0042591F /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7078281AC58B0042591F /* View+Extensions.swift */; };
+		57DE707B281AC86A0042591F /* EnvironmentValues+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE707A281AC86A0042591F /* EnvironmentValues+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		57DE706A28171FD60042591F /* CountryListAvailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListAvailableView.swift; sourceTree = "<group>"; };
 		57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListNavigationView.swift; sourceTree = "<group>"; };
 		57DE70732819C6A10042591F /* ToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastState.swift; sourceTree = "<group>"; };
+		57DE7078281AC58B0042591F /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		57DE707A281AC86A0042591F /* EnvironmentValues+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,8 @@
 			children = (
 				57DB775E281559CB004C052B /* Color+Extensions.swift */,
 				57DB776028155C31004C052B /* UIColor+Extensions.swift */,
+				57DE7078281AC58B0042591F /* View+Extensions.swift */,
+				57DE707A281AC86A0042591F /* EnvironmentValues+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -372,9 +378,11 @@
 				57DB774228145CD4004C052B /* CountryListUseCase.swift in Sources */,
 				57DB774328145CD4004C052B /* CountryListEndpoint.swift in Sources */,
 				57DB775028145E5F004C052B /* CountryListContentView.swift in Sources */,
+				57DE707B281AC86A0042591F /* EnvironmentValues+Extensions.swift in Sources */,
 				57DB773F28145CD4004C052B /* CountryList+Environment.swift in Sources */,
 				57DE706B28171FD60042591F /* CountryListAvailableView.swift in Sources */,
 				57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */,
+				57DE7079281AC58B0042591F /* View+Extensions.swift in Sources */,
 				57D53C0A2816D1FF00BFB1D1 /* CountryFlagMapper.swift in Sources */,
 				57DE70742819C6A10042591F /* ToastState.swift in Sources */,
 				57DB775F281559CB004C052B /* Color+Extensions.swift in Sources */,

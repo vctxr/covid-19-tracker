@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SharedDateFormatter
 
 // MARK: - CovidTimeseriesResponse
 
@@ -58,7 +57,7 @@ struct CountryCovidTimeseries: Equatable, Identifiable {
 // MARK: - CovidDayData
 
 struct CovidDayData: Equatable {
-    let date: Date
+    let dateString: String
     let confirmed: Int
     let deaths: Int
     let recovered: Int
@@ -74,14 +73,7 @@ extension CovidDayData: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let dateString = try container.decode(String.self, forKey: .date)
-        let formatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-M-d")
-        
-        guard let formattedDate = formatter.date(from: dateString) else {
-            throw DecodingError.dataCorrupted(.init(codingPath: [CodingKeys.date], debugDescription: ""))
-        }
-        
-        date = formattedDate
+        dateString = try container.decode(String.self, forKey: .date)
         confirmed = try container.decode(Int.self, forKey: .confirmed)
         deaths = try container.decode(Int.self, forKey: .deaths)
         recovered = try container.decode(Int.self, forKey: .recovered)

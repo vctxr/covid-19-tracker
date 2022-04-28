@@ -11,6 +11,8 @@ import ComposableArchitecture
 struct CountryListAvailableView: View {
     // MARK: - Variables 📦
     
+    @Environment(\.isRefreshable) private var isRefreshable
+    
     let store: Store<CountryListAvailableState, CountryListAvailableAction>
     
     // MARK: - Body 🎨
@@ -38,8 +40,10 @@ struct CountryListAvailableView: View {
                 .padding(.top, 8)
             }
             .listStyle(.plain)
-            .refreshable {
-                await viewStore.send(.onRefresh, while: \.isRefreshing)
+            .if(isRefreshable) { view in
+                view.refreshable {
+                    await viewStore.send(.onRefresh, while: \.isRefreshing)
+                }
             }
             .animation(.default, value: viewStore.countryCovidStates)
             .ignoresSafeArea(.keyboard)
