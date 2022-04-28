@@ -150,7 +150,7 @@
 				57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */,
 				57DE708C281B15020042591F /* Shared */,
 				57DB775D281559C0004C052B /* Extensions */,
-				57DB773228145CD3004C052B /* CountryList */,
+				57DE708D281B163D0042591F /* Scenes */,
 				57DB772F28145CD3004C052B /* Packages */,
 				57DB770928145CAB004C052B /* Assets.xcassets */,
 				57DB770B28145CAB004C052B /* Preview Content */,
@@ -299,6 +299,14 @@
 				57DE70732819C6A10042591F /* ToastState.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		57DE708D281B163D0042591F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				57DB773228145CD3004C052B /* CountryList */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
