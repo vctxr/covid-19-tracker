@@ -31,6 +31,11 @@ struct CountryListView: View {
                         CountryListContentView(store: loadedStore)
                             .environment(\.isRefreshable, true)
                     }
+                    
+                    CaseLet(state: /CountryListState.UIState.error,
+                            action: CountryListAction.error) { errorStore in
+                        CountryListErrorView(store: errorStore)
+                    }
                 }
                 .toast(
                     isPresenting: viewStore.binding(

@@ -21,24 +21,6 @@ struct CountryListState: Equatable {
     var isShowingToast: Bool {
         toastState != nil
     }
-    
-    enum UIState: Equatable {
-        case loading
-        case loaded(state: CountryListContentState)
-        
-        var loadedState: CountryListContentState? {
-            get { (/UIState.loaded).extract(from: self) }
-            set {
-                guard let countryListLoadedState = newValue else { return }
-                self = .loaded(state: countryListLoadedState)
-            }
-        }
-        
-        var isLoaded: Bool {
-            guard case .loaded = self else { return false }
-            return true
-        }
-    }
 }
 
 // MARK: - Action
@@ -52,15 +34,20 @@ enum CountryListAction: Equatable {
     // Child actions.
     case loading(Never)
     case loaded(CountryListContentAction)
+    case error(CountryListErrorAction)
     
     // Side-effects.
     case fetchCovidTimeseries
     case receiveCovidTimeseries(Result<[CountryCovidTimeseries], NetworkError>)
+    case queueLoadingState
 }
 
 // MARK: - Reducer
 
 private let countryListReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment> { state, action, env in
+    struct FetchCovidTimeseriesID: Hashable {}
+    struct QueueLoadingStateID: Hashable {}
+    
     switch action {
     // MARK: - Lifecycle ♻️
         
@@ -70,8 +57,13 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
     // MARK: - Fetch Covid Timeseries
         
     case .fetchCovidTimeseries:
-        return env.useCase.getCovidTimeseries()
-            .catchToEffect(CountryListAction.receiveCovidTimeseries)
+        return .concatenate(
+            env.useCase.getCovidTimeseries()
+                .catchToEffect(CountryListAction.receiveCovidTimeseries)
+                .cancellable(id: FetchCovidTimeseriesID(), cancelInFlight: true)
+            ,
+            .cancel(id: QueueLoadingStateID())  // Cancel loading state.
+        )
         
     // MARK: - Navigation Bar
         
@@ -92,15 +84,11 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
     // MARK: - Timeseries Response
         
     case .receiveCovidTimeseries(let result):
+        state.uiState.loadedState?.contentState.availableState?.isRefreshing = false
+
         switch result {
         case .success(let timeseriesData):
-            state.uiState = .loaded(
-                state: CountryListContentState(
-                    timeseriesData: timeseriesData,
-                    searchText: state.searchText,
-                    sortType: state.sortType
-                )
-            )
+            state.uiState = .loaded(state: CountryListContentState(timeseriesData: timeseriesData))
             
             // After getting the timeseries data, we need to trigger a filter.
             return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
@@ -112,6 +100,10 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
                 title: error.localizedDescription
             )
             
+            // Only set UI state to error only if it's not loaded yet.
+            guard !state.uiState.isLoaded else { return .none }
+            state.uiState = .error
+            
             return .none
         }
         
@@ -119,6 +111,18 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         
     case .loaded(.available(.onRefresh)):
         return Effect(value: .fetchCovidTimeseries)
+        
+    case .error(.onTapRetry):
+        return .merge(
+            Effect(value: .fetchCovidTimeseries),
+            Effect(value: .queueLoadingState)   // Queue loading state for 0.2s to prevent flashing loading state.
+                .deferred(for: 0.2, scheduler: env.mainQueue)
+                .cancellable(id: QueueLoadingStateID(), cancelInFlight: true)
+        )
+        
+    case .queueLoadingState:
+        state.uiState = .loading
+        return .none
         
     // MARK: - Toast
         
@@ -138,7 +142,7 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
 
 // MARK: - Master Reducer
 
-internal let countryListMasterReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment>.combine(
+let countryListMasterReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment>.combine(
     countryListContentMasterReducer
         .pullback(
             state: /CountryListState.UIState.loaded,

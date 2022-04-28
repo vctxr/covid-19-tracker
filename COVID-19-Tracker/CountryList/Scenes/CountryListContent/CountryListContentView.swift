@@ -19,22 +19,7 @@ struct CountryListContentView: View {
         SwitchStore(store.scope(state: \.contentState)) {
             CaseLet(state: /CountryListContentState.ContentState.empty,
                     action: CountryListContentAction.empty) { _ in
-                Text("No Results.\nSearch for another country.")
-                    .multilineTextAlignment(.center)
-                    .font(.title2)
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "F06744"),
-                                Color(hex: "EE4C53"),
-                                Color(hex: "D35E94"),
-                                Color(hex: "9C6CA5"),
-                                Color(hex: "6782BE"),
-                            ],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
+                CountryListEmptyView()
             }
 
             CaseLet(state: /CountryListContentState.ContentState.available,

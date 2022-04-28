@@ -20,10 +20,8 @@ final class CountryListUseCase {
     }
     
     lazy var _getCovidTimeseries: () -> AnyPublisher<[CountryCovidTimeseries], NetworkError> = { [networkingService] in
-        let endpoint = CountryListEndpoint.covidTimeseries
-        let publisher: AnyPublisher<CovidTimeseriesResponse, NetworkError> = networkingService.request(with: endpoint.urlRequest)
-        return publisher
-            .map(\.countries)
+        networkingService.request(with: CountryListEndpoint.covidTimeseries.urlRequest)
+            .map(\CovidTimeseriesResponse.countries)
             .eraseToAnyPublisher()
     }
 }

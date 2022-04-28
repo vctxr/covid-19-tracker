@@ -12,25 +12,12 @@ import ComposableArchitecture
 // MARK: - State
 
 struct CountryListContentState: Equatable {
-    internal var timeseriesData: [CountryCovidTimeseries]
-    internal var contentState: ContentState
-
-    enum ContentState: Equatable {
-        case empty
-        case available(state: CountryListAvailableState)
-        
-        var availableState: CountryListAvailableState? {
-            get { (/ContentState.available).extract(from: self) }
-            set {
-                guard let countryListAvailableState = newValue else { return }
-                self = .available(state: countryListAvailableState)
-            }
-        }
-    }
+    let timeseriesData: [CountryCovidTimeseries]
+    var contentState: ContentState
     
     // MARK: - Inits 🐣
     
-    init(timeseriesData: [CountryCovidTimeseries], searchText: String, sortType: SortType) {
+    init(timeseriesData: [CountryCovidTimeseries]) {
         self.timeseriesData = timeseriesData
         
         if timeseriesData.isEmpty {
@@ -85,7 +72,7 @@ private let countryListContentReducer = Reducer<CountryListContentState, Country
 
 // MARK: - Master Reducer
 
-internal let countryListContentMasterReducer = Reducer<CountryListContentState, CountryListContentAction, Void>.combine(
+let countryListContentMasterReducer = Reducer<CountryListContentState, CountryListContentAction, Void>.combine(
     countryListAvailableReducer
         .pullback(
             state: /CountryListContentState.ContentState.available,

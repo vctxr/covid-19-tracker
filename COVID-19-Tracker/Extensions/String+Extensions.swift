@@ -1,8 +1,8 @@
 //
-//  CountryFlagMapper.swift
+//  String+Extensions.swift
 //  COVID-19-Tracker
 //
-//  Created by Victor Samuel Cuaca on 25/04/22.
+//  Created by Victor Samuel Cuaca on 29/04/22.
 //
 
 import Foundation
