@@ -20,6 +20,10 @@ extension CountryListState {
         CountryListState(uiState: .loaded(state: .templateAvailable))
     }
     
+    static var templateError: CountryListState {
+        CountryListState(uiState: .error)
+    }
+    
     static var templateEmpty: CountryListState {
         CountryListState(uiState: .loaded(state: .templateEmpty))
     }

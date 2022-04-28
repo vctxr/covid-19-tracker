@@ -45,8 +45,8 @@ struct CountryListView: View {
                     duration: 3,
                     alert: {
                         AlertToast(
-                            displayMode: viewStore.toastState?.mode ?? .banner(.pop),
-                            type: viewStore.toastState?.type ?? .error(.appRed),
+                            displayMode: .banner(.pop),
+                            type: .error(.appRed),
                             title: viewStore.toastState?.title,
                             subTitle: viewStore.toastState?.subtitle,
                             style: viewStore.toastState?.style
@@ -77,6 +77,14 @@ struct ContentView_Previews: PreviewProvider {
             CountryListView(
                 store: Store(
                     initialState: .templateAvailable,
+                    reducer: countryListMasterReducer,
+                    environment: .live
+                )
+            )
+            
+            CountryListView(
+                store: Store(
+                    initialState: .templateError,
                     reducer: countryListMasterReducer,
                     environment: .live
                 )

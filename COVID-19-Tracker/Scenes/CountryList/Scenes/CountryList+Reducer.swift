@@ -94,11 +94,7 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
 
         case .failure(let error):
-            state.toastState = ToastState(
-                mode: .banner(.pop),
-                type: .error(.appRed),
-                title: error.localizedDescription
-            )
+            state.toastState = ToastState(title: error.localizedDescription)
             
             // Only set UI state to error only if it's not loaded yet.
             guard !state.uiState.isLoaded else { return .none }

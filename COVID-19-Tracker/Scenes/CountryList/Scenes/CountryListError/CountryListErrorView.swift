@@ -27,7 +27,6 @@ struct CountryListErrorView: View {
                 } label: {
                     Label("Retry", systemImage: "arrow.clockwise")
                 }
-                .tint(.purple)
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
                 .padding(.top, 16)
