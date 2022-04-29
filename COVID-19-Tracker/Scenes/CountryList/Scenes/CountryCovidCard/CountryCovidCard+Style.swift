@@ -48,13 +48,13 @@ extension CountryCovidCardState {
         var backgroundColor: Color {
             switch self {
             case .first:
-                return Color(light: .appRed, dark: .appRed.opacity(0.95))
+                return .primaryRed
             case .second:
-                return Color(light: .appOrange, dark: .appOrange.opacity(0.95))
+                return .primaryOrange
             case .third:
-                return Color(light: .appYellow, dark: .appYellow.opacity(0.95))
+                return .primaryYellow
             case .normal:
-                return Color(uiColor: .systemBackground)
+                return .systemBackground
             }
         }
     }

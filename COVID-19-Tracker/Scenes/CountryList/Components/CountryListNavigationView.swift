@@ -55,6 +55,7 @@ struct CountryListNavigationView<ContentView: View>: View {
                 get: \.searchText,
                 send: CountryListAction.onSearchTextChanged
             ),
+            placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Search for countries"
         )
     }
@@ -75,7 +76,7 @@ struct CountryListNavigationView_Previews: PreviewProvider {
                     )
                 )
             ) {
-                Color(UIColor.systemBackground)
+                Color.systemBackground
             }
         }
     }

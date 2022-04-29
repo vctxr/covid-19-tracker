@@ -13,7 +13,7 @@ struct CountryCovidCardView: View {
     
     @State private var isLongPressed = false
     
-    let store: Store<CountryCovidCardState, Never>
+    let store: Store<CountryCovidCardState, CountryCovidCardAction>
     
     // MARK: - Body 🎨
     
@@ -46,17 +46,19 @@ struct CountryCovidCardView: View {
             .background(viewStore.style.backgroundColor)
             .cornerRadius(8)
             .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
+            .onTapGesture {
+                viewStore.send(.onTapCard)
+            }
+            .onLongPressGesture(
+                minimumDuration: .greatestFiniteMagnitude,
+                perform: {},
+                onPressingChanged: { isLongPressed = $0 }
+            )
         }
         .scaleEffect(isLongPressed ? 0.97 : 1)
         .animation(
             .spring(response: 0.3, dampingFraction: 0.6),
             value: isLongPressed
-        )
-        .onTapGesture {}    // To make scrolling works with long press gesture.
-        .onLongPressGesture(
-            minimumDuration: .greatestFiniteMagnitude,
-            perform: {},
-            onPressingChanged: { isLongPressed = $0 }
         )
     }
 }

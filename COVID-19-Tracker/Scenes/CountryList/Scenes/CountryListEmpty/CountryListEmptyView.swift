@@ -17,11 +17,11 @@ struct CountryListEmptyView: View {
             .foregroundStyle(
                 LinearGradient(
                     colors: [
-                        Color(hex: "F06744"),
-                        Color(hex: "EE4C53"),
-                        Color(hex: "D35E94"),
-                        Color(hex: "9C6CA5"),
-                        Color(hex: "6782BE"),
+                        Color(rgb: 0xF06744),
+                        Color(rgb: 0xEE4C53),
+                        Color(rgb: 0xD35E94),
+                        Color(rgb: 0x9C6CA5),
+                        Color(rgb: 0x6782BE),
                     ],
                     startPoint: .leading,
                     endPoint: .trailing

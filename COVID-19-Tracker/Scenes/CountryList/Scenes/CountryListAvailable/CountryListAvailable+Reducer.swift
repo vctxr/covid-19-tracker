@@ -14,6 +14,9 @@ struct CountryListAvailableState: Equatable {
     var timeseriesData: [CountryCovidTimeseries]
     var isRefreshing = false
     
+    // Child states.
+    var countryDetailState: CountryDetailState?
+    
     // Computed properties.
     var countryCovidStates: IdentifiedArrayOf<CountryCovidCardState> {
         IdentifiedArray(uniqueElements: timeseriesData
@@ -29,9 +32,11 @@ struct CountryListAvailableState: Equatable {
 
 enum CountryListAvailableAction: Equatable {
     case onRefresh
+    case setNavigation(isActive: Bool)
     
     // Child actions.
-    case countryCovid(id: CountryCovidCardState.ID, action: Never)
+    case countryCovid(id: CountryCovidCardState.ID, action: CountryCovidCardAction)
+    case countryDetail(CountryDetailAction)
 }
 
 // MARK: - Reducer
@@ -41,5 +46,16 @@ let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryList
     case .onRefresh:
         state.isRefreshing = true
         return .none
+        
+    case .setNavigation(isActive: true):
+        state.countryDetailState = CountryDetailState()
+        return .none
+        
+    case .setNavigation(isActive: false):
+        state.countryDetailState = nil
+        return .none
+        
+    case .countryCovid(let id, .onTapCard):
+        return Effect(value: .setNavigation(isActive: true))
     }
 }

@@ -15,3 +15,9 @@ struct CountryCovidCardState: Equatable, Identifiable {
     let data: CountryCovidTimeseries
     let style: Style
 }
+
+// MARK: - Action
+
+enum CountryCovidCardAction: Equatable {
+    case onTapCard
+}

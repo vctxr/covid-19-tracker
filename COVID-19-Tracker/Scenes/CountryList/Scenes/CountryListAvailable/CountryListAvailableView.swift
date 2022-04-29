@@ -25,17 +25,42 @@ struct CountryListAvailableView: View {
                         state: \.countryCovidStates,
                         action: CountryListAvailableAction.countryCovid
                     )
-                ) { store in
-                    CountryCovidCardView(store: store)
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(
-                            EdgeInsets(
-                                top: 3,
-                                leading: 16,
-                                bottom: 3,
-                                trailing: 16
+                ) { countryCovidCardStore in
+                    ZStack {
+                        CountryCovidCardView(store: countryCovidCardStore)
+                        
+                        /**
+                         We don't want to use the `NavigationLink` style, so we make it `.hidden()`.
+                         We only want the navigation functionality as we are going to navigate programmatically
+                         by listening to the state.
+                         */
+                        NavigationLink(
+                            "",
+                            destination: IfLetStore(
+                                store.scope(
+                                    state: \.countryDetailState,
+                                    action: CountryListAvailableAction.countryDetail
+                                ),
+                                then: { _ in
+                                    CountryDetailView()
+                                }
+                            ),
+                            isActive: viewStore.binding(
+                                get: { $0.countryDetailState != nil },
+                                send: CountryListAvailableAction.setNavigation
                             )
                         )
+                        .hidden()
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(
+                        EdgeInsets(
+                            top: 3,
+                            leading: 16,
+                            bottom: 3,
+                            trailing: 16
+                        )
+                    )
                 }
                 .padding(.top, 8)
             }

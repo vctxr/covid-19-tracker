@@ -31,7 +31,6 @@ struct CountryListErrorView: View {
                 .buttonBorderShape(.roundedRectangle)
                 .padding(.top, 16)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

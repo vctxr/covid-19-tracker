@@ -37,23 +37,23 @@ struct CountryListView: View {
                         CountryListErrorView(store: errorStore)
                     }
                 }
-                .toast(
-                    isPresenting: viewStore.binding(
-                        get: \.isShowingToast,
-                        send: CountryListAction.onDismissToast
-                    ),
-                    duration: 3,
-                    alert: {
-                        AlertToast(
-                            displayMode: .banner(.pop),
-                            type: .error(.appRed),
-                            title: viewStore.toastState?.title,
-                            subTitle: viewStore.toastState?.subtitle,
-                            style: viewStore.toastState?.style
-                        )
-                    }
-                )
             }
+            .toast(
+                isPresenting: viewStore.binding(
+                    get: \.isShowingToast,
+                    send: CountryListAction.onDismissToast
+                ),
+                duration: 3,
+                alert: {
+                    AlertToast(
+                        displayMode: .banner(.pop),
+                        type: .error(.redText),
+                        title: viewStore.toastState?.title,
+                        subTitle: viewStore.toastState?.subtitle,
+                        style: viewStore.toastState?.style
+                    )
+                }
+            )
             .onAppear {
                 viewStore.send(.onAppear)
             }
