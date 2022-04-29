@@ -32,7 +32,7 @@ struct CountryListAvailableState: Equatable {
 
 enum CountryListAvailableAction: Equatable {
     case onRefresh
-    case setNavigation(isActive: Bool)
+    case setNavigation(isActive: Bool, id: CountryCovidCardState.ID? = nil)
     
     // Child actions.
     case countryCovid(id: CountryCovidCardState.ID, action: CountryCovidCardAction)
@@ -41,21 +41,45 @@ enum CountryListAvailableAction: Equatable {
 
 // MARK: - Reducer
 
-let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void> { state, action, _ in
+private let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void> { state, action, _ in
     switch action {
+    // MARK: - Refresh
+        
     case .onRefresh:
         state.isRefreshing = true
         return .none
         
-    case .setNavigation(isActive: true):
-        state.countryDetailState = CountryDetailState()
+    // MARK: - Navigation
+        
+    case .setNavigation(isActive: true, let id):
+        guard let id = id, let selectedState = state.countryCovidStates[id: id] else { return .none }
+        state.countryDetailState = CountryDetailState(data: selectedState.data)
         return .none
         
-    case .setNavigation(isActive: false):
+    case .setNavigation(isActive: false, _):
         state.countryDetailState = nil
         return .none
         
     case .countryCovid(let id, .onTapCard):
-        return Effect(value: .setNavigation(isActive: true))
+        return Effect(value: .setNavigation(isActive: true, id: id))
+        
+    // MARK: - Unhandled
+        
+    case .countryDetail:
+        return .none
     }
 }
+
+// MARK: - Master Reducer
+
+let countryListAvailableMasterReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void>.combine(
+    countryDetailReducer
+        .optional()
+        .pullback(
+            state: \.countryDetailState,
+            action: /CountryListAvailableAction.countryDetail,
+            environment: { $0 }
+        ),
+    
+    countryListAvailableReducer
+)

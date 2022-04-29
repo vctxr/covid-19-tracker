@@ -32,7 +32,7 @@ extension CovidTimeseriesResponse: Decodable {
         countries = try container.allKeys.map { key in
             let timeseriesData = try container.decode([CovidDayData].self,
                                                      forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
-            return CountryCovidTimeseries(country: key.stringValue, timeseriesData: timeseriesData)
+            return CountryCovidTimeseries(countryName: key.stringValue, timeseriesData: timeseriesData)
         }
     }
 }
@@ -40,10 +40,14 @@ extension CovidTimeseriesResponse: Decodable {
 // MARK: - CountryCovidTimeseries
 
 struct CountryCovidTimeseries: Equatable, Identifiable {
-    var id: String { country }
+    var id: String { countryName }
 
-    let country: String
+    let countryName: String
     let timeseriesData: [CovidDayData]
+    
+    var countryWithFlagText: String {
+        "\(countryName) \(countryName.flag)"
+    }
     
     var latestConfirmed: Int {
         timeseriesData.last?.confirmed ?? 0
@@ -51,6 +55,20 @@ struct CountryCovidTimeseries: Equatable, Identifiable {
     
     var latestDeaths: Int {
         timeseriesData.last?.deaths ?? 0
+    }
+    
+    var latestRecoveries: Int {
+        timeseriesData.last?.recovered ?? 0
+    }
+    
+    var latestUpdatedDateString: String {
+        timeseriesData.last?.dateString ?? "-"
+    }
+    
+    var fatalityRatePercentageString: String {
+        guard latestConfirmed > 0 else { return "-" }
+        let percentage = (Float(latestDeaths) / Float(latestConfirmed)) * 100
+        return percentage.displayString + "%"
     }
 }
 

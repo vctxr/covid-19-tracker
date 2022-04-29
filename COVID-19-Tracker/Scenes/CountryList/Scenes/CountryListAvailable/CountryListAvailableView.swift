@@ -41,13 +41,14 @@ struct CountryListAvailableView: View {
                                     state: \.countryDetailState,
                                     action: CountryListAvailableAction.countryDetail
                                 ),
-                                then: { _ in
-                                    CountryDetailView()
-                                }
+                                then: { CountryDetailView(store: $0) }
                             ),
                             isActive: viewStore.binding(
                                 get: { $0.countryDetailState != nil },
-                                send: CountryListAvailableAction.setNavigation
+                                send: { isActive in
+                                    CountryListAvailableAction
+                                        .setNavigation(isActive: isActive)
+                                }
                             )
                         )
                         .hidden()

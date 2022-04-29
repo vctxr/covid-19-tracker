@@ -27,7 +27,7 @@ struct CountryListNavigationView<ContentView: View>: View {
     var body: some View {
         NavigationView {
             contentView
-                .navigationTitle(viewStore.titleText)
+                .navigationTitle("Countries 🦠")
                 .toolbar {
                     Menu {
                         Picker(

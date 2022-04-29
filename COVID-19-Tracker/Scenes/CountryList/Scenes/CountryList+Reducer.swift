@@ -11,7 +11,6 @@ import Networking
 // MARK: - State
 
 struct CountryListState: Equatable {
-    let titleText = "Countries 🦠"
     var searchText = ""
     var sortType = SortType.cases(.descending)
     var uiState = UIState.loading

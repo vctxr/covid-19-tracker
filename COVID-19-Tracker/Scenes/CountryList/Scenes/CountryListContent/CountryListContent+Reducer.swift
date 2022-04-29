@@ -52,7 +52,7 @@ private let countryListContentReducer = Reducer<CountryListContentState, Country
         
         // Filter and sort the data.
         let filteredTimeseriesData = state.timeseriesData
-            .filter { $0.country.range(of: searchText, options: .caseInsensitive) != nil }
+            .filter { $0.countryName.range(of: searchText, options: .caseInsensitive) != nil }
             .sorted(by: sortType.sorter)
 
         if filteredTimeseriesData.isEmpty {
@@ -73,7 +73,7 @@ private let countryListContentReducer = Reducer<CountryListContentState, Country
 // MARK: - Master Reducer
 
 let countryListContentMasterReducer = Reducer<CountryListContentState, CountryListContentAction, Void>.combine(
-    countryListAvailableReducer
+    countryListAvailableMasterReducer
         .pullback(
             state: /CountryListContentState.ContentState.available,
             action: /CountryListContentAction.available,

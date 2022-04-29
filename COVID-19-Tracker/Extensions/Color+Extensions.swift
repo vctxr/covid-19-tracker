@@ -1122,6 +1122,6 @@ extension Color {
     }
     
     static var secondaryText: Color {
-        Color(light: .grey700Color, dark: .grey500Color)
+        Color(uiColor: .secondaryLabel)
     }
 }

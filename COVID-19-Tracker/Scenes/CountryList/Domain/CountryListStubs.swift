@@ -6,7 +6,6 @@
 //
 
 #if DEBUG
-import Foundation
 import ComposableArchitecture
 
 // MARK: - CountryListState
@@ -61,9 +60,9 @@ extension CountryCovidCardState {
 // MARK: - CountryCovidTimeseries
 
 extension CountryCovidTimeseries {
-    static func template(country: String) -> CountryCovidTimeseries {
+    static func template(countryName: String) -> CountryCovidTimeseries {
         CountryCovidTimeseries(
-            country: country,
+            countryName: countryName,
             timeseriesData: [
                 .init(
                     dateString: "2022-1-22",
@@ -76,7 +75,7 @@ extension CountryCovidTimeseries {
     }
     
     static var template: CountryCovidTimeseries {
-        .template(country: "Indonesia")
+        .template(countryName: "Indonesia")
     }
 }
 
@@ -84,18 +83,18 @@ extension CountryCovidTimeseries {
 
 extension Array where Element == CountryCovidTimeseries {
     static let template: [CountryCovidTimeseries] = [
-        .template(country: "Indonesia"),
-        .template(country: "United Kingdom"),
-        .template(country: "Japan"),
-        .template(country: "Korea"),
-        .template(country: "US"),
-        .template(country: "Canada"),
-        .template(country: "Diamond Princess"),
-        .template(country: "Taiwan"),
-        .template(country: "Switzerland"),
-        .template(country: "Marshall Islands"),
-        .template(country: "Antartica"),
-        .template(country: "Sierra Leone")
+        .template(countryName: "Indonesia"),
+        .template(countryName: "United Kingdom"),
+        .template(countryName: "Japan"),
+        .template(countryName: "Korea"),
+        .template(countryName: "US"),
+        .template(countryName: "Canada"),
+        .template(countryName: "Diamond Princess"),
+        .template(countryName: "Taiwan"),
+        .template(countryName: "Switzerland"),
+        .template(countryName: "Marshall Islands"),
+        .template(countryName: "Antartica"),
+        .template(countryName: "Sierra Leone")
     ]
 }
 

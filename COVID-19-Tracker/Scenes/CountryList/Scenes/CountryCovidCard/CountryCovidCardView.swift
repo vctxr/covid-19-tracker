@@ -20,7 +20,7 @@ struct CountryCovidCardView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             HStack(spacing: 16) {
-                Text("\(viewStore.data.country) \(viewStore.data.country.flag)")
+                Text("\(viewStore.data.countryWithFlagText)")
                     .font(.title2.bold())
                     .foregroundColor(viewStore.style.countryTextColor)
                 
@@ -31,7 +31,7 @@ struct CountryCovidCardView: View {
                         .font(.caption.bold())
                         .foregroundColor(viewStore.style.confirmedTextColor)
 
-                    Text("\(viewStore.data.latestConfirmed)")
+                    Text(viewStore.data.latestConfirmed.displayString)
                         .font(.headline.weight(.heavy))
                         .foregroundColor(viewStore.style.confirmedTextColor)
                 }
@@ -75,7 +75,6 @@ struct CountryCovidView_Previews: PreviewProvider {
                     environment: ()
                 )
             )
-            .previewLayout(.sizeThatFits)
             
             CountryCovidCardView(
                 store: Store(
@@ -84,7 +83,6 @@ struct CountryCovidView_Previews: PreviewProvider {
                     environment: ()
                 )
             )
-            .previewLayout(.sizeThatFits)
             
             CountryCovidCardView(
                 store: Store(
@@ -93,7 +91,6 @@ struct CountryCovidView_Previews: PreviewProvider {
                     environment: ()
                 )
             )
-            .previewLayout(.sizeThatFits)
             
             CountryCovidCardView(
                 store: Store(
@@ -102,8 +99,8 @@ struct CountryCovidView_Previews: PreviewProvider {
                     environment: ()
                 )
             )
-            .previewLayout(.sizeThatFits)
         }
+        .previewLayout(.sizeThatFits)
     }
     
     static var previews: some View {
