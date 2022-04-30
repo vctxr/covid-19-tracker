@@ -63,14 +63,14 @@ extension CountryCovidTimeseries {
     static func template(countryName: String) -> CountryCovidTimeseries {
         CountryCovidTimeseries(
             countryName: countryName,
-            timeseriesData: [
+            timeseriesData: (0..<100).map { _ in
                 .init(
                     dateString: "2022-1-22",
                     confirmed: Int.random(in: 0...99_999_999),
                     deaths: Int.random(in: 0...99_999_999),
                     recovered: Int.random(in: 0...99_999_999)
                 )
-            ]
+            }
         )
     }
     

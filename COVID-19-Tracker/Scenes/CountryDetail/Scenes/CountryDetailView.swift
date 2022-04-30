@@ -19,9 +19,12 @@ struct CountryDetailView: View {
         WithViewStore(store) { viewStore in
             ScrollView {
                 VStack {
+                    CovidChartView(store: store)
+                        .frame(idealHeight: 300)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
                     CovidStatisticsView(data: viewStore.data)
                         .padding(.bottom, 16)
-                        .padding(.top, 300)
                     
                     CovidInformationView(store: store)
                         .padding(.bottom, 60)

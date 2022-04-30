@@ -15,4 +15,20 @@ extension CountryDetailState {
         CountryDetailState(data: .template)
     }
 }
+
+// MARK: - CovidEntryLegendState
+
+extension CovidEntryLegendState {
+    static var template: CovidEntryLegendState {
+        CovidEntryLegendState(entry: .template, valueKey: "Confirmed")
+    }
+}
+
+// MARK: - CovidEntry
+
+extension CovidEntry {
+    static var template: CovidEntry {
+        CovidEntry(date: 0, value: 1_000_000)
+    }
+}
 #endif

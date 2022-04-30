@@ -12,6 +12,8 @@ struct SFSafariView: UIViewControllerRepresentable {
     // MARK: - Variables 📦
     
     let url: URL
+    
+    // MARK: - Methods ⛓
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<Self>) -> SFSafariViewController {
         SFSafariViewController(url: url)

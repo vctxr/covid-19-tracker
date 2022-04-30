@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedDateFormatter
 
 // MARK: - CovidTimeseriesResponse
 
@@ -62,7 +63,13 @@ struct CountryCovidTimeseries: Equatable, Identifiable {
     }
     
     var latestUpdatedDateString: String {
-        timeseriesData.last?.dateString ?? "-"
+        guard let latestDateString = timeseriesData.last?.dateString else { return "-" }
+        let stringToDateFormatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
+        
+        guard let latestDate = stringToDateFormatter.date(from: latestDateString) else { return "-" }
+        let dateToStringFormatter = SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")
+        
+        return dateToStringFormatter.string(from: latestDate)
     }
     
     var fatalityRatePercentageString: String {
