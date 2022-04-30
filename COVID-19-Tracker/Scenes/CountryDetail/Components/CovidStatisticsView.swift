@@ -33,7 +33,13 @@ struct CovidStatisticsView: View {
                 VStack(alignment: .leading) {
                     Text(data.latestConfirmed.displayString)
                         .font(.title2.bold())
-                        .foregroundColor(.orangeText)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: .gradientOrange,
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                     Spacer()
                     Text("Confirmed")
                         .font(.headline)

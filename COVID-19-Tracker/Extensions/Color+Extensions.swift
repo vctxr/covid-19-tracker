@@ -1125,3 +1125,24 @@ extension Color {
         Color(uiColor: .secondaryLabel)
     }
 }
+
+// MARK: - Gradients
+
+extension Array where Element == Color {
+    static var gradientPurple: [Color] {
+        [
+            Color(rgb: 0xf06744),
+            Color(rgb: 0xee4c53),
+            Color(rgb: 0xd35e94),
+            Color(rgb: 0x9c6ca5),
+            Color(rgb: 0x6782be)
+        ]
+    }
+    
+    static var gradientOrange: [Color] {
+        [
+            Color(light: Color(rgb: 0xd14545), dark: Color(rgb: 0xfc575e)),
+            Color(light: Color(rgb: 0xff4e00), dark: Color(rgb: 0xff9933))
+        ]
+    }
+}

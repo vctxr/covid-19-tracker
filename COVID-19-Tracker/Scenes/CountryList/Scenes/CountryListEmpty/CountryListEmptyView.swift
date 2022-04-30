@@ -16,13 +16,7 @@ struct CountryListEmptyView: View {
             .font(.title2)
             .foregroundStyle(
                 LinearGradient(
-                    colors: [
-                        Color(rgb: 0xF06744),
-                        Color(rgb: 0xEE4C53),
-                        Color(rgb: 0xD35E94),
-                        Color(rgb: 0x9C6CA5),
-                        Color(rgb: 0x6782BE),
-                    ],
+                    colors: .gradientPurple,
                     startPoint: .leading,
                     endPoint: .trailing
                 )

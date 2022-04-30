@@ -26,43 +26,17 @@ struct CountryListAvailableView: View {
                         action: CountryListAvailableAction.countryCovid
                     )
                 ) { countryCovidCardStore in
-                    ZStack {
-                        CountryCovidCardView(store: countryCovidCardStore)
-                        
-                        /**
-                         We don't want to use the `NavigationLink` style, so we make it `.hidden()`.
-                         We only want the navigation functionality as we are going to navigate programmatically
-                         by listening to the state.
-                         */
-                        NavigationLink(
-                            "",
-                            destination: IfLetStore(
-                                store.scope(
-                                    state: \.countryDetailState,
-                                    action: CountryListAvailableAction.countryDetail
-                                ),
-                                then: { CountryDetailView(store: $0) }
-                            ),
-                            isActive: viewStore.binding(
-                                get: { $0.countryDetailState != nil },
-                                send: { isActive in
-                                    CountryListAvailableAction
-                                        .setNavigation(isActive: isActive)
-                                }
-                            )
-                        )
-                        .hidden()
-                    }
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(
-                        EdgeInsets(
-                            top: 3,
-                            leading: 16,
-                            bottom: 3,
-                            trailing: 16
-                        )
-                    )
+                    CountryCovidCardView(store: countryCovidCardStore)
                 }
+                .listRowSeparator(.hidden)
+                .listRowInsets(
+                    EdgeInsets(
+                        top: 3,
+                        leading: 16,
+                        bottom: 3,
+                        trailing: 16
+                    )
+                )
                 .padding(.top, 8)
             }
             .listStyle(.plain)
@@ -76,6 +50,32 @@ struct CountryListAvailableView: View {
             .onAppear {
                 UITableView.appearance().keyboardDismissMode = .onDrag
             }
+            .background(
+                /**
+                 We don't want to use the `NavigationLink` style, so we make it `.hidden()`.
+                 We only want the navigation functionality as we are going to navigate programmatically
+                 by listening to the state.
+                 */
+                NavigationLink(
+                    isActive: viewStore.binding(
+                        get: { $0.countryDetailState != nil },
+                        send: { isActive in
+                            CountryListAvailableAction
+                                .setNavigation(isActive: isActive)
+                        }
+                    ),
+                    destination: {
+                        IfLetStore(
+                            store.scope(
+                                state: \.countryDetailState,
+                                action: CountryListAvailableAction.countryDetail
+                            ),
+                            then: { CountryDetailView(store: $0) }
+                        )
+                    }, label: { EmptyView() }
+                )
+                .hidden()
+            )
         }
     }
 }
