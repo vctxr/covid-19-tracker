@@ -8,6 +8,6 @@
 import Foundation
 
 struct CovidEntry: Equatable {
-    let date: Double
-    let value: Double
+    let dateString: String
+    let value: Int
 }

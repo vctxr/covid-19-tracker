@@ -36,13 +36,13 @@ struct CountryListNavigationView<ContentView: View>: View {
                                 send: CountryListAction.onSortTypeChanged
                             )
                         ) {
-                            Text("Most Cases 🤧")
+                            Text(SortType.cases(.descending).titleText)
                                 .tag(SortType.cases(.descending))
-                            Text("Least Cases 😷")
+                            Text(SortType.cases(.ascending).titleText)
                                 .tag(SortType.cases(.ascending))
-                            Text("Highest Fatality 💀")
+                            Text(SortType.fatality(.descending).titleText)
                                 .tag(SortType.fatality(.descending))
-                            Text("Lowest Fatality 💉")
+                            Text(SortType.fatality(.ascending).titleText)
                                 .tag(SortType.fatality(.ascending))
                         } label: {}
                     } label: {

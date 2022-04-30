@@ -16,6 +16,19 @@ enum SortType: Hashable {
         case descending
     }
     
+    var titleText: String {
+        switch self {
+        case .cases(.descending):
+            return "Most Cases 🤧"
+        case .cases(.ascending):
+            return "Least Cases 😷"
+        case .fatality(.descending):
+            return "Highest Fatality 💀"
+        case .fatality(.ascending):
+            return "Lowest Fatality 💉"
+        }
+    }
+    
     func sorter(_ first: CountryCovidTimeseries, _ second: CountryCovidTimeseries) -> Bool {
         switch self {
         case .cases(.descending):

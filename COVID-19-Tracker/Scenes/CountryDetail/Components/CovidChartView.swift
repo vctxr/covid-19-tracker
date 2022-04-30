@@ -15,21 +15,43 @@ struct CovidChartView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            ZStack(alignment: .topLeading) {
-                LineChartViewRepresentable(
-                    data: viewStore.chartData,
-                    highlightedEntry: viewStore.binding(
-                        get: \.entryLegendState?.entry,
-                        send: CountryDetailAction.onHighlightedEntryChanged
+            VStack {
+                Picker(
+                    selection: viewStore.binding(
+                        get: \.selectedChart,
+                        send: CountryDetailAction.onSelectedChartChanged
                     )
-                )
-                .frame(maxHeight: 500)
-                .padding(.leading, 4)
-                .padding(.trailing, 8)
+                ) {
+                    Text(ChartMode.confirmed.titleText)
+                        .tag(ChartMode.confirmed)
+                    Text(ChartMode.active.titleText)
+                        .tag(ChartMode.active)
+                } label: {}
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 16)
                 
-                IfLetStore(store.scope(state: \.entryLegendState).actionless) { store in
-                    CovidEntryLegendView(store: store)
-                        .padding(16)
+                Text("COVID-19 \(viewStore.selectedChart.titleText)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondaryText)
+                    .padding(.bottom, -8)
+                
+                ZStack(alignment: .topLeading) {
+                    LineChartViewRepresentable(
+                        data: viewStore.chartData,
+                        highlightedEntry: viewStore.binding(
+                            get: \.entryLegendState?.entry,
+                            send: CountryDetailAction.onHighlightedEntryChanged
+                        )
+                    )
+                    .frame(maxHeight: 500)
+                    .padding(.leading, 4)
+                    .padding(.trailing, 8)
+                    
+                    IfLetStore(store.scope(state: \.entryLegendState).actionless) { store in
+                        CovidEntryLegendView(store: store)
+                            .padding(16)
+                    }
                 }
             }
         }

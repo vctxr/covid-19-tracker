@@ -28,7 +28,7 @@ extension CovidEntryLegendState {
 
 extension CovidEntry {
     static var template: CovidEntry {
-        CovidEntry(date: 0, value: 1_000_000)
+        CovidEntry(dateString: "30-04-2022", value: 1_000_000)
     }
 }
 #endif

@@ -7,19 +7,12 @@
 
 import SwiftUI
 import ComposableArchitecture
-import SharedDateFormatter
 
 // MARK: - State
 
 struct CovidEntryLegendState: Equatable {
     let entry: CovidEntry
     let valueKey: String
-    
-    var dateString: String {
-        let date = Date(timeIntervalSince1970: entry.date)
-        let formatter = SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")
-        return formatter.string(from: date)
-    }
 }
 
 struct CovidEntryLegendView: View {
@@ -30,7 +23,7 @@ struct CovidEntryLegendView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading, spacing: 2) {
-                Text("Date: \(viewStore.dateString)")
+                Text("Date: \(viewStore.entry.dateString)")
                     .font(.caption2)
                     .foregroundColor(.secondaryText)
                 Text("\(viewStore.valueKey): \(viewStore.entry.value.displayString)")

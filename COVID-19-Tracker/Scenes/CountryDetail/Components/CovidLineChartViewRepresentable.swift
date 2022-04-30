@@ -13,8 +13,10 @@ import SharedDateFormatter
 struct LineChartViewRepresentable: UIViewRepresentable {
     // MARK: - Variables 📦
     
-    var data: [CovidDayData]
+    var data: [CovidEntry]
     @Binding var highlightedEntry: CovidEntry?
+    
+    private let formatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
     
     // MARK: - Methods ⛓
     
@@ -44,22 +46,20 @@ struct LineChartViewRepresentable: UIViewRepresentable {
         rightAxis.drawGridLinesEnabled = false
         rightAxis.valueFormatter = LargeValueFormatter()
         
-        chart.data = LineChartData(dataSet: generateChartDataSet())
-
         return chart
     }
     
-    func updateUIView(_ uiView: LineChartView, context: Context) {}
+    func updateUIView(_ uiView: LineChartView, context: Context) {
+        uiView.data = LineChartData(dataSet: generateChartDataSet())
+        uiView.notifyDataSetChanged()
+    }
     
     // MARK: - Private Methods 🔒
     
     private func generateChartDataSet() -> LineChartDataSet {
-        let formatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
-
-        let chartDataEntries: [ChartDataEntry] = data.compactMap { data in
+        let chartDataEntries = data.compactMap { data -> ChartDataEntry? in
             guard let date = formatter.date(from: data.dateString) else { return nil }
-            return ChartDataEntry(x: Double(date.timeIntervalSince1970),
-                                  y: Double(data.confirmed))
+            return ChartDataEntry(x: date.timeIntervalSince1970, y: Double(data.value))
         }
         
         let dataSet = LineChartDataSet(entries: chartDataEntries)
@@ -94,12 +94,16 @@ extension LineChartViewRepresentable {
     class Coordinator: NSObject, ChartViewDelegate {
         var parent: LineChartViewRepresentable
         
+        private let formatter = SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")
+        
         init(_ lineChartView: LineChartViewRepresentable) {
             parent = lineChartView
         }
         
         func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-            parent.highlightedEntry = CovidEntry(date: entry.x, value: entry.y)
+            let date = Date(timeIntervalSince1970: entry.x)
+            let dateString = formatter.string(from: date)
+            parent.highlightedEntry = CovidEntry(dateString: dateString, value: Int(entry.y))
         }
         
         func chartValueNothingSelected(_ chartView: ChartViewBase) {

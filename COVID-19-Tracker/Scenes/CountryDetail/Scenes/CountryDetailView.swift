@@ -22,6 +22,7 @@ struct CountryDetailView: View {
                     CovidChartView(store: store)
                         .frame(idealHeight: 300)
                         .fixedSize(horizontal: false, vertical: true)
+                        .padding(.top, 10)
                     
                     CovidStatisticsView(data: viewStore.data)
                         .padding(.bottom, 16)
