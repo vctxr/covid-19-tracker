@@ -18,6 +18,24 @@
 		57ADE475281D551C002D378D /* CovidEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE474281D551C002D378D /* CovidEntry.swift */; };
 		57ADE477281D58C1002D378D /* CovidEntryLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE476281D58C1002D378D /* CovidEntryLegendView.swift */; };
 		57ADE479281D5F27002D378D /* ChartMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE478281D5F27002D378D /* ChartMode.swift */; };
+		57ADE481281E4320002D378D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57ADE480281E4320002D378D /* WidgetKit.framework */; };
+		57ADE483281E4320002D378D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57ADE482281E4320002D378D /* SwiftUI.framework */; };
+		57ADE486281E4320002D378D /* COVID_19_TrackerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE485281E4320002D378D /* COVID_19_TrackerWidget.swift */; };
+		57ADE488281E4323002D378D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57ADE487281E4323002D378D /* Assets.xcassets */; };
+		57ADE48C281E4323002D378D /* COVID-19-TrackerWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 57ADE47F281E4320002D378D /* COVID-19-TrackerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		57ADE493281E45E4002D378D /* CovidEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE491281E45B6002D378D /* CovidEntry.swift */; };
+		57ADE496281E460F002D378D /* CovidTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE494281E4609002D378D /* CovidTimelineProvider.swift */; };
+		57ADE498281E4676002D378D /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 57ADE497281E4676002D378D /* Networking */; };
+		57ADE49A281E4873002D378D /* CountryListEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB773B28145CD3004C052B /* CountryListEndpoint.swift */; };
+		57ADE49B281E4A46002D378D /* CovidTimeseriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB773928145CD3004C052B /* CovidTimeseriesResponse.swift */; };
+		57ADE49C281E4BCE002D378D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE708A281B146F0042591F /* String+Extensions.swift */; };
+		57ADE49D281E4BE2002D378D /* Number+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F346C1281C497700B6571A /* Number+Extensions.swift */; };
+		57ADE49F281E4C47002D378D /* SharedDateFormatter in Frameworks */ = {isa = PBXBuildFile; productRef = 57ADE49E281E4C47002D378D /* SharedDateFormatter */; };
+		57ADE4A2281E50B3002D378D /* AnyPublisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A0281E509C002D378D /* AnyPublisher+Extensions.swift */; };
+		57ADE4A8281E52D5002D378D /* CovidWidgetMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A6281E52C0002D378D /* CovidWidgetMediumView.swift */; };
+		57ADE4AA281E537A002D378D /* SharedStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A9281E537A002D378D /* SharedStubs.swift */; };
+		57ADE4AB281E5389002D378D /* SharedStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A9281E537A002D378D /* SharedStubs.swift */; };
+		57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */; };
 		57D53C082816C85A00BFB1D1 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C072816C85A00BFB1D1 /* SortType.swift */; };
 		57D53C0D28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C0C28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift */; };
 		57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */; };
@@ -64,6 +82,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		57ADE48A281E4323002D378D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57DB76FA28145CAA004C052B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57ADE47E281E4320002D378D;
+			remoteInfo = "COVID-19-TrackerWidgetExtension";
+		};
 		57DB771328145CAB004C052B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 57DB76FA28145CAA004C052B /* Project object */;
@@ -72,6 +97,20 @@
 			remoteInfo = "COVID-19-Tracker";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		57ADE490281E4323002D378D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				57ADE48C281E4323002D378D /* COVID-19-TrackerWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		57ADE454281C52B4002D378D /* CovidInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInformationView.swift; sourceTree = "<group>"; };
@@ -84,6 +123,18 @@
 		57ADE474281D551C002D378D /* CovidEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntry.swift; sourceTree = "<group>"; };
 		57ADE476281D58C1002D378D /* CovidEntryLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntryLegendView.swift; sourceTree = "<group>"; };
 		57ADE478281D5F27002D378D /* ChartMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMode.swift; sourceTree = "<group>"; };
+		57ADE47F281E4320002D378D /* COVID-19-TrackerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "COVID-19-TrackerWidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57ADE480281E4320002D378D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		57ADE482281E4320002D378D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		57ADE485281E4320002D378D /* COVID_19_TrackerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID_19_TrackerWidget.swift; sourceTree = "<group>"; };
+		57ADE487281E4323002D378D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		57ADE489281E4323002D378D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57ADE491281E45B6002D378D /* CovidEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntry.swift; sourceTree = "<group>"; };
+		57ADE494281E4609002D378D /* CovidTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidTimelineProvider.swift; sourceTree = "<group>"; };
+		57ADE4A0281E509C002D378D /* AnyPublisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Extensions.swift"; sourceTree = "<group>"; };
+		57ADE4A6281E52C0002D378D /* CovidWidgetMediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidWidgetMediumView.swift; sourceTree = "<group>"; };
+		57ADE4A9281E537A002D378D /* SharedStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStubs.swift; sourceTree = "<group>"; };
+		57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntryStubs.swift; sourceTree = "<group>"; };
 		57D53C072816C85A00BFB1D1 /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
 		57D53C0C28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryListAvailable+Reducer.swift"; sourceTree = "<group>"; };
 		57DB770228145CAA004C052B /* COVID-19-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +179,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		57ADE47C281E4320002D378D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57ADE49F281E4C47002D378D /* SharedDateFormatter in Frameworks */,
+				57ADE498281E4676002D378D /* Networking in Frameworks */,
+				57ADE483281E4320002D378D /* SwiftUI.framework in Frameworks */,
+				57ADE481281E4320002D378D /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57DB76FF28145CAA004C052B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,6 +230,65 @@
 			path = ChartFormatter;
 			sourceTree = "<group>";
 		};
+		57ADE484281E4320002D378D /* COVID-19-TrackerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE485281E4320002D378D /* COVID_19_TrackerWidget.swift */,
+				57ADE4AE281E542F002D378D /* Entries */,
+				57ADE4B0281E543B002D378D /* Timelines */,
+				57ADE4A3281E51E5002D378D /* Extensions */,
+				57ADE4A5281E529B002D378D /* WidgetViews */,
+				57ADE487281E4323002D378D /* Assets.xcassets */,
+				57ADE489281E4323002D378D /* Info.plist */,
+			);
+			path = "COVID-19-TrackerWidget";
+			sourceTree = "<group>";
+		};
+		57ADE499281E485A002D378D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				57DB773B28145CD3004C052B /* CountryListEndpoint.swift */,
+				57DB773928145CD3004C052B /* CovidTimeseriesResponse.swift */,
+				57DE708A281B146F0042591F /* String+Extensions.swift */,
+				57F346C1281C497700B6571A /* Number+Extensions.swift */,
+				57ADE4A9281E537A002D378D /* SharedStubs.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		57ADE4A3281E51E5002D378D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE4A0281E509C002D378D /* AnyPublisher+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		57ADE4A5281E529B002D378D /* WidgetViews */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE4A6281E52C0002D378D /* CovidWidgetMediumView.swift */,
+			);
+			path = WidgetViews;
+			sourceTree = "<group>";
+		};
+		57ADE4AE281E542F002D378D /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE491281E45B6002D378D /* CovidEntry.swift */,
+				57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */,
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
+		57ADE4B0281E543B002D378D /* Timelines */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE494281E4609002D378D /* CovidTimelineProvider.swift */,
+			);
+			path = Timelines;
+			sourceTree = "<group>";
+		};
 		57D53C0B28171E0000BFB1D1 /* CountryListAvailable */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,8 +301,11 @@
 		57DB76F928145CAA004C052B = {
 			isa = PBXGroup;
 			children = (
+				57DB772F28145CD3004C052B /* Packages */,
+				57ADE499281E485A002D378D /* Shared */,
 				57DB770428145CAA004C052B /* COVID-19-Tracker */,
 				57DB771528145CAB004C052B /* COVID-19-TrackerTests */,
+				57ADE484281E4320002D378D /* COVID-19-TrackerWidget */,
 				57DB770328145CAA004C052B /* Products */,
 				57DB774428145CE8004C052B /* Frameworks */,
 			);
@@ -192,6 +316,7 @@
 			children = (
 				57DB770228145CAA004C052B /* COVID-19-Tracker.app */,
 				57DB771228145CAB004C052B /* COVID-19-TrackerTests.xctest */,
+				57ADE47F281E4320002D378D /* COVID-19-TrackerWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,7 +328,6 @@
 				57DE708C281B15020042591F /* Shared */,
 				57DB775D281559C0004C052B /* Extensions */,
 				57DE708D281B163D0042591F /* Scenes */,
-				57DB772F28145CD3004C052B /* Packages */,
 				57DB770928145CAB004C052B /* Assets.xcassets */,
 				57DB770B28145CAB004C052B /* Preview Content */,
 			);
@@ -264,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				57DB773A28145CD3004C052B /* CountryListUseCase.swift */,
-				57DB773B28145CD3004C052B /* CountryListEndpoint.swift */,
 				57DB775328146199004C052B /* CountryListStubs.swift */,
 				57DB773828145CD3004C052B /* Models */,
 			);
@@ -274,7 +397,6 @@
 		57DB773828145CD3004C052B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				57DB773928145CD3004C052B /* CovidTimeseriesResponse.swift */,
 				57D53C072816C85A00BFB1D1 /* SortType.swift */,
 			);
 			path = Models;
@@ -283,6 +405,8 @@
 		57DB774428145CE8004C052B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				57ADE480281E4320002D378D /* WidgetKit.framework */,
+				57ADE482281E4320002D378D /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -314,9 +438,7 @@
 				57DB776028155C31004C052B /* UIColor+Extensions.swift */,
 				57DE7078281AC58B0042591F /* View+Extensions.swift */,
 				57DE707A281AC86A0042591F /* EnvironmentValues+Extensions.swift */,
-				57DE708A281B146F0042591F /* String+Extensions.swift */,
 				57DE7094281BFD0F0042591F /* UINavigationController+Extensions.swift */,
-				57F346C1281C497700B6571A /* Number+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +532,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		57ADE47E281E4320002D378D /* COVID-19-TrackerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57ADE48D281E4323002D378D /* Build configuration list for PBXNativeTarget "COVID-19-TrackerWidgetExtension" */;
+			buildPhases = (
+				57ADE47B281E4320002D378D /* Sources */,
+				57ADE47C281E4320002D378D /* Frameworks */,
+				57ADE47D281E4320002D378D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "COVID-19-TrackerWidgetExtension";
+			packageProductDependencies = (
+				57ADE497281E4676002D378D /* Networking */,
+				57ADE49E281E4C47002D378D /* SharedDateFormatter */,
+			);
+			productName = "COVID-19-TrackerWidgetExtension";
+			productReference = 57ADE47F281E4320002D378D /* COVID-19-TrackerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		57DB770128145CAA004C052B /* COVID-19-Tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57DB772628145CAB004C052B /* Build configuration list for PBXNativeTarget "COVID-19-Tracker" */;
@@ -417,10 +560,12 @@
 				57DB76FE28145CAA004C052B /* Sources */,
 				57DB76FF28145CAA004C052B /* Frameworks */,
 				57DB770028145CAA004C052B /* Resources */,
+				57ADE490281E4323002D378D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				57ADE48B281E4323002D378D /* PBXTargetDependency */,
 			);
 			name = "COVID-19-Tracker";
 			packageProductDependencies = (
@@ -462,6 +607,9 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					57ADE47E281E4320002D378D = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					57DB770128145CAA004C052B = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -491,11 +639,20 @@
 			targets = (
 				57DB770128145CAA004C052B /* COVID-19-Tracker */,
 				57DB771128145CAB004C052B /* COVID-19-TrackerTests */,
+				57ADE47E281E4320002D378D /* COVID-19-TrackerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		57ADE47D281E4320002D378D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57ADE488281E4323002D378D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57DB770028145CAA004C052B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,6 +674,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		57ADE47B281E4320002D378D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57ADE493281E45E4002D378D /* CovidEntry.swift in Sources */,
+				57ADE4A2281E50B3002D378D /* AnyPublisher+Extensions.swift in Sources */,
+				57ADE49A281E4873002D378D /* CountryListEndpoint.swift in Sources */,
+				57ADE4A8281E52D5002D378D /* CovidWidgetMediumView.swift in Sources */,
+				57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */,
+				57ADE486281E4320002D378D /* COVID_19_TrackerWidget.swift in Sources */,
+				57ADE496281E460F002D378D /* CovidTimelineProvider.swift in Sources */,
+				57ADE49C281E4BCE002D378D /* String+Extensions.swift in Sources */,
+				57ADE49D281E4BE2002D378D /* Number+Extensions.swift in Sources */,
+				57ADE49B281E4A46002D378D /* CovidTimeseriesResponse.swift in Sources */,
+				57ADE4AB281E5389002D378D /* SharedStubs.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		57DB76FE28145CAA004C052B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -530,6 +705,7 @@
 				57DE706D2819BB8E0042591F /* CountryListNavigationView.swift in Sources */,
 				57D53C0D28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift in Sources */,
 				57DB774228145CD4004C052B /* CountryListUseCase.swift in Sources */,
+				57ADE4AA281E537A002D378D /* SharedStubs.swift in Sources */,
 				57DB774328145CD4004C052B /* CountryListEndpoint.swift in Sources */,
 				57DB775028145E5F004C052B /* CountryListContentView.swift in Sources */,
 				57DE7080281B0A640042591F /* CountryListError+Reducer.swift in Sources */,
@@ -579,6 +755,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		57ADE48B281E4323002D378D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 57ADE47E281E4320002D378D /* COVID-19-TrackerWidgetExtension */;
+			targetProxy = 57ADE48A281E4323002D378D /* PBXContainerItemProxy */;
+		};
 		57DB771428145CAB004C052B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 57DB770128145CAA004C052B /* COVID-19-Tracker */;
@@ -587,6 +768,60 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		57ADE48E281E4323002D378D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44ANS5M7N7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "COVID-19-TrackerWidget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "COVID-19-TrackerWidget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.COVID-19-Tracker.COVID-19-TrackerWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		57ADE48F281E4323002D378D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 44ANS5M7N7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "COVID-19-TrackerWidget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "COVID-19-TrackerWidget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.COVID-19-Tracker.COVID-19-TrackerWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		57DB772428145CAB004C052B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -704,6 +939,7 @@
 		57DB772728145CAB004C052B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -734,6 +970,7 @@
 		57DB772828145CAB004C052B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -804,6 +1041,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		57ADE48D281E4323002D378D /* Build configuration list for PBXNativeTarget "COVID-19-TrackerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57ADE48E281E4323002D378D /* Debug */,
+				57ADE48F281E4323002D378D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		57DB76FD28145CAA004C052B /* Build configuration list for PBXProject "COVID-19-Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -865,6 +1111,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 57ADE461281D0DFA002D378D /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		57ADE497281E4676002D378D /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		57ADE49E281E4C47002D378D /* SharedDateFormatter */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedDateFormatter;
 		};
 		57DB774528145CE8004C052B /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
