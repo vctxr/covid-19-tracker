@@ -5,9 +5,9 @@
 //  Created by Victor Samuel Cuaca on 23/04/22.
 //
 
+import ComposableArchitecture
 import IdentifiedCollections
 import CasePaths
-import ComposableArchitecture
 
 // MARK: - State
 

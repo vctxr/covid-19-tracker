@@ -5,7 +5,7 @@
 //  Created by Victor Samuel Cuaca on 24/04/22.
 //
 
-import SwiftUI
+import Foundation
 
 // MARK: - State
 

@@ -5,7 +5,6 @@
 //  Created by Victor Samuel Cuaca on 23/04/22.
 //
 
-import Foundation
 import SharedDateFormatter
 
 // MARK: - CovidTimeseriesResponse

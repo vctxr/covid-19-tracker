@@ -5,8 +5,8 @@
 //  Created by Victor Samuel Cuaca on 26/04/22.
 //
 
-import IdentifiedCollections
 import ComposableArchitecture
+import IdentifiedCollections
 
 // MARK: - State
 

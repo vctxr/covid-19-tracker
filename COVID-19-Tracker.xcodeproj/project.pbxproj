@@ -159,6 +159,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		57ADE47A281E3D56002D378D /* ChartFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE469281D3978002D378D /* DateValueFormatter.swift */,
+				57ADE46B281D3D91002D378D /* LargeValueFormatter.swift */,
+			);
+			path = ChartFormatter;
+			sourceTree = "<group>";
+		};
 		57D53C0B28171E0000BFB1D1 /* CountryListAvailable */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,10 +350,9 @@
 		57DE708C281B15020042591F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				57ADE469281D3978002D378D /* DateValueFormatter.swift */,
-				57ADE46B281D3D91002D378D /* LargeValueFormatter.swift */,
 				57DE70732819C6A10042591F /* ToastState.swift */,
 				57ADE458281C5E28002D378D /* SFSafariView.swift */,
+				57ADE47A281E3D56002D378D /* ChartFormatter */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

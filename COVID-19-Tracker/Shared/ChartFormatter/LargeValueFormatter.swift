@@ -8,28 +8,28 @@
 import Charts
 
 /// Copied from the `Charts` repository demo.
-class LargeValueFormatter: IValueFormatter, IAxisValueFormatter {
+final class LargeValueFormatter: IValueFormatter, IAxisValueFormatter {
     // MARK: - Variables 📦
     
     /// Suffix to be appended after the values.
-    public var suffix = ["", "K", "M", "B", "T"]
+    private let suffix = ["", "K", "M", "B", "T"]
     
     /// An appendix text to be added at the end of the formatted value.
-    public var appendix: String?
+    private let appendix: String?
     
     // MARK: - Inits 🐣
     
-    public init(appendix: String? = nil) {
+    init(appendix: String? = nil) {
         self.appendix = appendix
     }
     
     // MARK: - Methods ⛓
     
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         format(value: value)
     }
     
-    public func stringForValue(
+    func stringForValue(
         _ value: Double,
         entry: ChartDataEntry,
         dataSetIndex: Int,

@@ -68,7 +68,7 @@ extension CountryCovidTimeseries {
                 .init(
                     dateString: SharedDateFormatter.shared
                         .formatter(withFormat: "yyyy-MM-dd")
-                        .string(from: Date(timeIntervalSince1970: TimeInterval(i * 86400))),
+                        .string(from: Date(timeIntervalSince1970: TimeInterval(i * 86400))),    // Stride by 1 day.
                     confirmed: Int.random(in: 0...99_999_999),
                     deaths: Int.random(in: 0...99_999_999),
                     recovered: Int.random(in: 0...99_999_999)

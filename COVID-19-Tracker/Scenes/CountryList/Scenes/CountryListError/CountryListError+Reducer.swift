@@ -5,7 +5,7 @@
 //  Created by Victor Samuel Cuaca on 29/04/22.
 //
 
-import ComposableArchitecture
+import Foundation
 
 // MARK: - Action
 
