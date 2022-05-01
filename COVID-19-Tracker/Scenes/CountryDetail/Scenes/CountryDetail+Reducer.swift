@@ -12,7 +12,6 @@ import ComposableArchitecture
 struct CountryDetailState: Equatable {
     let data: CountryCovidTimeseries
     var selectedChart = ChartMode.confirmed
-    var entryLegendState: CovidEntryLegendState?
     var safariState: URL?
     
     var chartData: [CovidEntry] {
@@ -35,7 +34,6 @@ struct CountryDetailState: Equatable {
 
 enum CountryDetailAction: Equatable {
     case onSelectedChartChanged(ChartMode)
-    case onHighlightedEntryChanged(CovidEntry?)
     case setSafariView(isPresented: Bool)
 }
 
@@ -45,17 +43,8 @@ let countryDetailReducer = Reducer<CountryDetailState, CountryDetailAction, Void
     switch action {
     case .onSelectedChartChanged(let newChartMode):
         state.selectedChart = newChartMode
-        state.entryLegendState = nil
         return .none
-        
-    case .onHighlightedEntryChanged(let newEntry):
-        if let newEntry = newEntry {
-            state.entryLegendState = CovidEntryLegendState(entry: newEntry, valueKey: state.selectedChart.legendText)
-        } else {
-            state.entryLegendState = nil
-        }
-        return .none
-        
+            
     case .setSafariView(isPresented: true):
         state.safariState = URL(string: "https://www.who.int/health-topics/coronavirus#tab=tab_1")
         return .none

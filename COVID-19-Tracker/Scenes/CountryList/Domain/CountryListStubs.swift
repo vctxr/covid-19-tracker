@@ -7,6 +7,7 @@
 
 #if DEBUG
 import ComposableArchitecture
+import SharedDateFormatter
 
 // MARK: - CountryListState
 
@@ -63,9 +64,11 @@ extension CountryCovidTimeseries {
     static func template(countryName: String) -> CountryCovidTimeseries {
         CountryCovidTimeseries(
             countryName: countryName,
-            timeseriesData: (0..<100).map { _ in
+            timeseriesData: (0..<100).map { i in
                 .init(
-                    dateString: "2022-1-22",
+                    dateString: SharedDateFormatter.shared
+                        .formatter(withFormat: "yyyy-MM-dd")
+                        .string(from: Date(timeIntervalSince1970: TimeInterval(i * 86400))),
                     confirmed: Int.random(in: 0...99_999_999),
                     deaths: Int.random(in: 0...99_999_999),
                     recovered: Int.random(in: 0...99_999_999)

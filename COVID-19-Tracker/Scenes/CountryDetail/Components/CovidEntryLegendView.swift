@@ -18,26 +18,24 @@ struct CovidEntryLegendState: Equatable {
 struct CovidEntryLegendView: View {
     // MARK: - Body 🎨
     
-    let store: Store<CovidEntryLegendState, Never>
+    let state: CovidEntryLegendState
     
     var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Date: \(viewStore.entry.dateString)")
-                    .font(.caption2)
-                    .foregroundColor(.secondaryText)
-                Text("\(viewStore.valueKey): \(viewStore.entry.value.displayString)")
-                    .font(.caption2)
-                    .foregroundColor(.secondaryText)
-            }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 8)
-            .background(
-                .ultraThinMaterial,
-                in: RoundedRectangle(cornerRadius: 6)
-            )
-            .animation(.default, value: viewStore.entry.value)
+        VStack(alignment: .leading, spacing: 2) {
+            Text("Date: \(state.entry.dateString)")
+                .font(.caption2)
+                .foregroundColor(.secondaryText)
+            Text("\(state.valueKey): \(state.entry.value.displayString)")
+                .font(.caption2)
+                .foregroundColor(.secondaryText)
         }
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
+        .background(
+            .ultraThinMaterial,
+            in: RoundedRectangle(cornerRadius: 6)
+        )
+        .animation(.linear(duration: 0.1), value: state)
     }
 }
 
@@ -46,13 +44,7 @@ struct CovidEntryLegendView: View {
 struct CovidEntryLegendView_Previews: PreviewProvider {
     private static var groupPreviews: some View {
         Group {
-            CovidEntryLegendView(
-                store: Store(
-                    initialState: .template,
-                    reducer: .empty,
-                    environment: ()
-                )
-            )
+            CovidEntryLegendView(state: .template)
         }
         .previewLayout(.sizeThatFits)
     }

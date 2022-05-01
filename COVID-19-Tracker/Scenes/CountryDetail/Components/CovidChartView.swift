@@ -11,6 +11,9 @@ import ComposableArchitecture
 struct CovidChartView: View {
     // MARK: - Body 🎨
     
+    // Better performance when updating this value here rather than in the store.
+    @State private var highlightedEntry: CovidEntry?
+    
     let store: Store<CountryDetailState, CountryDetailAction>
     
     var body: some View {
@@ -29,28 +32,34 @@ struct CovidChartView: View {
                 } label: {}
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 16)
-                .padding(.bottom, 16)
+                .padding(.bottom, 12)
+                .onChange(of: viewStore.selectedChart) { selectedChart in
+                    highlightedEntry = nil  // Hide highlighted entry when change chart.
+                }
                 
                 Text("COVID-19 \(viewStore.selectedChart.titleText)")
                     .font(.subheadline)
                     .foregroundColor(.secondaryText)
-                    .padding(.bottom, -8)
+                    .padding(.bottom, -6)
                 
                 ZStack(alignment: .topLeading) {
                     LineChartViewRepresentable(
                         data: viewStore.chartData,
-                        highlightedEntry: viewStore.binding(
-                            get: \.entryLegendState?.entry,
-                            send: CountryDetailAction.onHighlightedEntryChanged
-                        )
+                        mode: viewStore.selectedChart,
+                        highlightedEntry: $highlightedEntry
                     )
                     .frame(maxHeight: 500)
                     .padding(.leading, 4)
                     .padding(.trailing, 8)
                     
-                    IfLetStore(store.scope(state: \.entryLegendState).actionless) { store in
-                        CovidEntryLegendView(store: store)
-                            .padding(16)
+                    if let entry = highlightedEntry {
+                        CovidEntryLegendView(
+                            state: CovidEntryLegendState(
+                                entry: entry,
+                                valueKey: viewStore.selectedChart.legendText
+                            )
+                        )
+                        .padding(16)
                     }
                 }
             }

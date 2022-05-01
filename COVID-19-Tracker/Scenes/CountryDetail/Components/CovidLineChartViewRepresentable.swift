@@ -14,6 +14,8 @@ struct LineChartViewRepresentable: UIViewRepresentable {
     // MARK: - Variables 📦
     
     var data: [CovidEntry]
+    var mode: ChartMode
+    
     @Binding var highlightedEntry: CovidEntry?
     
     private let formatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
@@ -28,8 +30,9 @@ struct LineChartViewRepresentable: UIViewRepresentable {
         let chart = LineChartView()
         chart.legend.enabled = false
         chart.setScaleEnabled(false)
-        chart.animate(xAxisDuration: 1.25, easingOption: .easeOutSine)
         chart.delegate = context.coordinator
+        let panGesture = chart.gestureRecognizers?.first(where: { $0 is UIPanGestureRecognizer })
+        panGesture?.delegate = context.coordinator
         
         let xAxis = chart.xAxis
         xAxis.labelPosition = .bottom
@@ -50,13 +53,27 @@ struct LineChartViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: LineChartView, context: Context) {
-        uiView.data = LineChartData(dataSet: generateChartDataSet())
+        // Hide highlight if it is nil.
+        if highlightedEntry == nil {
+            uiView.highlightValue(nil)
+        }
+        
+        let (dataSet, isFromCache) = generateChartDataSet(withContext: context)
+        uiView.data = LineChartData(dataSet: dataSet)
         uiView.notifyDataSetChanged()
+
+        guard !isFromCache else { return }
+        uiView.animate(xAxisDuration: 1.25, easingOption: .easeOutSine)
     }
     
     // MARK: - Private Methods 🔒
     
-    private func generateChartDataSet() -> LineChartDataSet {
+    private func generateChartDataSet(withContext context: Context) -> (dataSet: LineChartDataSet, isFromCache: Bool) {
+        // Use cache for better performance.
+        if let cachedDataSet = context.coordinator.cachedDataSets[mode] {
+            return (dataSet: cachedDataSet, isFromCache: true)
+        }
+        
         let chartDataEntries = data.compactMap { data -> ChartDataEntry? in
             guard let date = formatter.date(from: data.dateString) else { return nil }
             return ChartDataEntry(x: date.timeIntervalSince1970, y: Double(data.value))
@@ -71,7 +88,7 @@ struct LineChartViewRepresentable: UIViewRepresentable {
         dataSet.highlightColor = UIColor(Color.secondaryText)
         
         let gradientColors = [
-            Color.red900Color.opacity(0.1).cgColor,
+            Color.red900Color.opacity(0.2).cgColor,
             Color.red900Color.cgColor
         ]
         
@@ -84,21 +101,26 @@ struct LineChartViewRepresentable: UIViewRepresentable {
         dataSet.fill = .fillWithLinearGradient(gradient, angle: 90)
         dataSet.drawFilledEnabled = true
         
-        return dataSet
+        context.coordinator.cachedDataSets[mode] = dataSet
+        
+        return (dataSet: dataSet, isFromCache: false)
     }
 }
 
 // MARK: - Coordinator
 
 extension LineChartViewRepresentable {
-    class Coordinator: NSObject, ChartViewDelegate {
+    class Coordinator: NSObject, ChartViewDelegate, UIGestureRecognizerDelegate {
         var parent: LineChartViewRepresentable
+        var cachedDataSets: [ChartMode: LineChartDataSet] = [:]
         
         private let formatter = SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")
         
         init(_ lineChartView: LineChartViewRepresentable) {
             parent = lineChartView
         }
+        
+        // MARK: - ChartViewDelegate
         
         func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
             let date = Date(timeIntervalSince1970: entry.x)
@@ -108,6 +130,17 @@ extension LineChartViewRepresentable {
         
         func chartValueNothingSelected(_ chartView: ChartViewBase) {
             parent.highlightedEntry = nil
+        }
+        
+        // MARK: - UIGestureRecognizerDelegate
+        
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            // Prevents any parent scrolling when panning the chart view.
+            if otherGestureRecognizer.view is UIScrollView {
+                return false
+            } else {
+                return true
+            }
         }
     }
 }
