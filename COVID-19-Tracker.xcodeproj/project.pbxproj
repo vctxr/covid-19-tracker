@@ -14,7 +14,7 @@
 		57ADE463281D0DFB002D378D /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 57ADE462281D0DFB002D378D /* Charts */; };
 		57ADE46A281D3978002D378D /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE469281D3978002D378D /* DateValueFormatter.swift */; };
 		57ADE46C281D3D91002D378D /* LargeValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE46B281D3D91002D378D /* LargeValueFormatter.swift */; };
-		57ADE472281D531E002D378D /* CovidLineChartViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE471281D531E002D378D /* CovidLineChartViewRepresentable.swift */; };
+		57ADE472281D531E002D378D /* CovidLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE471281D531E002D378D /* CovidLineChartView.swift */; };
 		57ADE475281D551C002D378D /* CovidEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE474281D551C002D378D /* CovidEntry.swift */; };
 		57ADE477281D58C1002D378D /* CovidEntryLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE476281D58C1002D378D /* CovidEntryLegendView.swift */; };
 		57ADE479281D5F27002D378D /* ChartMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE478281D5F27002D378D /* ChartMode.swift */; };
@@ -80,7 +80,7 @@
 		57ADE45C281D090A002D378D /* CovidChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidChartView.swift; sourceTree = "<group>"; };
 		57ADE469281D3978002D378D /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		57ADE46B281D3D91002D378D /* LargeValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeValueFormatter.swift; sourceTree = "<group>"; };
-		57ADE471281D531E002D378D /* CovidLineChartViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidLineChartViewRepresentable.swift; sourceTree = "<group>"; };
+		57ADE471281D531E002D378D /* CovidLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidLineChartView.swift; sourceTree = "<group>"; };
 		57ADE474281D551C002D378D /* CovidEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntry.swift; sourceTree = "<group>"; };
 		57ADE476281D58C1002D378D /* CovidEntryLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntryLegendView.swift; sourceTree = "<group>"; };
 		57ADE478281D5F27002D378D /* ChartMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMode.swift; sourceTree = "<group>"; };
@@ -247,7 +247,6 @@
 				57DE707C281B05C70042591F /* CountryListError */,
 				57D53C0B28171E0000BFB1D1 /* CountryListAvailable */,
 				57DE7081281B0AF80042591F /* CountryListEmpty */,
-				57DB775C28154CEE004C052B /* CountryCovidCard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -317,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */,
+				57DB775C28154CEE004C052B /* CountryCovidCard */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -390,7 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				57ADE476281D58C1002D378D /* CovidEntryLegendView.swift */,
-				57ADE471281D531E002D378D /* CovidLineChartViewRepresentable.swift */,
+				57ADE471281D531E002D378D /* CovidLineChartView.swift */,
 				57ADE45C281D090A002D378D /* CovidChartView.swift */,
 				57F346C4281C4CE800B6571A /* CovidStatisticsView.swift */,
 				57ADE454281C52B4002D378D /* CovidInformationView.swift */,
@@ -514,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57ADE459281C5E28002D378D /* SFSafariView.swift in Sources */,
-				57ADE472281D531E002D378D /* CovidLineChartViewRepresentable.swift in Sources */,
+				57ADE472281D531E002D378D /* CovidLineChartView.swift in Sources */,
 				57DB775828146A43004C052B /* CountryCovidCardView.swift in Sources */,
 				57F346C2281C497700B6571A /* Number+Extensions.swift in Sources */,
 				57DE707E281B05D70042591F /* CountryListErrorView.swift in Sources */,

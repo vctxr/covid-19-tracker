@@ -185,4 +185,3 @@ let countryListMasterReducer = Reducer<CountryListState, CountryListAction, Coun
     
     countryListReducer
 )
-.debug()

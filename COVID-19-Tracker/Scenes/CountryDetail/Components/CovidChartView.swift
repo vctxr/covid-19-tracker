@@ -43,7 +43,7 @@ struct CovidChartView: View {
                     .padding(.bottom, -6)
                 
                 ZStack(alignment: .topLeading) {
-                    LineChartViewRepresentable(
+                    CovidLineChartView(
                         data: viewStore.chartData,
                         mode: viewStore.selectedChart,
                         highlightedEntry: $highlightedEntry

@@ -1,16 +1,15 @@
 //
-//  CovidLineChartViewRepresentable.swift
+//  CovidLineChartView.swift
 //  COVID-19-Tracker
 //
 //  Created by Victor Samuel Cuaca on 30/04/22.
 //
 
-import Foundation
 import SwiftUI
 import Charts
 import SharedDateFormatter
 
-struct LineChartViewRepresentable: UIViewRepresentable {
+struct CovidLineChartView: UIViewRepresentable {
     // MARK: - Variables 📦
     
     var data: [CovidEntry]
@@ -109,14 +108,14 @@ struct LineChartViewRepresentable: UIViewRepresentable {
 
 // MARK: - Coordinator
 
-extension LineChartViewRepresentable {
+extension CovidLineChartView {
     class Coordinator: NSObject, ChartViewDelegate, UIGestureRecognizerDelegate {
-        var parent: LineChartViewRepresentable
+        var parent: CovidLineChartView
         var cachedDataSets: [ChartMode: LineChartDataSet] = [:]
         
         private let formatter = SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")
         
-        init(_ lineChartView: LineChartViewRepresentable) {
+        init(_ lineChartView: CovidLineChartView) {
             parent = lineChartView
         }
         
