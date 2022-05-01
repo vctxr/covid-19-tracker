@@ -14,7 +14,16 @@ struct COVID_19_TrackerWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: CovidTimelineProvider()) { entry in
-            CovidWidgetMediumView(entry: entry)
+            CovidWidgetMediumView(
+                entry: CovidEntry(
+                    date: entry.date,
+                    timeseriesData: Array(
+                        entry.timeseriesData
+                            .sorted(by: SortType.cases(.descending).sorter)
+                            .prefix(3)
+                    )
+                )
+            )
         }
         .configurationDisplayName("COVID-19 Stats")
         .description("View COVID-19 stats and track the statistics throughout the day.")
