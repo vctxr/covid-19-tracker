@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WidgetKit
+import ColorPalette
 
 struct CovidWidgetMediumView: View {
     // MARK: - Variables 📦

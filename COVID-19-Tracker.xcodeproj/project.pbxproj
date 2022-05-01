@@ -33,10 +33,10 @@
 		57ADE4A8281E52D5002D378D /* CovidWidgetMediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A6281E52C0002D378D /* CovidWidgetMediumView.swift */; };
 		57ADE4AA281E537A002D378D /* SharedStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A9281E537A002D378D /* SharedStubs.swift */; };
 		57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */; };
-		57ADE4B1281E596D002D378D /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775E281559CB004C052B /* Color+Extensions.swift */; };
-		57ADE4B2281E597C002D378D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB776028155C31004C052B /* UIColor+Extensions.swift */; };
 		57ADE4B5281E5DD9002D378D /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C072816C85A00BFB1D1 /* SortType.swift */; };
 		57ADE4B6281E864D002D378D /* SharedStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A9281E537A002D378D /* SharedStubs.swift */; };
+		57ADE4BB281E8EA8002D378D /* ColorPalette in Frameworks */ = {isa = PBXBuildFile; productRef = 57ADE4BA281E8EA8002D378D /* ColorPalette */; };
+		57ADE4BD281E8ECA002D378D /* ColorPalette in Frameworks */ = {isa = PBXBuildFile; productRef = 57ADE4BC281E8ECA002D378D /* ColorPalette */; };
 		57D53C082816C85A00BFB1D1 /* SortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C072816C85A00BFB1D1 /* SortType.swift */; };
 		57D53C0D28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D53C0C28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift */; };
 		57DB770628145CAA004C052B /* COVID_19_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */; };
@@ -59,8 +59,6 @@
 		57DB775428146199004C052B /* CountryListStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775328146199004C052B /* CountryListStubs.swift */; };
 		57DB775828146A43004C052B /* CountryCovidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775728146A43004C052B /* CountryCovidCardView.swift */; };
 		57DB775B2814E2E1004C052B /* CountryCovidCard+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775A2814E2E1004C052B /* CountryCovidCard+Reducer.swift */; };
-		57DB775F281559CB004C052B /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775E281559CB004C052B /* Color+Extensions.swift */; };
-		57DB776128155C31004C052B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB776028155C31004C052B /* UIColor+Extensions.swift */; };
 		57DE706B28171FD60042591F /* CountryListAvailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706A28171FD60042591F /* CountryListAvailableView.swift */; };
 		57DE706D2819BB8E0042591F /* CountryListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */; };
 		57DE70722819C6660042591F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE70712819C6660042591F /* AlertToast */; };
@@ -138,6 +136,7 @@
 		57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntryStubs.swift; sourceTree = "<group>"; };
 		57ADE4B7281E8B32002D378D /* COVID-19-Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "COVID-19-Tracker.entitlements"; sourceTree = "<group>"; };
 		57ADE4B8281E8C65002D378D /* COVID-19-TrackerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "COVID-19-TrackerWidgetExtension.entitlements"; sourceTree = "<group>"; };
+		57ADE4B9281E8DDF002D378D /* ColorPalette */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ColorPalette; sourceTree = "<group>"; };
 		57D53C072816C85A00BFB1D1 /* SortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortType.swift; sourceTree = "<group>"; };
 		57D53C0C28171E1500BFB1D1 /* CountryListAvailable+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryListAvailable+Reducer.swift"; sourceTree = "<group>"; };
 		57DB770228145CAA004C052B /* COVID-19-Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19-Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,8 +158,6 @@
 		57DB775328146199004C052B /* CountryListStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListStubs.swift; sourceTree = "<group>"; };
 		57DB775728146A43004C052B /* CountryCovidCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCovidCardView.swift; sourceTree = "<group>"; };
 		57DB775A2814E2E1004C052B /* CountryCovidCard+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryCovidCard+Reducer.swift"; sourceTree = "<group>"; };
-		57DB775E281559CB004C052B /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
-		57DB776028155C31004C052B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		57DE706A28171FD60042591F /* CountryListAvailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListAvailableView.swift; sourceTree = "<group>"; };
 		57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListNavigationView.swift; sourceTree = "<group>"; };
 		57DE70732819C6A10042591F /* ToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastState.swift; sourceTree = "<group>"; };
@@ -188,6 +185,7 @@
 			files = (
 				57ADE49F281E4C47002D378D /* SharedDateFormatter in Frameworks */,
 				57ADE483281E4320002D378D /* SwiftUI.framework in Frameworks */,
+				57ADE4BD281E8ECA002D378D /* ColorPalette in Frameworks */,
 				57ADE481281E4320002D378D /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +198,7 @@
 				57ADE463281D0DFB002D378D /* Charts in Frameworks */,
 				57DE70722819C6660042591F /* AlertToast in Frameworks */,
 				57DB774628145CE8004C052B /* Networking in Frameworks */,
+				57ADE4BB281E8EA8002D378D /* ColorPalette in Frameworks */,
 				57DB774B28145D12004C052B /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,8 +291,6 @@
 		57ADE4B3281E5984002D378D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				57DB775E281559CB004C052B /* Color+Extensions.swift */,
-				57DB776028155C31004C052B /* UIColor+Extensions.swift */,
 				57DE708A281B146F0042591F /* String+Extensions.swift */,
 				57F346C1281C497700B6571A /* Number+Extensions.swift */,
 			);
@@ -375,6 +372,7 @@
 		57DB772F28145CD3004C052B /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				57ADE4B9281E8DDF002D378D /* ColorPalette */,
 				57DB773028145CD3004C052B /* Networking */,
 				57DB773128145CD3004C052B /* SharedDateFormatter */,
 			);
@@ -559,6 +557,7 @@
 			name = "COVID-19-TrackerWidgetExtension";
 			packageProductDependencies = (
 				57ADE49E281E4C47002D378D /* SharedDateFormatter */,
+				57ADE4BC281E8ECA002D378D /* ColorPalette */,
 			);
 			productName = "COVID-19-TrackerWidgetExtension";
 			productReference = 57ADE47F281E4320002D378D /* COVID-19-TrackerWidgetExtension.appex */;
@@ -585,6 +584,7 @@
 				57DB774A28145D12004C052B /* ComposableArchitecture */,
 				57DE70712819C6660042591F /* AlertToast */,
 				57ADE462281D0DFB002D378D /* Charts */,
+				57ADE4BA281E8EA8002D378D /* ColorPalette */,
 			);
 			productName = "COVID-19-Tracker";
 			productReference = 57DB770228145CAA004C052B /* COVID-19-Tracker.app */;
@@ -692,7 +692,6 @@
 				57ADE493281E45E4002D378D /* CovidEntry.swift in Sources */,
 				57ADE4A2281E50B3002D378D /* AnyPublisher+Extensions.swift in Sources */,
 				57ADE4B5281E5DD9002D378D /* SortType.swift in Sources */,
-				57ADE4B2281E597C002D378D /* UIColor+Extensions.swift in Sources */,
 				57ADE4A8281E52D5002D378D /* CovidWidgetMediumView.swift in Sources */,
 				57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */,
 				57ADE486281E4320002D378D /* COVID_19_TrackerWidget.swift in Sources */,
@@ -701,7 +700,6 @@
 				57ADE49D281E4BE2002D378D /* Number+Extensions.swift in Sources */,
 				57ADE4B6281E864D002D378D /* SharedStubs.swift in Sources */,
 				57ADE49B281E4A46002D378D /* CovidCountriesResponse.swift in Sources */,
-				57ADE4B1281E596D002D378D /* Color+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +737,6 @@
 				57DE70742819C6A10042591F /* ToastState.swift in Sources */,
 				57DE7087281B128D0042591F /* CountryListContent+ContentState.swift in Sources */,
 				57DE7089281B135E0042591F /* CountryCovidCard+Style.swift in Sources */,
-				57DB775F281559CB004C052B /* Color+Extensions.swift in Sources */,
 				57DE7085281B124A0042591F /* CountryList+UIState.swift in Sources */,
 				57DB775B2814E2E1004C052B /* CountryCovidCard+Reducer.swift in Sources */,
 				57DB773E28145CD4004C052B /* CountryList+Reducer.swift in Sources */,
@@ -749,7 +746,6 @@
 				57ADE477281D58C1002D378D /* CovidEntryLegendView.swift in Sources */,
 				57DE708B281B146F0042591F /* String+Extensions.swift in Sources */,
 				57DE7095281BFD0F0042591F /* UINavigationController+Extensions.swift in Sources */,
-				57DB776128155C31004C052B /* UIColor+Extensions.swift in Sources */,
 				57DB774128145CD4004C052B /* CovidCountriesResponse.swift in Sources */,
 				57D53C082816C85A00BFB1D1 /* SortType.swift in Sources */,
 				57DB775428146199004C052B /* CountryListStubs.swift in Sources */,
@@ -1132,6 +1128,14 @@
 		57ADE49E281E4C47002D378D /* SharedDateFormatter */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedDateFormatter;
+		};
+		57ADE4BA281E8EA8002D378D /* ColorPalette */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ColorPalette;
+		};
+		57ADE4BC281E8ECA002D378D /* ColorPalette */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ColorPalette;
 		};
 		57DB774528145CE8004C052B /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;

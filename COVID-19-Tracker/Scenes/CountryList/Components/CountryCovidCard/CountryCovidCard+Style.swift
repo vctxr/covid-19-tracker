@@ -41,7 +41,7 @@ extension CountryCovidCardState {
             case .first, .second, .third:
                 return .white
             case .normal:
-                return .secondary
+                return .secondaryText
             }
         }
         

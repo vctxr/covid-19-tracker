@@ -8,6 +8,7 @@
 import SwiftUI
 import Charts
 import SharedDateFormatter
+import ColorPalette
 
 struct CovidLineChartView: UIViewRepresentable {
     // MARK: - Variables 📦
