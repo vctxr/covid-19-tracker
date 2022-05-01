@@ -10,7 +10,7 @@ import SwiftUI
 struct CovidStatisticsView: View {
     // MARK: - Variables 📦
     
-    let data: CountryCovidTimeseries
+    let data: CovidCountryData
     
     // MARK: - Body 🎨
     

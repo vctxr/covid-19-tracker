@@ -10,7 +10,7 @@ import ComposableArchitecture
 // MARK: - State
 
 struct CountryDetailState: Equatable {
-    let data: CountryCovidTimeseries
+    let data: CovidCountryData
     var selectedChart = ChartMode.confirmed
     var safariState: URL?
     

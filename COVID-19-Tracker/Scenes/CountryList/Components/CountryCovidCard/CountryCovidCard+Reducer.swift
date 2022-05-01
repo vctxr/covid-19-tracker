@@ -12,7 +12,7 @@ import Foundation
 struct CountryCovidCardState: Equatable, Identifiable {
     var id: String { data.id }
     
-    let data: CountryCovidTimeseries
+    let data: CovidCountryData
     let style: Style
 }
 

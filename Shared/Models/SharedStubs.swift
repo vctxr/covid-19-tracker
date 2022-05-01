@@ -8,11 +8,11 @@
 import Foundation
 import SharedDateFormatter
 
-// MARK: - CountryCovidTimeseries
+// MARK: - CovidCountryData
 
-extension CountryCovidTimeseries {
-    static func template(countryName: String) -> CountryCovidTimeseries {
-        CountryCovidTimeseries(
+extension CovidCountryData {
+    static func template(countryName: String) -> CovidCountryData {
+        CovidCountryData(
             countryName: countryName,
             timeseriesData: (0..<100).map { i in
                 .init(
@@ -28,10 +28,10 @@ extension CountryCovidTimeseries {
     }
 }
 
-// MARK: - CountryCovidTimeseries Array
+// MARK: - CovidCountryData Array
 
-extension Array where Element == CountryCovidTimeseries {
-    static let template: [CountryCovidTimeseries] = [
+extension Array where Element == CovidCountryData {
+    static let template: [CovidCountryData] = [
         .template(countryName: "Indonesia"),
         .template(countryName: "United Kingdom"),
         .template(countryName: "Japan"),

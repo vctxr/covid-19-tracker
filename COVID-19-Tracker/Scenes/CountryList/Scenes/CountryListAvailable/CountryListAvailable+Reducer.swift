@@ -11,12 +11,12 @@ import IdentifiedCollections
 // MARK: - State
 
 struct CountryListAvailableState: Equatable {
-    var timeseriesData: [CountryCovidTimeseries]
+    var countriesData: [CovidCountryData]
     var isRefreshing = false
     
     // Computed properties.
     var countryCovidStates: IdentifiedArrayOf<CountryCovidCardState> {
-        IdentifiedArray(uniqueElements: timeseriesData
+        IdentifiedArray(uniqueElements: countriesData
             .enumerated()
             .map { index, data in
                 CountryCovidCardState(data: data, style: .init(index: index))

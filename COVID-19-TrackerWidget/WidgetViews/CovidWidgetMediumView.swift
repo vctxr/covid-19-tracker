@@ -17,7 +17,7 @@ struct CovidWidgetMediumView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ForEach(entry.timeseriesData) { data in
+            ForEach(entry.countriesData) { data in
                 VStack(spacing: 0) {
                     HStack {
                         Text(data.countryWithFlagText)
@@ -36,7 +36,7 @@ struct CovidWidgetMediumView: View {
                     }
                     .padding(.vertical, 4)
                     
-                    if data.id != entry.timeseriesData.last?.id {
+                    if data.id != entry.countriesData.last?.id {
                        Divider()
                     }
                 }

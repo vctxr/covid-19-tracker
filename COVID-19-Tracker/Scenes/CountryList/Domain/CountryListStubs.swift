@@ -33,7 +33,7 @@ extension CountryListState {
 
 extension CountryListAvailableState {
     static var template: CountryListAvailableState {
-        CountryListAvailableState(timeseriesData: .template)
+        CountryListAvailableState(countriesData: .template)
     }
 }
 
@@ -58,23 +58,23 @@ extension CountryCovidCardState {
 }
 #endif
 
-// MARK: - CountryCovidTimeseries
+// MARK: - CovidCountryData
 
-extension CountryCovidTimeseries {
-    static var template: CountryCovidTimeseries {
+extension CovidCountryData {
+    static var template: CovidCountryData {
         .template(countryName: "Indonesia")
     }
 }
 
-// MARK: - CountryListLoadedState
+// MARK: - CountryListContentState
 
 extension CountryListContentState {
     static var templateAvailable: CountryListContentState {
-        CountryListContentState(timeseriesData: .template)
+        CountryListContentState(countriesData: .template)
     }
     
     static var templateEmpty: CountryListContentState {
-        CountryListContentState(timeseriesData: [])
+        CountryListContentState(countriesData: [])
     }
 }
 

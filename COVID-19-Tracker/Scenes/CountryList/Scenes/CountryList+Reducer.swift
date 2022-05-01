@@ -41,30 +41,30 @@ enum CountryListAction: Equatable {
     case countryDetail(CountryDetailAction)
     
     // Side-effects.
-    case fetchCovidTimeseries
-    case receiveCovidTimeseries(Result<[CountryCovidTimeseries], NetworkError>)
+    case fetchCovidCountries
+    case receiveCovidCountries(Result<[CovidCountryData], NetworkError>)
     case queueLoadingState
 }
 
 // MARK: - Reducer
 
 private let countryListReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment> { state, action, env in
-    struct FetchCovidTimeseriesID: Hashable {}
+    struct FetchCovidCountriesID: Hashable {}
     struct QueueLoadingStateID: Hashable {}
     
     switch action {
     // MARK: - Lifecycle ♻️
         
     case .onAppear:
-        return Effect(value: .fetchCovidTimeseries)
+        return Effect(value: .fetchCovidCountries)
         
-    // MARK: - Fetch Covid Timeseries
+    // MARK: - Fetch Covid Countries
         
-    case .fetchCovidTimeseries:
+    case .fetchCovidCountries:
         return .concatenate(
-            env.useCase.getCovidTimeseries()
-                .catchToEffect(CountryListAction.receiveCovidTimeseries)
-                .cancellable(id: FetchCovidTimeseriesID(), cancelInFlight: true)
+            env.useCase.getCovidCountries()
+                .catchToEffect(CountryListAction.receiveCovidCountries)
+                .cancellable(id: FetchCovidCountriesID(), cancelInFlight: true)
             ,
             .cancel(id: QueueLoadingStateID())  // Cancel loading state.
         )
@@ -85,16 +85,16 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         guard state.uiState.isLoaded else { return .none }
         return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
 
-    // MARK: - Timeseries Response
+    // MARK: - Countries Response
         
-    case .receiveCovidTimeseries(let result):
+    case .receiveCovidCountries(let result):
         state.uiState.loadedState?.contentState.availableState?.isRefreshing = false
 
         switch result {
-        case .success(let timeseriesData):
-            state.uiState = .loaded(state: CountryListContentState(timeseriesData: timeseriesData))
+        case .success(let countriesData):
+            state.uiState = .loaded(state: CountryListContentState(countriesData: countriesData))
             
-            // After getting the timeseries data, we need to trigger a filter.
+            // After getting the countries data, we need to trigger a filter.
             return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
 
         case .failure(let error):
@@ -110,11 +110,11 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
     // MARK: - Refresh
         
     case .loaded(.available(.onRefresh)):
-        return Effect(value: .fetchCovidTimeseries)
+        return Effect(value: .fetchCovidCountries)
         
     case .error(.onTapRetry):
         return .merge(
-            Effect(value: .fetchCovidTimeseries),
+            Effect(value: .fetchCovidCountries),
             Effect(value: .queueLoadingState)   // Queue loading state for 0.2s to prevent flashing loading state.
                 .deferred(for: 0.2, scheduler: env.mainQueue)
                 .cancellable(id: QueueLoadingStateID(), cancelInFlight: true)

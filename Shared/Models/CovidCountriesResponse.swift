@@ -1,5 +1,5 @@
 //
-//  CovidTimeseriesResponse.swift
+//  CovidCountriesResponse.swift
 //  COVID-19 Tracker
 //
 //  Created by Victor Samuel Cuaca on 23/04/22.
@@ -7,13 +7,13 @@
 
 import SharedDateFormatter
 
-// MARK: - CovidTimeseriesResponse
+// MARK: - CovidCountriesResponse
 
-struct CovidTimeseriesResponse {
-    let countries: [CountryCovidTimeseries]
+struct CovidCountriesResponse {
+    let countriesData: [CovidCountryData]
 }
 
-extension CovidTimeseriesResponse: Decodable {
+extension CovidCountriesResponse: Decodable {
     private struct DynamicCodingKeys: CodingKey {
         var stringValue: String
         var intValue: Int?
@@ -29,17 +29,17 @@ extension CovidTimeseriesResponse: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
-        countries = try container.allKeys.map { key in
+        countriesData = try container.allKeys.map { key in
             let timeseriesData = try container.decode([CovidDayData].self,
                                                      forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
-            return CountryCovidTimeseries(countryName: key.stringValue, timeseriesData: timeseriesData)
+            return CovidCountryData(countryName: key.stringValue, timeseriesData: timeseriesData)
         }
     }
 }
 
-// MARK: - CountryCovidTimeseries
+// MARK: - CovidCountryData
 
-struct CountryCovidTimeseries: Equatable, Identifiable {
+struct CovidCountryData: Equatable, Identifiable {
     var id: String { countryName }
 
     let countryName: String

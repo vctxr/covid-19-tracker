@@ -13,15 +13,15 @@ final class CountryListUseCase {
     
     private let networkingService = NetworkingService(logLevel: .info)
     
-    // MARK: - Covid Timeseries
+    // MARK: - Covid Countries
     
-    func getCovidTimeseries() -> AnyPublisher<[CountryCovidTimeseries], NetworkError> {
-        _getCovidTimeseries()
+    func getCovidCountries() -> AnyPublisher<[CovidCountryData], NetworkError> {
+        _getCovidCountries()
     }
     
-    lazy var _getCovidTimeseries: () -> AnyPublisher<[CountryCovidTimeseries], NetworkError> = { [networkingService] in
-        networkingService.request(with: CountryListEndpoint.covidTimeseries.urlRequest)
-            .map(\CovidTimeseriesResponse.countries)
+    lazy var _getCovidCountries: () -> AnyPublisher<[CovidCountryData], NetworkError> = { [networkingService] in
+        networkingService.request(with: CountryListEndpoint.covidCountries.urlRequest)
+            .map(\CovidCountriesResponse.countriesData)
             .eraseToAnyPublisher()
     }
 }

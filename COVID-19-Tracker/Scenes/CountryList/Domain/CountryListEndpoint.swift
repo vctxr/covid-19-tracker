@@ -9,7 +9,7 @@ import Foundation
 import Networking
 
 enum CountryListEndpoint {
-    case covidTimeseries
+    case covidCountries
 }
 
 extension CountryListEndpoint: Endpoint {
@@ -19,14 +19,14 @@ extension CountryListEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .covidTimeseries:
+        case .covidCountries:
             return "/covid19/timeseries.json"
         }
     }
     
     var urlParameters: [URLQueryItem] {
         switch self {
-        case .covidTimeseries:
+        case .covidCountries:
             return []
         }
     }

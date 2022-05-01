@@ -9,6 +9,6 @@ import Foundation
 
 extension CovidEntry {
     static var placeholder: CovidEntry {
-        CovidEntry(date: Date(), timeseriesData: Array([CountryCovidTimeseries].template.prefix(3)))
+        CovidEntry(date: Date(), countriesData: Array([CovidCountryData].template.prefix(3)))
     }
 }

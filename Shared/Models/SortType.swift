@@ -29,7 +29,7 @@ enum SortType: Hashable {
         }
     }
     
-    func sorter(_ first: CountryCovidTimeseries, _ second: CountryCovidTimeseries) -> Bool {
+    func sorter(_ first: CovidCountryData, _ second: CovidCountryData) -> Bool {
         switch self {
         case .cases(.descending):
             return first.latestConfirmed > second.latestConfirmed

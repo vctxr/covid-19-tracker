@@ -17,8 +17,8 @@ struct COVID_19_TrackerWidget: Widget {
             CovidWidgetMediumView(
                 entry: CovidEntry(
                     date: entry.date,
-                    timeseriesData: Array(
-                        entry.timeseriesData
+                    countriesData: Array(
+                        entry.countriesData
                             .sorted(by: SortType.cases(.descending).sorter)
                             .prefix(3)
                     )

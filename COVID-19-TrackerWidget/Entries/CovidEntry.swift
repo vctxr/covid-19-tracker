@@ -9,5 +9,5 @@ import WidgetKit
 
 struct CovidEntry: TimelineEntry {
     let date: Date
-    let timeseriesData: [CountryCovidTimeseries]
+    let countriesData: [CovidCountryData]
 }

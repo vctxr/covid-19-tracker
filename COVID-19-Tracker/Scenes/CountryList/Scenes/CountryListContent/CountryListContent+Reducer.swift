@@ -12,18 +12,18 @@ import CasePaths
 // MARK: - State
 
 struct CountryListContentState: Equatable {
-    let timeseriesData: [CountryCovidTimeseries]
+    let countriesData: [CovidCountryData]
     var contentState: ContentState
     
     // MARK: - Inits 🐣
     
-    init(timeseriesData: [CountryCovidTimeseries]) {
-        self.timeseriesData = timeseriesData
+    init(countriesData: [CovidCountryData]) {
+        self.countriesData = countriesData
         
-        if timeseriesData.isEmpty {
+        if countriesData.isEmpty {
             contentState = .empty
         } else {
-            contentState = .available(state: .init(timeseriesData: timeseriesData))
+            contentState = .available(state: .init(countriesData: countriesData))
         }
     }
 }
@@ -44,21 +44,21 @@ enum CountryListContentAction: Equatable {
 private let countryListContentReducer = Reducer<CountryListContentState, CountryListContentAction, Void> { state, action, _ in
     switch action {
     case .filterCountry(let searchText, let sortType):
-        // If there is no search text, just return the timeseries data without filtering.
+        // If there is no search text, just return the countries data without filtering.
         guard !searchText.isEmpty else {
-            state.contentState = .available(state: .init(timeseriesData: state.timeseriesData.sorted(by: sortType.sorter)))
+            state.contentState = .available(state: .init(countriesData: state.countriesData.sorted(by: sortType.sorter)))
             return .none
         }
         
         // Filter and sort the data.
-        let filteredTimeseriesData = state.timeseriesData
+        let filteredCountriesData = state.countriesData
             .filter { $0.countryName.range(of: searchText, options: .caseInsensitive) != nil }
             .sorted(by: sortType.sorter)
 
-        if filteredTimeseriesData.isEmpty {
+        if filteredCountriesData.isEmpty {
             state.contentState = .empty
         } else {
-            state.contentState = .available(state: .init(timeseriesData: filteredTimeseriesData))
+            state.contentState = .available(state: .init(countriesData: filteredCountriesData))
         }
         
         return .none
