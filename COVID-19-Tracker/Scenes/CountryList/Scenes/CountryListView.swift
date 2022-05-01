@@ -37,6 +37,32 @@ struct CountryListView: View {
                         CountryListErrorView(store: errorStore)
                     }
                 }
+                .background(
+                    /**
+                     We don't want to use the `NavigationLink` style, so we make it `.hidden()`.
+                     We only want the navigation functionality as we are going to navigate programmatically
+                     by listening to the state.
+                     */
+                    NavigationLink(
+                        isActive: viewStore.binding(
+                            get: { $0.countryDetailState != nil },
+                            send: { isActive in
+                                CountryListAction
+                                    .setNavigation(isActive: isActive)
+                            }
+                        ),
+                        destination: {
+                            IfLetStore(
+                                store.scope(
+                                    state: \.countryDetailState,
+                                    action: CountryListAction.countryDetail
+                                ),
+                                then: { CountryDetailView(store: $0) }
+                            )
+                        }, label: { EmptyView() }
+                    )
+                    .hidden()
+                )
             }
             .toast(
                 isPresenting: viewStore.binding(

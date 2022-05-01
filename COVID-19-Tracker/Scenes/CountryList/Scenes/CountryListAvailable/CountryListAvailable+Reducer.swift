@@ -14,9 +14,6 @@ struct CountryListAvailableState: Equatable {
     var timeseriesData: [CountryCovidTimeseries]
     var isRefreshing = false
     
-    // Child states.
-    var countryDetailState: CountryDetailState?
-    
     // Computed properties.
     var countryCovidStates: IdentifiedArrayOf<CountryCovidCardState> {
         IdentifiedArray(uniqueElements: timeseriesData
@@ -32,16 +29,14 @@ struct CountryListAvailableState: Equatable {
 
 enum CountryListAvailableAction: Equatable {
     case onRefresh
-    case setNavigation(isActive: Bool, id: CountryCovidCardState.ID? = nil)
     
     // Child actions.
     case countryCovid(id: CountryCovidCardState.ID, action: CountryCovidCardAction)
-    case countryDetail(CountryDetailAction)
 }
 
 // MARK: - Reducer
 
-private let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void> { state, action, _ in
+let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void> { state, action, _ in
     switch action {
     // MARK: - Refresh
         
@@ -49,37 +44,9 @@ private let countryListAvailableReducer = Reducer<CountryListAvailableState, Cou
         state.isRefreshing = true
         return .none
         
-    // MARK: - Navigation
-        
-    case .setNavigation(isActive: true, let id):
-        guard let id = id, let selectedState = state.countryCovidStates[id: id] else { return .none }
-        state.countryDetailState = CountryDetailState(data: selectedState.data)
-        return .none
-        
-    case .setNavigation(isActive: false, _):
-        state.countryDetailState = nil
-        return .none
-        
-    case .countryCovid(let id, .onTapCard):
-        return Effect(value: .setNavigation(isActive: true, id: id))
-        
     // MARK: - Unhandled
         
-    case .countryDetail:
+    case .countryCovid:
         return .none
     }
 }
-
-// MARK: - Master Reducer
-
-let countryListAvailableMasterReducer = Reducer<CountryListAvailableState, CountryListAvailableAction, Void>.combine(
-    countryDetailReducer
-        .optional()
-        .pullback(
-            state: \.countryDetailState,
-            action: /CountryListAvailableAction.countryDetail,
-            environment: { $0 }
-        ),
-    
-    countryListAvailableReducer
-)

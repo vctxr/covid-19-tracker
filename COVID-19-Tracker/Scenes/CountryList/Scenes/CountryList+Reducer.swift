@@ -16,6 +16,9 @@ struct CountryListState: Equatable {
     var uiState = UIState.loading
     var toastState: ToastState?
     
+    // Child states.
+    var countryDetailState: CountryDetailState?
+    
     // Computed properties.
     var isShowingToast: Bool {
         toastState != nil
@@ -29,11 +32,13 @@ enum CountryListAction: Equatable {
     case onSearchTextChanged(String)
     case onSortTypeChanged(SortType)
     case onDismissToast
+    case setNavigation(isActive: Bool, id: CountryCovidCardState.ID? = nil)
     
     // Child actions.
     case loading(Never)
     case loaded(CountryListContentAction)
     case error(CountryListErrorAction)
+    case countryDetail(CountryDetailAction)
     
     // Side-effects.
     case fetchCovidTimeseries
@@ -125,6 +130,23 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         state.toastState = nil
         return .none
         
+    // MARK: - Navigation
+        
+    case .loaded(.available(.countryCovid(let id, .onTapCard))):
+        return Effect(value: .setNavigation(isActive: true, id: id))
+        
+    case .setNavigation(isActive: true, let id):
+        guard let id = id,
+              let countryCovidStates = state.uiState.loadedState?.contentState.availableState?.countryCovidStates,
+              let selectedState = countryCovidStates[id: id] else { return .none }
+        
+        state.countryDetailState = CountryDetailState(data: selectedState.data)
+        return .none
+        
+    case .setNavigation(isActive: false, _):
+        state.countryDetailState = nil
+        return .none
+        
     // MARK: - Unhandled
         
     case .loading:
@@ -132,12 +154,23 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         
     case .loaded:
         return .none
+        
+    case .countryDetail:
+        return .none
     }
 }
 
 // MARK: - Master Reducer
 
 let countryListMasterReducer = Reducer<CountryListState, CountryListAction, CountryListEnvironment>.combine(
+    countryDetailReducer
+        .optional()
+        .pullback(
+            state: \.countryDetailState,
+            action: /CountryListAction.countryDetail,
+            environment: { _ in }
+        ),
+    
     countryListContentMasterReducer
         .pullback(
             state: /CountryListState.UIState.loaded,
@@ -152,3 +185,4 @@ let countryListMasterReducer = Reducer<CountryListState, CountryListAction, Coun
     
     countryListReducer
 )
+.debug()

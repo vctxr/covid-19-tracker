@@ -73,7 +73,7 @@ private let countryListContentReducer = Reducer<CountryListContentState, Country
 // MARK: - Master Reducer
 
 let countryListContentMasterReducer = Reducer<CountryListContentState, CountryListContentAction, Void>.combine(
-    countryListAvailableMasterReducer
+    countryListAvailableReducer
         .pullback(
             state: /CountryListContentState.ContentState.available,
             action: /CountryListContentAction.available,
