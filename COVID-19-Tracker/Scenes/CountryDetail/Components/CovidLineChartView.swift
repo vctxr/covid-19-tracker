@@ -15,10 +15,13 @@ struct CovidLineChartView: UIViewRepresentable {
     
     var entries: [CovidChartEntry]
     var mode: ChartMode
+    var id: String
     
     @Binding var highlightedEntry: CovidChartEntry?
     
     private let formatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
+    
+    private var cacheKey: String { "\(id)-\(mode.titleText)" }
     
     // MARK: - Methods ⛓
     
@@ -70,7 +73,7 @@ struct CovidLineChartView: UIViewRepresentable {
     
     private func generateChartDataSet(withContext context: Context) -> (dataSet: LineChartDataSet, isFromCache: Bool) {
         // Use cache for better performance.
-        if let cachedDataSet = context.coordinator.cachedDataSets[mode] {
+        if let cachedDataSet = context.coordinator.cachedDataSets[cacheKey] {
             return (dataSet: cachedDataSet, isFromCache: true)
         }
         
@@ -101,7 +104,7 @@ struct CovidLineChartView: UIViewRepresentable {
         dataSet.fill = .fillWithLinearGradient(gradient, angle: 90)
         dataSet.drawFilledEnabled = true
         
-        context.coordinator.cachedDataSets[mode] = dataSet
+        context.coordinator.cachedDataSets[cacheKey] = dataSet
         
         return (dataSet: dataSet, isFromCache: false)
     }
@@ -112,7 +115,7 @@ struct CovidLineChartView: UIViewRepresentable {
 extension CovidLineChartView {
     class Coordinator: NSObject, ChartViewDelegate, UIGestureRecognizerDelegate {
         var parent: CovidLineChartView
-        var cachedDataSets: [ChartMode: LineChartDataSet] = [:]
+        var cachedDataSets: [String: LineChartDataSet] = [:]
         
         private let formatter = SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")
         

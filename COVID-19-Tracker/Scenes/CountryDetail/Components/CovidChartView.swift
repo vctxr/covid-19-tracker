@@ -36,6 +36,9 @@ struct CovidChartView: View {
                 .onChange(of: viewStore.selectedChart) { selectedChart in
                     highlightedEntry = nil  // Hide highlighted entry when change chart.
                 }
+                .onChange(of: viewStore.chartEntries) { newValue in
+                    highlightedEntry = nil  // Hide highlighted entry when entries changed.
+                }
                 
                 Text("COVID-19 \(viewStore.selectedChart.titleText)")
                     .font(.subheadline)
@@ -46,6 +49,7 @@ struct CovidChartView: View {
                     CovidLineChartView(
                         entries: viewStore.chartEntries,
                         mode: viewStore.selectedChart,
+                        id: viewStore.data.id,
                         highlightedEntry: $highlightedEntry
                     )
                     .frame(maxHeight: 500)

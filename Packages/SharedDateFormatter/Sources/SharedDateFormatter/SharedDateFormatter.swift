@@ -12,20 +12,20 @@ public protocol DateFormatterType {
     func date(from string: String) -> Date?
 }
 
-extension DateFormatter: DateFormatterType { }
+extension DateFormatter: DateFormatterType {}
 
 public final class SharedDateFormatter {
     // MARK: - Variables 📦
     
     public static let shared = SharedDateFormatter()
     
-    private var cachedDateFormatters = [String : DateFormatterType]()
+    private var cachedDateFormatters: [String: DateFormatterType] = [:]
     private let queue = DispatchQueue(label: "com.covid-19-tracker.date-formatter.queue")
     
     // MARK: - Methods ⛓
     
     public func formatter(withFormat format: String) -> DateFormatterType {
-        return queue.sync {
+        queue.sync {
             if let cachedFormatter = cachedDateFormatters[format] {
                 return cachedFormatter
             }
