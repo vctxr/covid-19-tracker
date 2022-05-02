@@ -11,6 +11,7 @@
 		5745A112281FB5450013EB0C /* CovidCountriesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745A110281FB5450013EB0C /* CovidCountriesDataStore.swift */; };
 		5745A114281FBD780013EB0C /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745A113281FBD780013EB0C /* DebugPrint.swift */; };
 		5745A115281FBD780013EB0C /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745A113281FBD780013EB0C /* DebugPrint.swift */; };
+		5763EA7728203A2300A7F46D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5763EA7628203A2300A7F46D /* LaunchScreen.storyboard */; };
 		57ADE455281C52B4002D378D /* CovidInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE454281C52B4002D378D /* CovidInformationView.swift */; };
 		57ADE457281C53CD002D378D /* FootnoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE456281C53CD002D378D /* FootnoteView.swift */; };
 		57ADE459281C5E28002D378D /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE458281C5E28002D378D /* SFSafariView.swift */; };
@@ -125,6 +126,7 @@
 /* Begin PBXFileReference section */
 		5745A110281FB5450013EB0C /* CovidCountriesDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidCountriesDataStore.swift; sourceTree = "<group>"; };
 		5745A113281FBD780013EB0C /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
+		5763EA7628203A2300A7F46D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57ADE454281C52B4002D378D /* CovidInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInformationView.swift; sourceTree = "<group>"; };
 		57ADE456281C53CD002D378D /* FootnoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteView.swift; sourceTree = "<group>"; };
 		57ADE458281C5E28002D378D /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				57C6EA99281FE50B0042094A /* Info.plist */,
 				57ADE4B7281E8B32002D378D /* COVID-19-Tracker.entitlements */,
 				57DB770528145CAA004C052B /* COVID_19_TrackerApp.swift */,
+				5763EA7628203A2300A7F46D /* LaunchScreen.storyboard */,
 				57C6EA9E281FE6A80042094A /* DeeplinkResolver */,
 				57DE708C281B15020042591F /* Shared */,
 				57DB775D281559C0004C052B /* Extensions */,
@@ -716,6 +719,7 @@
 				57DB773D28145CD4004C052B /* SharedDateFormatter in Resources */,
 				57DB773C28145CD4004C052B /* Networking in Resources */,
 				57DB770D28145CAB004C052B /* Preview Assets.xcassets in Resources */,
+				5763EA7728203A2300A7F46D /* LaunchScreen.storyboard in Resources */,
 				57DB770A28145CAB004C052B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1017,12 +1021,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "COVID-19-Tracker/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "COV-19 Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1050,12 +1055,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "COVID-19-Tracker/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "COV-19 Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
