@@ -5,6 +5,7 @@
 //  Created by Victor Samuel Cuaca on 02/05/22.
 //
 
+import Foundation
 import SharedDateFormatter
 
 // MARK: - CovidCountryData
@@ -45,6 +46,10 @@ struct CovidCountryData: Equatable, Identifiable {
         guard latestConfirmed > 0 else { return "-" }
         let percentage = (Float(latestDeaths) / Float(latestConfirmed)) * 100
         return percentage.displayString + "%"
+    }
+    
+    var deeplinkURL: URL {
+        URL(string: "covid-19-tracker://country-detail?id=\(id)")!
     }
 }
 

@@ -33,24 +33,26 @@ struct CovidConfirmedRankingView: View {
     var countryListView: some View {
         ForEach(entry.countriesData) { data in
             VStack(spacing: 0) {
-                HStack {
-                    Text(data.countryWithFlagText)
-                        .font(.headline.bold())
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing, spacing: 2) {
-                        Text("CONFIRMED")
-                            .font(.system(size: 9).bold())
-                            .foregroundColor(.secondaryText)
+                Link(destination: data.deeplinkURL) {
+                    HStack {
+                        Text(data.countryWithFlagText)
+                            .font(.headline.bold())
                         
-                        Text(data.latestConfirmed.displayString)
-                            .font(.subheadline.bold())
-                            .redacted(reason: entry.isPreview ? .placeholder : [])
+                        Spacer()
+                        
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text("CONFIRMED")
+                                .font(.system(size: 9).bold())
+                                .foregroundColor(.secondaryText)
+                            
+                            Text(data.latestConfirmed.displayString)
+                                .font(.subheadline.bold())
+                                .redacted(reason: entry.isPreview ? .placeholder : [])
+                        }
+                        .frame(maxHeight: .infinity)
                     }
-                    .frame(maxHeight: .infinity)
+                    .padding(.vertical, 4)
                 }
-                .padding(.vertical, 4)
                 
                 if data.id != entry.countriesData.last?.id {
                    Divider()
