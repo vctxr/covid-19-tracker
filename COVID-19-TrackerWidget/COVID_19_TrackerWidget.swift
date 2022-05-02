@@ -14,18 +14,20 @@ struct COVID_19_TrackerWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: CovidTimelineProvider()) { entry in
-            CovidWidgetMediumView(
+            CovidConfirmedRankingView(
                 entry: CovidEntry(
                     date: entry.date,
                     countriesData: Array(
                         entry.countriesData
                             .sorted(by: SortType.cases(.descending).sorter)
                             .prefix(3)
-                    )
+                    ),
+                    isPreview: entry.isPreview
                 )
             )
         }
+        .supportedFamilies([.systemMedium])
         .configurationDisplayName("COVID-19 Stats")
-        .description("View COVID-19 stats and track the statistics throughout the day.")
+        .description("View COVID-19 global ranking for confirmed count.")
     }
 }

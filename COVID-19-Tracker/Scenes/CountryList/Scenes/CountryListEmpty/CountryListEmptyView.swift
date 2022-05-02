@@ -11,7 +11,7 @@ struct CountryListEmptyView: View {
     // MARK: - Body 🎨
     
     var body: some View {
-        Text("No Results.\nSearch for another country.")
+        Text("No results found.\nTry searching for another country.")
             .multilineTextAlignment(.center)
             .font(.title2)
             .foregroundStyle(

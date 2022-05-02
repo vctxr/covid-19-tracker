@@ -6,17 +6,25 @@
 //
 
 import CombineSchedulers
+import ComposableArchitecture
+import WidgetKit
 
 struct CountryListEnvironment {
     let useCase: CountryListUseCase
     let mainQueue: AnySchedulerOf<DispatchQueue>
+    let reloadWidgetCenter: () -> Effect<Never, Never>
 }
 
 extension CountryListEnvironment {
     static var live: CountryListEnvironment {
         CountryListEnvironment(
             useCase: CountryListUseCase(),
-            mainQueue: .main
+            mainQueue: .main,
+            reloadWidgetCenter: {
+                .fireAndForget {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
+            }
         )
     }
 }

@@ -10,4 +10,5 @@ import WidgetKit
 struct CovidEntry: TimelineEntry {
     let date: Date
     let countriesData: [CovidCountryData]
+    let isPreview: Bool
 }

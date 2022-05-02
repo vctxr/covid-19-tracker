@@ -78,6 +78,8 @@ struct CovidCountryData: Equatable, Identifiable {
     }
 }
 
+extension CovidCountryData: Codable {}
+
 // MARK: - CovidDayData
 
 struct CovidDayData: Equatable {
@@ -87,7 +89,7 @@ struct CovidDayData: Equatable {
     let recovered: Int
 }
 
-extension CovidDayData: Decodable {
+extension CovidDayData: Codable {
     enum CodingKeys: CodingKey {
         case date
         case confirmed
@@ -101,5 +103,13 @@ extension CovidDayData: Decodable {
         confirmed = try container.decode(Int.self, forKey: .confirmed)
         deaths = try container.decode(Int.self, forKey: .deaths)
         recovered = try container.decode(Int.self, forKey: .recovered)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(dateString, forKey: .date)
+        try container.encode(confirmed, forKey: .confirmed)
+        try container.encode(deaths, forKey: .deaths)
+        try container.encode(recovered, forKey: .recovered)
     }
 }

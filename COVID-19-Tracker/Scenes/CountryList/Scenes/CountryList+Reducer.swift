@@ -43,6 +43,7 @@ enum CountryListAction: Equatable {
     // Side-effects.
     case fetchCovidCountries
     case receiveCovidCountries(Result<[CovidCountryData], NetworkError>)
+    case receiveSaveResult(Bool)
     case queueLoadingState
 }
 
@@ -94,8 +95,17 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         case .success(let countriesData):
             state.uiState = .loaded(state: CountryListContentState(countriesData: countriesData))
             
-            // After getting the countries data, we need to trigger a filter.
-            return Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType)))
+            /*
+             After getting the countries data, we need to:
+             1. Filter the country,
+             2. Save the data to a file to be used by the widget.
+             */
+            return .merge(
+                Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType))),
+                env.useCase.saveToFile(countriesData: countriesData)
+                    .eraseToEffect()
+                    .map(CountryListAction.receiveSaveResult)
+            )
 
         case .failure(let error):
             state.toastState = ToastState(title: error.localizedDescription)
@@ -106,6 +116,9 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             
             return .none
         }
+        
+    case .receiveSaveResult:
+        return env.reloadWidgetCenter().fireAndForget()
         
     // MARK: - Refresh
         
