@@ -57,6 +57,8 @@ final class CovidCountriesDataStore {
         }
     }
     
+    // MARK: - Private Methods 🔒
+    
     private func createBaseDirectoryIfNeeded() {
         guard !FileManager.default.fileExists(atPath: baseURL.path) else { return }
         do {
