@@ -13,10 +13,10 @@ import ColorPalette
 struct CovidLineChartView: UIViewRepresentable {
     // MARK: - Variables 📦
     
-    var data: [CovidEntry]
+    var entries: [CovidChartEntry]
     var mode: ChartMode
     
-    @Binding var highlightedEntry: CovidEntry?
+    @Binding var highlightedEntry: CovidChartEntry?
     
     private let formatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
     
@@ -74,7 +74,7 @@ struct CovidLineChartView: UIViewRepresentable {
             return (dataSet: cachedDataSet, isFromCache: true)
         }
         
-        let chartDataEntries = data.compactMap { data -> ChartDataEntry? in
+        let chartDataEntries = entries.compactMap { data -> ChartDataEntry? in
             guard let date = formatter.date(from: data.dateString) else { return nil }
             return ChartDataEntry(x: date.timeIntervalSince1970, y: Double(data.value))
         }
@@ -125,7 +125,7 @@ extension CovidLineChartView {
         func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
             let date = Date(timeIntervalSince1970: entry.x)
             let dateString = formatter.string(from: date)
-            parent.highlightedEntry = CovidEntry(dateString: dateString, value: Int(entry.y))
+            parent.highlightedEntry = CovidChartEntry(dateString: dateString, value: Int(entry.y))
         }
         
         func chartValueNothingSelected(_ chartView: ChartViewBase) {

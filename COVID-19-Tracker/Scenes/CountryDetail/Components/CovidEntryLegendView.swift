@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - State
 
 struct CovidEntryLegendState: Equatable {
-    let entry: CovidEntry
+    let entry: CovidChartEntry
     let valueKey: String
 }
 

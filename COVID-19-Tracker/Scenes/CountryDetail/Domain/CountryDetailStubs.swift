@@ -24,11 +24,11 @@ extension CovidEntryLegendState {
     }
 }
 
-// MARK: - CovidEntry
+// MARK: - CovidChartEntry
 
-extension CovidEntry {
-    static var template: CovidEntry {
-        CovidEntry(dateString: "30-04-2022", value: 1_000_000)
+extension CovidChartEntry {
+    static var template: CovidChartEntry {
+        CovidChartEntry(dateString: "30-04-2022", value: 1_000_000)
     }
 }
 #endif

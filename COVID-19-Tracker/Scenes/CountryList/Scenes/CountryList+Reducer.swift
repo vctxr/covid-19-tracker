@@ -47,7 +47,6 @@ enum CountryListAction: Equatable {
     case receiveCovidCountries(Result<[CovidCountryData], NetworkError>)
     case receiveSaveResult(Bool)
     case queueLoadingState
-    case handleDeeplink(id: String, countriesData: [CovidCountryData])
 }
 
 // MARK: - Reducer
@@ -100,13 +99,13 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             
             /*
              After getting the countries data, we need to:
-             1. Filter the country,
-             2. Navigation to the pending deeplink id if it exists,
+             1. Navigation to the pending deeplink id if it exists,
+             2. Filter the country,
              3. Save the data to a file to be used by the widget.
              */
             return .merge(
-                Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType))),
                 Effect(value: .setNavigation(isActive: true, id: state.pendingDeeplinkID)),
+                Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType))),
                 env.useCase.saveToFile(countriesData: countriesData)
                     .eraseToEffect()
                     .map(CountryListAction.receiveSaveResult)
@@ -173,16 +172,8 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         state.pendingDeeplinkID = id
         return Effect(value: .setNavigation(isActive: true, id: id))
         
-    case .handleDeeplink(let id, let countriesData):
-        guard let countryData = countriesData.first(where: { $0.id == id }) else { return .none }
-        state.countryDetailState = CountryDetailState(data: countryData)
-        return .none
-        
     // MARK: - Unhandled
-        
-    case .loading:
-        return .none
-        
+                
     case .loaded:
         return .none
         

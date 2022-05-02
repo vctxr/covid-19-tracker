@@ -12,7 +12,7 @@ struct CovidChartView: View {
     // MARK: - Body 🎨
     
     // Better performance when updating this value here rather than in the store.
-    @State private var highlightedEntry: CovidEntry?
+    @State private var highlightedEntry: CovidChartEntry?
     
     let store: Store<CountryDetailState, CountryDetailAction>
     
@@ -44,7 +44,7 @@ struct CovidChartView: View {
                 
                 ZStack(alignment: .topLeading) {
                     CovidLineChartView(
-                        data: viewStore.chartData,
+                        entries: viewStore.chartEntries,
                         mode: viewStore.selectedChart,
                         highlightedEntry: $highlightedEntry
                     )

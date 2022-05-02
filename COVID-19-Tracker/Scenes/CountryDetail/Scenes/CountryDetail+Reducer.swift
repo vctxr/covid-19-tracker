@@ -14,7 +14,7 @@ struct CountryDetailState: Equatable {
     var selectedChart = ChartMode.confirmed
     var safariState: URL?
     
-    var chartData: [CovidEntry] {
+    var chartEntries: [CovidChartEntry] {
         data.timeseriesData.map { data in
             let value: Int = {
                 switch selectedChart {
@@ -25,7 +25,7 @@ struct CountryDetailState: Equatable {
                 }
             }()
         
-            return CovidEntry(dateString: data.dateString, value: value)
+            return CovidChartEntry(dateString: data.dateString, value: value)
         }
     }
 }

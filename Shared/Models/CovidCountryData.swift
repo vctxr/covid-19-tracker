@@ -48,8 +48,11 @@ struct CovidCountryData: Equatable, Identifiable {
         return percentage.displayString + "%"
     }
     
-    var deeplinkURL: URL {
-        URL(string: "covid-19-tracker://country-detail?id=\(id)")!
+    var deeplinkURL: URL? {
+        guard let urlEncodedID = id.urlEncoded,
+              let deeplinkURL = URL(string: "covid-19-tracker://country-detail?id=\(urlEncodedID)")
+        else { return nil }
+        return deeplinkURL
     }
 }
 

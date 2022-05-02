@@ -11,6 +11,10 @@ extension String {
     var flag: String {
         flagDictionary[self] ?? ""
     }
+    
+    var urlEncoded: String? {
+        addingPercentEncoding(withAllowedCharacters: .alphanumerics)
+    }
 }
 
 fileprivate let flagDictionary: [String: String] = [
