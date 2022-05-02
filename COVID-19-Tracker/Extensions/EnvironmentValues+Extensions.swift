@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+// MARK: - IsRefreshableKey
+
 private struct IsRefreshableKey: EnvironmentKey {
-    static let defaultValue = false
+    static var defaultValue: Bool { false }
 }
 
 extension EnvironmentValues {

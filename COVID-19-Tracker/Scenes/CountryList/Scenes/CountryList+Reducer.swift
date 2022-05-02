@@ -15,6 +15,7 @@ struct CountryListState: Equatable {
     var sortType = SortType.cases(.descending)
     var uiState = UIState.loading
     var toastState: ToastState?
+    var pendingDeeplinkID: String?
     
     // Child states.
     var countryDetailState: CountryDetailState?
@@ -32,6 +33,7 @@ enum CountryListAction: Equatable {
     case onSearchTextChanged(String)
     case onSortTypeChanged(SortType)
     case onDismissToast
+    case onReceiveDeeplink(id: String)
     case setNavigation(isActive: Bool, id: CountryCovidCardState.ID? = nil)
     
     // Child actions.
@@ -45,6 +47,7 @@ enum CountryListAction: Equatable {
     case receiveCovidCountries(Result<[CovidCountryData], NetworkError>)
     case receiveSaveResult(Bool)
     case queueLoadingState
+    case handleDeeplink(id: String, countriesData: [CovidCountryData])
 }
 
 // MARK: - Reducer
@@ -98,16 +101,19 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             /*
              After getting the countries data, we need to:
              1. Filter the country,
-             2. Save the data to a file to be used by the widget.
+             2. Navigation to the pending deeplink id if it exists,
+             3. Save the data to a file to be used by the widget.
              */
             return .merge(
                 Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType))),
+                Effect(value: .setNavigation(isActive: true, id: state.pendingDeeplinkID)),
                 env.useCase.saveToFile(countriesData: countriesData)
                     .eraseToEffect()
                     .map(CountryListAction.receiveSaveResult)
             )
 
         case .failure(let error):
+            state.pendingDeeplinkID = nil
             state.toastState = ToastState(title: error.localizedDescription)
             
             // Only set UI state to error only if it's not loaded yet.
@@ -153,11 +159,23 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
               let countryCovidStates = state.uiState.loadedState?.contentState.availableState?.countryCovidStates,
               let selectedState = countryCovidStates[id: id] else { return .none }
         
+        state.pendingDeeplinkID = nil
         state.countryDetailState = CountryDetailState(data: selectedState.data)
         return .none
         
     case .setNavigation(isActive: false, _):
         state.countryDetailState = nil
+        return .none
+        
+    // MARK: - Deeplink
+        
+    case .onReceiveDeeplink(let id):
+        state.pendingDeeplinkID = id
+        return Effect(value: .setNavigation(isActive: true, id: id))
+        
+    case .handleDeeplink(let id, let countriesData):
+        guard let countryData = countriesData.first(where: { $0.id == id }) else { return .none }
+        state.countryDetailState = CountryDetailState(data: countryData)
         return .none
         
     // MARK: - Unhandled

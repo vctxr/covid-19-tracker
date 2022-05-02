@@ -10,15 +10,29 @@ import ComposableArchitecture
 
 @main
 struct COVID_19_TrackerApp: App {
+    
+    // MARK: - Variables 📦
+    
+    @StateObject private var deeplink = Deeplink()
+    
+    private let store = Store(
+        initialState: CountryListState(),
+        reducer: countryListMasterReducer,
+        environment: .live
+    )
+
+    // MARK: - Body 🎨
+
     var body: some Scene {
         WindowGroup {
-            CountryListView(
-                store: Store(
-                    initialState: CountryListState(),
-                    reducer: countryListMasterReducer,
-                    environment: .live
-                )
-            )
+            CountryListView(store: store)
+                .environmentObject(deeplink)
+                .onOpenURL { url in
+                    debugPrint("🌏 Receive URL: \(url)")
+                    let target = DeeplinkResolver.resolve(url: url)
+                    debugPrint("🔓 Resolved: \(target)")
+                    deeplink.target = target
+                }
         }
     }
 }

@@ -12,12 +12,14 @@ import AlertToast
 struct CountryListView: View {
     // MARK: - Variables 📦
     
+    @EnvironmentObject private var deeplink: Deeplink
+
     let store: Store<CountryListState, CountryListAction>
     
     // MARK: - Body 🎨
     
     var body: some View {
-        WithViewStore(store) { viewStore in
+        return WithViewStore(store) { viewStore in
             CountryListNavigationView(viewStore: viewStore) {
                 SwitchStore(store.scope(state: \.uiState)) {
                     CaseLet(state: /CountryListState.UIState.loading,
@@ -83,6 +85,11 @@ struct CountryListView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .onChange(of: deeplink.target) { target in
+                guard case .countryDetail(let id) = target else { return }
+                viewStore.send(.onReceiveDeeplink(id: id))
+                deeplink.target = nil
+            }
         }
     }
 }
@@ -124,6 +131,7 @@ struct ContentView_Previews: PreviewProvider {
                 )
             )
         }
+        .environmentObject(Deeplink())
     }
     
     static var previews: some View {
