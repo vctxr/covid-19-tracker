@@ -15,6 +15,12 @@ struct COVID_19_TrackerApp: App {
     /// The instance of the `Deeplink` object which manages the app's deeplink.
     @StateObject private var deeplink = Deeplink()
     
+    // MARK: - Inits 🐣
+    
+    init() {
+        BGTaskService.shared.registerTasks()
+    }
+    
     /// The root store of the app.
     private let store = Store(
         initialState: CountryListState(),

@@ -106,7 +106,7 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
             return .merge(
                 Effect(value: .setNavigation(isActive: true, id: state.pendingDeeplinkID)),
                 Effect(value: .loaded(.filterCountry(searchText: state.searchText, sortedBy: state.sortType))),
-                env.useCase.saveToFile(countriesData: countriesData)
+                env.useCase.saveToDisk(countriesData: countriesData)
                     .eraseToEffect()
                     .map(CountryListAction.receiveSaveResult)
             )

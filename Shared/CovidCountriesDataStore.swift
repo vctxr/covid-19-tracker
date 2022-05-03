@@ -15,7 +15,7 @@ final class CovidCountriesDataStore {
         
     // MARK: - Methods ⛓
     
-    func saveToFile(countriesData: [CovidCountryData], dataType: DataType, completion: @escaping (Error?) -> Void) {
+    func saveToDisk(countriesData: [CovidCountryData], dataType: DataType, completion: @escaping (Error?) -> Void) {
         createBaseDirectoryIfNeeded()
         
         let saveURL = baseURL.appendingPathComponent(dataType.fileName)

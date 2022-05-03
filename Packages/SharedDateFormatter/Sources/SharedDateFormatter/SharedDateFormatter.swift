@@ -20,7 +20,7 @@ public final class SharedDateFormatter {
     public static let shared = SharedDateFormatter()
     
     private var cachedDateFormatters: [String: DateFormatterType] = [:]
-    private let queue = DispatchQueue(label: "com.covid-19-tracker.date-formatter.queue")
+    private let queue = DispatchQueue(label: "\(Bundle.main.bundleIdentifier!).date-formatter.queue")
     
     // MARK: - Methods ⛓
     

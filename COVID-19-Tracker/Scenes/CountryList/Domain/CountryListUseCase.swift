@@ -29,13 +29,13 @@ final class CountryListUseCase {
     
     // MARK: - Save to File
     
-    func saveToFile(countriesData: [CovidCountryData]) -> AnyPublisher<Bool, Never> {
-        _saveToFile(countriesData)
+    func saveToDisk(countriesData: [CovidCountryData]) -> AnyPublisher<Bool, Never> {
+        _saveToDisk(countriesData)
     }
     
-    lazy var _saveToFile: ([CovidCountryData]) -> AnyPublisher<Bool, Never> = { [dataStore] countriesData in
+    lazy var _saveToDisk: ([CovidCountryData]) -> AnyPublisher<Bool, Never> = { [dataStore] countriesData in
         Future { promise in
-            dataStore.saveToFile(countriesData: countriesData, dataType: .topThreeConfirmed) { error in
+            dataStore.saveToDisk(countriesData: countriesData, dataType: .topThreeConfirmed) { error in
                 if let error = error {
                     promise(.success(false))
                 } else {
