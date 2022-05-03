@@ -15,6 +15,9 @@ struct COVID_19_TrackerApp: App {
     /// The instance of the `Deeplink` object which manages the app's deeplink.
     @StateObject private var deeplink = Deeplink()
     
+    /// The current phase of the scene.
+    @Environment(\.scenePhase) var scenePhase
+    
     // MARK: - Inits 🐣
     
     init() {
@@ -42,6 +45,18 @@ struct COVID_19_TrackerApp: App {
                     let target = DeeplinkResolver.resolve(url: url)
                     debugPrint("🔓 Resolved: \(target)")
                     deeplink.target = target
+                }
+                .onChange(of: scenePhase) { newPhase in
+                    switch newPhase {
+                    case .background:
+                        BGTaskService.shared.scheduleTasks()
+                    case .inactive:
+                        break
+                    case .active:
+                        break
+                    @unknown default:
+                        break
+                    }
                 }
         }
     }
