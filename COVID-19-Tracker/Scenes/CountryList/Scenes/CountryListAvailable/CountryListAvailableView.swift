@@ -22,11 +22,11 @@ struct CountryListAvailableView: View {
             List {
                 ForEachStore(
                     store.scope(
-                        state: \.countryCovidStates,
-                        action: CountryListAvailableAction.countryCovid
+                        state: \.covidCountryStates,
+                        action: CountryListAvailableAction.covidCountryCard
                     )
-                ) { countryCovidCardStore in
-                    CountryCovidCardView(store: countryCovidCardStore)
+                ) { covidCountryCardStore in
+                    CovidCountryCardView(store: covidCountryCardStore)
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(
@@ -41,11 +41,15 @@ struct CountryListAvailableView: View {
             }
             .listStyle(.plain)
             .if(isRefreshable) { view in
+                /*
+                 Because this view is also used as the loading state,
+                 we only want it to be refreshable if it is already loaded.
+                 */
                 view.refreshable {
                     await viewStore.send(.onRefresh, while: \.isRefreshing)
                 }
             }
-            .animation(.default, value: viewStore.countryCovidStates)
+            .animation(.default, value: viewStore.covidCountryStates)
             .ignoresSafeArea(.keyboard)
             .onAppear {
                 UITableView.appearance().keyboardDismissMode = .onDrag

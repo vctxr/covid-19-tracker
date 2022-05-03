@@ -10,6 +10,7 @@ import Charts
 import SharedDateFormatter
 
 /// Copied from the `Charts` repository demo.
+/// This class is used to format the chart axis to a specified date format.
 final class DateValueFormatter: IAxisValueFormatter {
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         SharedDateFormatter.shared.formatter(withFormat: "dd-MM-yyyy")

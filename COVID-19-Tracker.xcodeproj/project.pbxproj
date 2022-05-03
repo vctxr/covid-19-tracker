@@ -69,8 +69,8 @@
 		57DB775028145E5F004C052B /* CountryListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB774F28145E5F004C052B /* CountryListContentView.swift */; };
 		57DB775228145E7E004C052B /* CountryListContent+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775128145E7E004C052B /* CountryListContent+Reducer.swift */; };
 		57DB775428146199004C052B /* CountryListStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775328146199004C052B /* CountryListStubs.swift */; };
-		57DB775828146A43004C052B /* CountryCovidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775728146A43004C052B /* CountryCovidCardView.swift */; };
-		57DB775B2814E2E1004C052B /* CountryCovidCard+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775A2814E2E1004C052B /* CountryCovidCard+Reducer.swift */; };
+		57DB775828146A43004C052B /* CovidCountryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775728146A43004C052B /* CovidCountryCardView.swift */; };
+		57DB775B2814E2E1004C052B /* CovidCountryCard+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DB775A2814E2E1004C052B /* CovidCountryCard+Reducer.swift */; };
 		57DE706B28171FD60042591F /* CountryListAvailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706A28171FD60042591F /* CountryListAvailableView.swift */; };
 		57DE706D2819BB8E0042591F /* CountryListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */; };
 		57DE70722819C6660042591F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 57DE70712819C6660042591F /* AlertToast */; };
@@ -82,7 +82,7 @@
 		57DE7083281B0B0A0042591F /* CountryListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7082281B0B0A0042591F /* CountryListEmptyView.swift */; };
 		57DE7085281B124A0042591F /* CountryList+UIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7084281B124A0042591F /* CountryList+UIState.swift */; };
 		57DE7087281B128D0042591F /* CountryListContent+ContentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7086281B128D0042591F /* CountryListContent+ContentState.swift */; };
-		57DE7089281B135E0042591F /* CountryCovidCard+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7088281B135E0042591F /* CountryCovidCard+Style.swift */; };
+		57DE7089281B135E0042591F /* CovidCountryCard+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7088281B135E0042591F /* CovidCountryCard+Style.swift */; };
 		57DE708B281B146F0042591F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE708A281B146F0042591F /* String+Extensions.swift */; };
 		57DE7091281BD1110042591F /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7090281BD1110042591F /* CountryDetailView.swift */; };
 		57DE7093281BED9A0042591F /* CountryDetail+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE7092281BED9A0042591F /* CountryDetail+Reducer.swift */; };
@@ -178,8 +178,8 @@
 		57DB774F28145E5F004C052B /* CountryListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListContentView.swift; sourceTree = "<group>"; };
 		57DB775128145E7E004C052B /* CountryListContent+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryListContent+Reducer.swift"; sourceTree = "<group>"; };
 		57DB775328146199004C052B /* CountryListStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListStubs.swift; sourceTree = "<group>"; };
-		57DB775728146A43004C052B /* CountryCovidCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCovidCardView.swift; sourceTree = "<group>"; };
-		57DB775A2814E2E1004C052B /* CountryCovidCard+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryCovidCard+Reducer.swift"; sourceTree = "<group>"; };
+		57DB775728146A43004C052B /* CovidCountryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidCountryCardView.swift; sourceTree = "<group>"; };
+		57DB775A2814E2E1004C052B /* CovidCountryCard+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CovidCountryCard+Reducer.swift"; sourceTree = "<group>"; };
 		57DE706A28171FD60042591F /* CountryListAvailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListAvailableView.swift; sourceTree = "<group>"; };
 		57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListNavigationView.swift; sourceTree = "<group>"; };
 		57DE70732819C6A10042591F /* ToastState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastState.swift; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		57DE7082281B0B0A0042591F /* CountryListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListEmptyView.swift; sourceTree = "<group>"; };
 		57DE7084281B124A0042591F /* CountryList+UIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryList+UIState.swift"; sourceTree = "<group>"; };
 		57DE7086281B128D0042591F /* CountryListContent+ContentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryListContent+ContentState.swift"; sourceTree = "<group>"; };
-		57DE7088281B135E0042591F /* CountryCovidCard+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryCovidCard+Style.swift"; sourceTree = "<group>"; };
+		57DE7088281B135E0042591F /* CovidCountryCard+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CovidCountryCard+Style.swift"; sourceTree = "<group>"; };
 		57DE708A281B146F0042591F /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		57DE7090281BD1110042591F /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
 		57DE7092281BED9A0042591F /* CountryDetail+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryDetail+Reducer.swift"; sourceTree = "<group>"; };
@@ -480,14 +480,14 @@
 			path = CountryListContent;
 			sourceTree = "<group>";
 		};
-		57DB775C28154CEE004C052B /* CountryCovidCard */ = {
+		57DB775C28154CEE004C052B /* CovidCountryCard */ = {
 			isa = PBXGroup;
 			children = (
-				57DB775728146A43004C052B /* CountryCovidCardView.swift */,
-				57DB775A2814E2E1004C052B /* CountryCovidCard+Reducer.swift */,
-				57DE7088281B135E0042591F /* CountryCovidCard+Style.swift */,
+				57DB775728146A43004C052B /* CovidCountryCardView.swift */,
+				57DB775A2814E2E1004C052B /* CovidCountryCard+Reducer.swift */,
+				57DE7088281B135E0042591F /* CovidCountryCard+Style.swift */,
 			);
-			path = CountryCovidCard;
+			path = CovidCountryCard;
 			sourceTree = "<group>";
 		};
 		57DB775D281559C0004C052B /* Extensions */ = {
@@ -505,7 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				57DE706C2819BB8E0042591F /* CountryListNavigationView.swift */,
-				57DB775C28154CEE004C052B /* CountryCovidCard */,
+				57DB775C28154CEE004C052B /* CovidCountryCard */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -761,7 +761,7 @@
 			files = (
 				57ADE459281C5E28002D378D /* SFSafariView.swift in Sources */,
 				57ADE472281D531E002D378D /* CovidLineChartView.swift in Sources */,
-				57DB775828146A43004C052B /* CountryCovidCardView.swift in Sources */,
+				57DB775828146A43004C052B /* CovidCountryCardView.swift in Sources */,
 				57C6EA9D281FE69A0042094A /* DeeplinkResolver+Targets.swift in Sources */,
 				57F346C2281C497700B6571A /* Number+Extensions.swift in Sources */,
 				57DE707E281B05D70042591F /* CountryListErrorView.swift in Sources */,
@@ -793,9 +793,9 @@
 				57DE7079281AC58B0042591F /* View+Extensions.swift in Sources */,
 				57DE70742819C6A10042591F /* ToastState.swift in Sources */,
 				57DE7087281B128D0042591F /* CountryListContent+ContentState.swift in Sources */,
-				57DE7089281B135E0042591F /* CountryCovidCard+Style.swift in Sources */,
+				57DE7089281B135E0042591F /* CovidCountryCard+Style.swift in Sources */,
 				57DE7085281B124A0042591F /* CountryList+UIState.swift in Sources */,
-				57DB775B2814E2E1004C052B /* CountryCovidCard+Reducer.swift in Sources */,
+				57DB775B2814E2E1004C052B /* CovidCountryCard+Reducer.swift in Sources */,
 				57DB773E28145CD4004C052B /* CountryList+Reducer.swift in Sources */,
 				57ADE46A281D3978002D378D /* DateValueFormatter.swift in Sources */,
 				57DB774028145CD4004C052B /* CountryListView.swift in Sources */,

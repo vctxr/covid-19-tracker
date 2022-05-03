@@ -12,6 +12,7 @@ import AlertToast
 struct CountryListView: View {
     // MARK: - Variables 📦
     
+    /// Deeplink object to observe.
     @EnvironmentObject private var deeplink: Deeplink
 
     let store: Store<CountryListState, CountryListAction>
@@ -88,6 +89,7 @@ struct CountryListView: View {
             .onChange(of: deeplink.target) { target in
                 guard case .countryDetail(let id) = target else { return }
                 viewStore.send(.onReceiveDeeplink(id: id))
+                // Need to nil out the target to allow same deeplink target again.
                 deeplink.target = nil
             }
         }

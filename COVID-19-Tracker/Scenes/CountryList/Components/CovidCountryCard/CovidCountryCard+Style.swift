@@ -1,5 +1,5 @@
 //
-//  CountryCovidCard+Style.swift
+//  CovidCountryCard+Style.swift
 //  COVID-19-Tracker
 //
 //  Created by Victor Samuel Cuaca on 29/04/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension CountryCovidCardState {
+extension CovidCountryCardState {
     enum Style {
         case first
         case second

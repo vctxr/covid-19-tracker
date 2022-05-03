@@ -8,6 +8,7 @@
 import SwiftUI
 import SafariServices
 
+/// A `UIViewControllerRepresentable` to bridge `UIKit`'s `SFSafariViewController` into `SwiftUI`.
 struct SFSafariView: UIViewControllerRepresentable {
     let url: URL
     

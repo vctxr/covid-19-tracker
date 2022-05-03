@@ -8,6 +8,7 @@
 import Charts
 
 /// Copied from the `Charts` repository demo.
+/// This class is used to format the chart axis to a specified number format representing large values.
 final class LargeValueFormatter: IValueFormatter, IAxisValueFormatter {
     // MARK: - Variables 📦
     

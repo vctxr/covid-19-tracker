@@ -37,23 +37,23 @@ extension CountryListAvailableState {
     }
 }
 
-// MARK: - CountryCovidCardState
+// MARK: - CovidCountryCardState
 
-extension CountryCovidCardState {
-    static var templateFirst: CountryCovidCardState {
-        CountryCovidCardState(data: .template, style: .first)
+extension CovidCountryCardState {
+    static var templateFirst: CovidCountryCardState {
+        CovidCountryCardState(data: .template, style: .first)
     }
 
-    static var templateSecond: CountryCovidCardState {
-        CountryCovidCardState(data: .template, style: .second)
+    static var templateSecond: CovidCountryCardState {
+        CovidCountryCardState(data: .template, style: .second)
     }
 
-    static var templateThird: CountryCovidCardState {
-        CountryCovidCardState(data: .template, style: .third)
+    static var templateThird: CovidCountryCardState {
+        CovidCountryCardState(data: .template, style: .third)
     }
 
-    static var templateNormal: CountryCovidCardState {
-        CountryCovidCardState(data: .template, style: .normal)
+    static var templateNormal: CovidCountryCardState {
+        CovidCountryCardState(data: .template, style: .normal)
     }
 }
 #endif

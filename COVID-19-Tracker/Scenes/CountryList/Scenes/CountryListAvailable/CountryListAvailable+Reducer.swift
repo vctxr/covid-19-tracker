@@ -15,11 +15,11 @@ struct CountryListAvailableState: Equatable {
     var isRefreshing = false
     
     // Computed properties.
-    var countryCovidStates: IdentifiedArrayOf<CountryCovidCardState> {
+    var covidCountryStates: IdentifiedArrayOf<CovidCountryCardState> {
         IdentifiedArray(uniqueElements: countriesData
             .enumerated()
             .map { index, data in
-                CountryCovidCardState(data: data, style: .init(index: index))
+                CovidCountryCardState(data: data, style: .init(index: index))
             }
         )
     }
@@ -31,7 +31,7 @@ enum CountryListAvailableAction: Equatable {
     case onRefresh
     
     // Child actions.
-    case countryCovid(id: CountryCovidCardState.ID, action: CountryCovidCardAction)
+    case covidCountryCard(id: CovidCountryCardState.ID, action: CovidCountryCardAction)
 }
 
 // MARK: - Reducer
@@ -46,7 +46,7 @@ let countryListAvailableReducer = Reducer<CountryListAvailableState, CountryList
         
     // MARK: - Unhandled
         
-    case .countryCovid:
+    case .covidCountryCard:
         return .none
     }
 }

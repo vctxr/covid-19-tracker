@@ -8,6 +8,7 @@
 import Foundation
 
 extension DeeplinkResolver {
+    /// A list of possible targets the app supports.
     enum Target: Equatable {
         case root
         case countryDetail(id: String)

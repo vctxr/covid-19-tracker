@@ -34,7 +34,7 @@ enum CountryListAction: Equatable {
     case onSortTypeChanged(SortType)
     case onDismissToast
     case onReceiveDeeplink(id: String)
-    case setNavigation(isActive: Bool, id: CountryCovidCardState.ID? = nil)
+    case setNavigation(isActive: Bool, id: CovidCountryCardState.ID? = nil)
     
     // Child actions.
     case loading(Never)
@@ -150,13 +150,13 @@ private let countryListReducer = Reducer<CountryListState, CountryListAction, Co
         
     // MARK: - Navigation
         
-    case .loaded(.available(.countryCovid(let id, .onTapCard))):
+    case .loaded(.available(.covidCountryCard(let id, .onTapCard))):
         return Effect(value: .setNavigation(isActive: true, id: id))
         
     case .setNavigation(isActive: true, let id):
         guard let id = id,
-              let countryCovidStates = state.uiState.loadedState?.contentState.availableState?.countryCovidStates,
-              let selectedState = countryCovidStates[id: id] else { return .none }
+              let covidCountryStates = state.uiState.loadedState?.contentState.availableState?.covidCountryStates,
+              let selectedState = covidCountryStates[id: id] else { return .none }
         
         state.pendingDeeplinkID = nil
         state.countryDetailState = CountryDetailState(data: selectedState.data)
