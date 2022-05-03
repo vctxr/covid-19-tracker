@@ -74,11 +74,11 @@ class RefreshCovidCountriesService {
         let earliestBeginDate: Date = {
             // TODO: Revert these dates later, for development purposes only!
             if shouldScheduleASAP {
-                // Fetch no earlier than 1 hour from now.
-                return Calendar.current.date(byAdding: .second, value: 1, to: Date())!
+                // Fetch no earlier than 5 mins from now.
+                return Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
             } else {
                 // Fetch no earlier than tomorrow midgnight.
-                let tomorrow = Calendar.current.date(byAdding: .second, value: 1, to: Date())!
+                let tomorrow = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
                 return Calendar.current.startOfDay(for: tomorrow)
             }
         }()
