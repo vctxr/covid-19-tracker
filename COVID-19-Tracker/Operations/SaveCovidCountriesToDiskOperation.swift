@@ -26,7 +26,7 @@ final class SaveCovidCountriesToDiskOperation: ChainedAsyncResultOperation<SaveC
     }
     
     private func saveToDisk(countriesData: [CovidCountryData]) {
-        dataStore.saveToDisk(countriesData: countriesData, dataType: .topThreeConfirmed) { [weak self] error in
+        dataStore.saveToDisk(countriesData: countriesData, dataType: .topFiftyConfirmed) { [weak self] error in
             if let error = error {
                 self?.finish(with: .failure(.underlyingError(error)))
             } else {

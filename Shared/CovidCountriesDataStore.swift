@@ -24,8 +24,8 @@ final class CovidCountriesDataStore {
             do {
                 let transformedData: [CovidCountryData] = {
                     switch dataType {
-                    case .topThreeConfirmed:
-                        return Array(countriesData.sorted(by: SortType.cases(.descending).sorter).prefix(3))
+                    case .topFiftyConfirmed:
+                        return Array(countriesData.sorted(by: SortType.cases(.descending).sorter).prefix(50))
                     }
                 }()
                 
@@ -73,12 +73,12 @@ final class CovidCountriesDataStore {
 
 extension CovidCountriesDataStore {
     enum DataType {
-        case topThreeConfirmed
+        case topFiftyConfirmed
         
         var fileName: String {
             switch self {
-            case .topThreeConfirmed:
-                return "top_three_confirmed.json"
+            case .topFiftyConfirmed:
+                return "top_fifty_confirmed.json"
             }
         }
     }

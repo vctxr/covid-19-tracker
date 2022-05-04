@@ -17,11 +17,7 @@ struct COVID_19_TrackerWidget: Widget {
             CovidConfirmedRankingView(
                 entry: CovidEntry(
                     date: entry.date,
-                    countriesData: Array(
-                        entry.countriesData
-                            .sorted(by: SortType.cases(.descending).sorter)
-                            .prefix(3)
-                    ),
+                    countriesData: Array(entry.countriesData.prefix(3)),
                     isPreview: entry.isPreview
                 )
             )

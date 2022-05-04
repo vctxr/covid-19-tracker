@@ -15,7 +15,7 @@ struct CovidTimelineProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (CovidEntry) -> ()) {
-        dataStore.loadData(.topThreeConfirmed) { countriesData in
+        dataStore.loadData(.topFiftyConfirmed) { countriesData in
             if countriesData.isEmpty && context.isPreview {
                 completion(.placeholder)
             } else {
@@ -26,7 +26,7 @@ struct CovidTimelineProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<CovidEntry>) -> ()) {
-        dataStore.loadData(.topThreeConfirmed) { countriesData in
+        dataStore.loadData(.topFiftyConfirmed) { countriesData in
             let entry = CovidEntry(date: Date(), countriesData: countriesData, isPreview: false)
             let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
