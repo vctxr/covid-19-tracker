@@ -24,7 +24,16 @@ final class BGTaskService {
         }
     }
     
-    func scheduleTasks() {
-        refreshService.scheduleAppRefresh(shouldScheduleASAP: true)
+    func scheduleTasksIfNeeded() {
+        BGTaskScheduler.shared.getPendingTaskRequests { [refreshService] tasks in
+            tasks.forEach { task in
+                debugPrint("Pending task: \(task.identifier), earliest: \(task.earliestBeginDate?.description(with: .current) ?? "-")")
+            }
+            
+            // Only schedule new app refresh task if the current pending task request doesnt already contain it.
+            if !tasks.contains(where: { $0.identifier == refreshService.taskIdentitifier }) {
+                refreshService.scheduleAppRefresh(shouldScheduleASAP: true)
+            }
+        }
     }
 }

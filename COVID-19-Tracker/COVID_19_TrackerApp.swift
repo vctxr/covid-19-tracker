@@ -49,7 +49,7 @@ struct COVID_19_TrackerApp: App {
                 .onChange(of: scenePhase) { newPhase in
                     switch newPhase {
                     case .background:
-                        BGTaskService.shared.scheduleTasks()
+                        BGTaskService.shared.scheduleTasksIfNeeded()
                     case .inactive:
                         break
                     case .active:

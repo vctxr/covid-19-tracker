@@ -31,6 +31,14 @@ class RefreshCovidCountriesService {
         // Provide the background task with an expiration handler that cancels the operation.
         task.expirationHandler = {
             debugPrint("❌ Refresh expired")
+            
+            // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
+            let content = UNMutableNotificationContent()
+            content.title = "Background app refersh"
+            content.body = "❌ Refresh expired"
+            let request = UNNotificationRequest(identifier: "BGAppRefreshTaskExpired", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request)
+            
             operationQueue.cancelAllOperations()
         }
         
@@ -39,6 +47,13 @@ class RefreshCovidCountriesService {
             guard let self = self else { return }
             
             debugPrint("🔄 Refresh completed with: \(result)")
+            
+            // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
+            let content = UNMutableNotificationContent()
+            content.title = "Background app refersh"
+            content.body = "🔄 Refresh completed with: \(result)"
+            let request = UNNotificationRequest(identifier: "BGAppRefreshTaskDone", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request)
             
             switch result {
             case .success:
@@ -68,7 +83,6 @@ class RefreshCovidCountriesService {
     
     /// Schedule a new `BGAppRefreshTask`.
     func scheduleAppRefresh(shouldScheduleASAP: Bool) {
-        debugPrint("📝 Scheduling app refresh: \(taskIdentitifier)")
         let request = BGAppRefreshTaskRequest(identifier: taskIdentitifier)
         
         let earliestBeginDate: Date = {
@@ -78,17 +92,19 @@ class RefreshCovidCountriesService {
                 return Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
             } else {
                 // Fetch no earlier than tomorrow midgnight.
-                let tomorrow = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
-                return Calendar.current.startOfDay(for: tomorrow)
+//                let tomorrow = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+//                return Calendar.current.startOfDay(for: tomorrow)
+                return Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
             }
         }()
         
         request.earliestBeginDate = earliestBeginDate
+        debugPrint("📝 Scheduling app refresh: \(taskIdentitifier), earliest: \(earliestBeginDate.description(with: .current))")
         
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
-            print("❌ Could not schedule app refresh: \(error.localizedDescription)")
+            debugPrint("❌ Could not schedule app refresh: \(error.localizedDescription)")
         }
     }
 }
