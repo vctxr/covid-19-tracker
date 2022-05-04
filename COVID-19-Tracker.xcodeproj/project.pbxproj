@@ -39,7 +39,6 @@
 		57ADE49C281E4BCE002D378D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE708A281B146F0042591F /* String+Extensions.swift */; };
 		57ADE49D281E4BE2002D378D /* Number+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F346C1281C497700B6571A /* Number+Extensions.swift */; };
 		57ADE49F281E4C47002D378D /* SharedDateFormatter in Frameworks */ = {isa = PBXBuildFile; productRef = 57ADE49E281E4C47002D378D /* SharedDateFormatter */; };
-		57ADE4A2281E50B3002D378D /* AnyPublisher+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A0281E509C002D378D /* AnyPublisher+Extensions.swift */; };
 		57ADE4A8281E52D5002D378D /* CovidConfirmedRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A6281E52C0002D378D /* CovidConfirmedRankingView.swift */; };
 		57ADE4AA281E537A002D378D /* SharedStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4A9281E537A002D378D /* SharedStubs.swift */; };
 		57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */; };
@@ -157,7 +156,6 @@
 		57ADE489281E4323002D378D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57ADE491281E45B6002D378D /* CovidEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntry.swift; sourceTree = "<group>"; };
 		57ADE494281E4609002D378D /* CovidTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidTimelineProvider.swift; sourceTree = "<group>"; };
-		57ADE4A0281E509C002D378D /* AnyPublisher+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Extensions.swift"; sourceTree = "<group>"; };
 		57ADE4A6281E52C0002D378D /* CovidConfirmedRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidConfirmedRankingView.swift; sourceTree = "<group>"; };
 		57ADE4A9281E537A002D378D /* SharedStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStubs.swift; sourceTree = "<group>"; };
 		57ADE4AC281E5424002D378D /* CovidEntryStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidEntryStubs.swift; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 				57ADE485281E4320002D378D /* COVID_19_TrackerWidget.swift */,
 				57ADE4AE281E542F002D378D /* Entries */,
 				57ADE4B0281E543B002D378D /* Timelines */,
-				57ADE4A3281E51E5002D378D /* Extensions */,
 				57ADE4A5281E529B002D378D /* WidgetViews */,
 				57ADE487281E4323002D378D /* Assets.xcassets */,
 				57ADE489281E4323002D378D /* Info.plist */,
@@ -309,14 +306,6 @@
 				57ADE4B3281E5984002D378D /* Extensions */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		57ADE4A3281E51E5002D378D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				57ADE4A0281E509C002D378D /* AnyPublisher+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		57ADE4A5281E529B002D378D /* WidgetViews */ = {
@@ -775,7 +764,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				57ADE493281E45E4002D378D /* CovidEntry.swift in Sources */,
-				57ADE4A2281E50B3002D378D /* AnyPublisher+Extensions.swift in Sources */,
 				57ADE4B5281E5DD9002D378D /* SortType.swift in Sources */,
 				57ADE4A8281E52D5002D378D /* CovidConfirmedRankingView.swift in Sources */,
 				57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */,
