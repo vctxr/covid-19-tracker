@@ -22,6 +22,9 @@ struct COVID_19_TrackerApp: App {
     
     init() {
         BGTaskService.shared.registerTasks()
+        
+        // TODO: Remove this!
+        UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert, .badge], completionHandler: { _, _ in })
     }
     
     /// The root store of the app.

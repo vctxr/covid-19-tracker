@@ -28,6 +28,9 @@ final class BGTaskService {
         BGTaskScheduler.shared.getPendingTaskRequests { [refreshService] tasks in
             tasks.forEach { task in
                 debugPrint("Pending task: \(task.identifier), earliest: \(task.earliestBeginDate?.description(with: .current) ?? "-")")
+                
+                // TODO: Remove this!
+                refreshService.showLocalNotification(message: "Pending task: \(task.identifier), earliest: \(task.earliestBeginDate?.description(with: .current) ?? "-")")
             }
             
             // Only schedule new app refresh task if the current pending task request doesnt already contain it.

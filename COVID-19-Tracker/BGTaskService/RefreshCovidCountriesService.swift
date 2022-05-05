@@ -29,15 +29,11 @@ class RefreshCovidCountriesService {
         saveCovidCountriesToDiskOperation.addDependency(fetchCovidCountriesOperation)
         
         // Provide the background task with an expiration handler that cancels the operation.
-        task.expirationHandler = {
+        task.expirationHandler = { [weak self] in
             debugPrint("❌ Refresh expired")
             
             // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
-            let content = UNMutableNotificationContent()
-            content.title = "Background app refersh"
-            content.body = "❌ Refresh expired"
-            let request = UNNotificationRequest(identifier: "BGAppRefreshTaskExpired", content: content, trigger: nil)
-            UNUserNotificationCenter.current().add(request)
+            self?.showLocalNotification(message: "❌ Refresh expired")
             
             operationQueue.cancelAllOperations()
         }
@@ -49,11 +45,7 @@ class RefreshCovidCountriesService {
             debugPrint("🔄 Refresh completed with: \(result)")
             
             // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
-            let content = UNMutableNotificationContent()
-            content.title = "Background app refersh"
-            content.body = "🔄 Refresh completed with: \(result)"
-            let request = UNNotificationRequest(identifier: "BGAppRefreshTaskDone", content: content, trigger: nil)
-            UNUserNotificationCenter.current().add(request)
+            self.showLocalNotification(message:  "🔄 Refresh completed with: \(result)")
             
             switch result {
             case .success:
@@ -101,10 +93,26 @@ class RefreshCovidCountriesService {
         request.earliestBeginDate = earliestBeginDate
         debugPrint("📝 Scheduling app refresh: \(taskIdentitifier), earliest: \(earliestBeginDate.description(with: .current))")
         
+        // TODO: Remove this!
+        showLocalNotification(message: "📝 Scheduling app refresh: \(taskIdentitifier), earliest: \(earliestBeginDate.description(with: .current))")
+        
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
             debugPrint("❌ Could not schedule app refresh: \(error.localizedDescription)")
+        }
+    }
+    
+    // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
+    func showLocalNotification(message: String) {
+        let content = UNMutableNotificationContent()
+        content.title = "Background app refresh"
+        content.body = message
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { error in
+            guard let error = error else { return }
+            debugPrint("❌ \(error.localizedDescription)")
         }
     }
 }
