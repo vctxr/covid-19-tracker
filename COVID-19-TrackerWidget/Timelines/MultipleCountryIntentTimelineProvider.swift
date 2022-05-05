@@ -1,5 +1,5 @@
 //
-//  CovidIntentTimelineProvider.swift
+//  MultipleCountryIntentTimelineProvider.swift
 //  COVID-19-TrackerWidget
 //
 //  Created by Victor Samuel Cuaca on 01/05/22.
@@ -7,25 +7,25 @@
 
 import WidgetKit
 
-struct CovidIntentTimelineProvider: IntentTimelineProvider {
+struct MultipleCountryIntentTimelineProvider: IntentTimelineProvider {
     // MARK: - Variables 📦
     
     private let dataStore = CovidCountriesDataStore()
     
     // MARK: - Placeholder
     
-    func placeholder(in context: Context) -> CovidEntry {
+    func placeholder(in context: Context) -> MultipleCountryEntry {
         .placeholder
     }
     
     // MARK: - Snapshot
     
-    func getSnapshot(for configuration: SelectCountryIntent, in context: Context, completion: @escaping (CovidEntry) -> Void) {
+    func getSnapshot(for configuration: SelectMultipleCountryIntent, in context: Context, completion: @escaping (MultipleCountryEntry) -> Void) {
         loadData(for: configuration) { countriesData in
             if countriesData.isEmpty && context.isPreview {
                 completion(.placeholder)
             } else {
-                let entry = CovidEntry(date: Date(), countriesData: countriesData, isPreview: false)
+                let entry = MultipleCountryEntry(date: Date(), countriesData: countriesData, isPreview: false)
                 completion(entry)
             }
         }
@@ -33,9 +33,9 @@ struct CovidIntentTimelineProvider: IntentTimelineProvider {
     
     // MARK: - Timeline
     
-    func getTimeline(for configuration: SelectCountryIntent, in context: Context, completion: @escaping (Timeline<CovidEntry>) -> Void) {
+    func getTimeline(for configuration: SelectMultipleCountryIntent, in context: Context, completion: @escaping (Timeline<MultipleCountryEntry>) -> Void) {
         loadData(for: configuration) { countriesData in
-            let entry = CovidEntry(date: Date(), countriesData: countriesData, isPreview: false)
+            let entry = MultipleCountryEntry(date: Date(), countriesData: countriesData, isPreview: false)
             let timeline = Timeline(entries: [entry], policy: .never)
             completion(timeline)
         }
@@ -43,7 +43,7 @@ struct CovidIntentTimelineProvider: IntentTimelineProvider {
     
     // MARK: - Private Methods 🔒
     
-    private func loadData(for configuration: SelectCountryIntent, completion: @escaping ([CovidCountryData]) -> Void) {
+    private func loadData(for configuration: SelectMultipleCountryIntent, completion: @escaping ([CovidCountryData]) -> Void) {
         switch configuration.selectionType {
         case .unknown:
             completion([])

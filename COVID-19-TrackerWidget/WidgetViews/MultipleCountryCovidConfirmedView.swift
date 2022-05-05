@@ -1,5 +1,5 @@
 //
-//  CovidWidgetMediumView.swift
+//  MultipleCountryCovidConfirmedView.swift
 //  COVID-19-TrackerWidget
 //
 //  Created by Victor Samuel Cuaca on 01/05/22.
@@ -7,30 +7,29 @@
 
 import SwiftUI
 import WidgetKit
-import ColorPalette
 
-struct CovidConfirmedRankingView: View {
+struct MultipleCountryCovidConfirmedView: View {
     // MARK: - Variables 📦
-    
-    let entry: CovidIntentTimelineProvider.Entry
+        
+    let entry: MultipleCountryIntentTimelineProvider.Entry
 
     // MARK: - Body 🎨
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if entry.countriesData.isEmpty {
-                noDataView
+                NoDataView()
             } else {
                 countryListView
             }
             
-            dateView
+            DateView(date: entry.date)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 4)
     }
     
-    var countryListView: some View {
+    private var countryListView: some View {
         ForEach(entry.countriesData) { data in
             if let deeplinkURL = data.deeplinkURL {
                 VStack(spacing: 0) {
@@ -62,43 +61,21 @@ struct CovidConfirmedRankingView: View {
             }
         }
     }
-    
-    var dateView: some View {
-        HStack(spacing: 0) {
-            Spacer()
-            Text(entry.date, style: .date)
-            Text(entry.date, style: .time)
-                .padding(.leading, 8)
-            Spacer()
-        }
-        .font(.system(size: 9).bold())
-        .foregroundColor(.secondaryText)
-    }
-    
-    var noDataView: some View {
-        Text("No Data.\nTry opening the app to reload.")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .multilineTextAlignment(.center)
-            .font(.title3)
-            .foregroundStyle(
-                LinearGradient(
-                    colors: .gradientPurple,
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-            )
-    }
 }
 
 // MARK: - Previews 📷
 
-struct CovidWidgetMediumView_Previews: PreviewProvider {
-    static var previews: some View {
+struct CovidConfirmedView_Previews: PreviewProvider {
+    static var groupPreviews: some View {
         Group {
-            CovidConfirmedRankingView(entry: .placeholder)
-            CovidConfirmedRankingView(entry: .template)
-            CovidConfirmedRankingView(entry: .templateEmpty)
+            MultipleCountryCovidConfirmedView(entry: .placeholder)
+            MultipleCountryCovidConfirmedView(entry: .template)
+            MultipleCountryCovidConfirmedView(entry: .templateEmpty)
         }
-        .previewContext(WidgetPreviewContext(family: .systemMedium))
+    }
+    
+    static var previews: some View {
+        groupPreviews
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

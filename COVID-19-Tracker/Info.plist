@@ -21,7 +21,8 @@
 	</array>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>SelectCountryIntent</string>
+		<string>SelectMultipleCountryIntent</string>
+		<string>SelectSingleCountryIntent</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

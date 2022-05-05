@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct COVID_19_TrackerWidgetBundle: WidgetBundle {
     var body: some Widget {
-        COVID_19_TrackerWidget()
+        SingleCountryWidget()
+        MultipleCountryWidget()
     }
 }

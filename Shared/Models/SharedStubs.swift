@@ -14,12 +14,12 @@ extension CovidCountryData {
     static func template(countryName: String) -> CovidCountryData {
         CovidCountryData(
             countryName: countryName,
-            timeseriesData: (0..<100).map { i in
-                .init(
+            timeseriesData: (0..<100).map { i -> CovidDayData in
+                CovidDayData(
                     dateString: SharedDateFormatter.shared
                         .formatter(withFormat: "yyyy-MM-dd")
                         .string(from: Date(timeIntervalSince1970: TimeInterval(i * 86400))),    // Stride by 1 day.
-                    confirmed: Int.random(in: 0...99_999_999),
+                    confirmed: 6_047_491 + i,
                     deaths: Int.random(in: 0...99_999_999),
                     recovered: Int.random(in: 0...99_999_999)
                 )

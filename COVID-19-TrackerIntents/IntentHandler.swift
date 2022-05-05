@@ -27,10 +27,26 @@ class IntentHandler: INExtension {
     }
 }
 
-// MARK: - SelectCountryIntentHandling
+// MARK: - SelectSingleCountryIntentHandling
 
-extension IntentHandler: SelectCountryIntentHandling {
-    func provideCountriesOptionsCollection(for intent: SelectCountryIntent, with completion: @escaping (INObjectCollection<Country>?, Error?) -> Void) {
+extension IntentHandler: SelectSingleCountryIntentHandling {
+    func provideCountryOptionsCollection(for intent: SelectSingleCountryIntent, with completion: @escaping (INObjectCollection<Country>?, Error?) -> Void) {
+        dataStore.loadData(.topFiftyConfirmed) { countriesData in
+            if countriesData.isEmpty {
+                completion(INObjectCollection(items: []), nil)
+            } else {
+                let countries = countriesData.map(Country.init(country:))
+                let countriesCollection = INObjectCollection(items: countries)
+                completion(countriesCollection, nil)
+            }
+        }
+    }
+}
+
+// MARK: - SelectMultipleCountryIntentHandling
+
+extension IntentHandler: SelectMultipleCountryIntentHandling {
+    func provideCountriesOptionsCollection(for intent: SelectMultipleCountryIntent, with completion: @escaping (INObjectCollection<Country>?, Error?) -> Void) {
         switch intent.selectionType {
         case .unknown:
             completion(INObjectCollection(items: []), nil)
@@ -49,7 +65,7 @@ extension IntentHandler: SelectCountryIntentHandling {
         }
     }
     
-    func defaultCountries(for intent: SelectCountryIntent) -> [Country]? {
+    func defaultCountries(for intent: SelectMultipleCountryIntent) -> [Country]? {
         (0...3).map { _ in Country.none }
     }
 }
