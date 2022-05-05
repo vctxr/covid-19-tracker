@@ -9,7 +9,6 @@ iOS app that mimics App Store's Today page custom transition. Built using UIKit 
 # 🌎 Demo
 tba
 
-
 # 🌈 Highlights
 - SwiftUI + The Composable Architecture (https://github.com/pointfreeco/swift-composable-architecture)
 - Widget extensions with custom intent and deeplinks!
