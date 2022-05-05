@@ -13,9 +13,9 @@ struct SingleCountryWidget: Widget {
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: SelectSingleCountryIntent.self, provider: SingleCountryIntentTimelineProvider()) { entry in
-            SingleCountryCovidConfirmedView(entry: entry)
+            SingleCountryCovidView(entry: entry)
         }
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
         .configurationDisplayName("COVID-19 Stats")
         .description("View COVID-19 country confirmed count.")
     }

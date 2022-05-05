@@ -32,6 +32,10 @@ struct CovidCountryData: Equatable, Identifiable {
         timeseriesData.last?.recovered ?? 0
     }
     
+    var latestActive: Int {
+        timeseriesData.last?.active ?? 0
+    }
+    
     var latestUpdatedDateString: String {
         guard let latestDateString = timeseriesData.last?.dateString else { return "-" }
         let stringToDateFormatter = SharedDateFormatter.shared.formatter(withFormat: "yyyy-MM-dd")
@@ -65,6 +69,10 @@ struct CovidDayData: Equatable {
     let confirmed: Int
     let deaths: Int
     let recovered: Int
+    
+    internal var active: Int {
+        confirmed - deaths - recovered
+    }
 }
 
 extension CovidDayData: Codable {

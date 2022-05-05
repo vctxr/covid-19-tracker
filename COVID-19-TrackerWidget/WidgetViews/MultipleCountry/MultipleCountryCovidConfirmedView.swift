@@ -16,7 +16,7 @@ struct MultipleCountryCovidConfirmedView: View {
     // MARK: - Body 🎨
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(spacing: 0) {
             if entry.countriesData.isEmpty {
                 NoDataView()
             } else {

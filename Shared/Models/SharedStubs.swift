@@ -20,8 +20,8 @@ extension CovidCountryData {
                         .formatter(withFormat: "yyyy-MM-dd")
                         .string(from: Date(timeIntervalSince1970: TimeInterval(i * 86400))),    // Stride by 1 day.
                     confirmed: 6_047_491 + i,
-                    deaths: Int.random(in: 0...99_999_999),
-                    recovered: Int.random(in: 0...99_999_999)
+                    deaths: i,
+                    recovered: i
                 )
             }
         )

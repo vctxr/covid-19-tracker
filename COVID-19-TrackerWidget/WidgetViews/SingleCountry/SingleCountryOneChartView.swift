@@ -1,5 +1,5 @@
 //
-//  SingleCountryCovidConfirmedView.swift
+//  SingleCountryOneChartView.swift
 //  COVID-19-TrackerWidgetExtension
 //
 //  Created by Victor Samuel Cuaca on 05/05/22.
@@ -10,11 +10,11 @@ import WidgetKit
 import LightChart
 import ColorPalette
 
-struct SingleCountryCovidConfirmedView: View {
+struct SingleCountryOneChartView: View {
     // MARK: - Variables 📦
     
     let entry: SingleCountryIntentTimelineProvider.Entry
-
+    
     // MARK: - Body 🎨
     
     var body: some View {
@@ -44,7 +44,7 @@ struct SingleCountryCovidConfirmedView: View {
                     offset: 0.2,
                     currentValueLineType: .dash(color: .gray, lineWidth: 1, dash: [5])
                 )
-                            
+                
                 HStack {
                     Spacer()
                     VStack(alignment: .trailing, spacing: 2) {
@@ -61,24 +61,15 @@ struct SingleCountryCovidConfirmedView: View {
                 NoDataView()
             }
         }
-        .widgetURL(entry.countryData?.deeplinkURL)
         .padding()
     }
 }
 
 // MARK: - Previews 📷
 
-struct SingleCountryCovidConfirmedView_Previews: PreviewProvider {
-    static var groupPreviews: some View {
-        Group {
-            SingleCountryCovidConfirmedView(entry: .placeholder)
-            SingleCountryCovidConfirmedView(entry: .template)
-            SingleCountryCovidConfirmedView(entry: .templateEmpty)
-        }
-    }
-    
+struct SingleCountryOneChartView_Previews: PreviewProvider {
     static var previews: some View {
-        groupPreviews
+        SingleCountryOneChartView(entry: .template)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

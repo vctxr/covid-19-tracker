@@ -41,7 +41,9 @@
 		5763EAD92823988000A7F46D /* SingleCountryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EAD82823988000A7F46D /* SingleCountryWidget.swift */; };
 		5763EADB282398A500A7F46D /* SingleCountryIntentTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EADA282398A500A7F46D /* SingleCountryIntentTimelineProvider.swift */; };
 		5763EADD282399A200A7F46D /* SingleCountryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EADC282399A200A7F46D /* SingleCountryEntry.swift */; };
-		5763EADF28239AC300A7F46D /* SingleCountryCovidConfirmedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EADE28239AC300A7F46D /* SingleCountryCovidConfirmedView.swift */; };
+		5763EADF28239AC300A7F46D /* SingleCountryCovidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EADE28239AC300A7F46D /* SingleCountryCovidView.swift */; };
+		579467992823ADCC00A0EB18 /* SingleCountryTwoChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579467982823ADCC00A0EB18 /* SingleCountryTwoChartView.swift */; };
+		5794679B2823AE9F00A0EB18 /* SingleCountryOneChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5794679A2823AE9F00A0EB18 /* SingleCountryOneChartView.swift */; };
 		57ADE455281C52B4002D378D /* CovidInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE454281C52B4002D378D /* CovidInformationView.swift */; };
 		57ADE457281C53CD002D378D /* FootnoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE456281C53CD002D378D /* FootnoteView.swift */; };
 		57ADE459281C5E28002D378D /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE458281C5E28002D378D /* SFSafariView.swift */; };
@@ -184,7 +186,9 @@
 		5763EAD82823988000A7F46D /* SingleCountryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryWidget.swift; sourceTree = "<group>"; };
 		5763EADA282398A500A7F46D /* SingleCountryIntentTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryIntentTimelineProvider.swift; sourceTree = "<group>"; };
 		5763EADC282399A200A7F46D /* SingleCountryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryEntry.swift; sourceTree = "<group>"; };
-		5763EADE28239AC300A7F46D /* SingleCountryCovidConfirmedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryCovidConfirmedView.swift; sourceTree = "<group>"; };
+		5763EADE28239AC300A7F46D /* SingleCountryCovidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryCovidView.swift; sourceTree = "<group>"; };
+		579467982823ADCC00A0EB18 /* SingleCountryTwoChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryTwoChartView.swift; sourceTree = "<group>"; };
+		5794679A2823AE9F00A0EB18 /* SingleCountryOneChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCountryOneChartView.swift; sourceTree = "<group>"; };
 		57ADE454281C52B4002D378D /* CovidInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInformationView.swift; sourceTree = "<group>"; };
 		57ADE456281C53CD002D378D /* FootnoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteView.swift; sourceTree = "<group>"; };
 		57ADE458281C5E28002D378D /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
@@ -350,6 +354,24 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		579467962823ADA400A0EB18 /* SingleCountry */ = {
+			isa = PBXGroup;
+			children = (
+				5763EADE28239AC300A7F46D /* SingleCountryCovidView.swift */,
+				5794679A2823AE9F00A0EB18 /* SingleCountryOneChartView.swift */,
+				579467982823ADCC00A0EB18 /* SingleCountryTwoChartView.swift */,
+			);
+			path = SingleCountry;
+			sourceTree = "<group>";
+		};
+		579467972823ADAC00A0EB18 /* MultipleCountry */ = {
+			isa = PBXGroup;
+			children = (
+				57ADE4A6281E52C0002D378D /* MultipleCountryCovidConfirmedView.swift */,
+			);
+			path = MultipleCountry;
+			sourceTree = "<group>";
+		};
 		57ADE473281D5516002D378D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,8 +420,8 @@
 		57ADE4A5281E529B002D378D /* WidgetViews */ = {
 			isa = PBXGroup;
 			children = (
-				5763EADE28239AC300A7F46D /* SingleCountryCovidConfirmedView.swift */,
-				57ADE4A6281E52C0002D378D /* MultipleCountryCovidConfirmedView.swift */,
+				579467962823ADA400A0EB18 /* SingleCountry */,
+				579467972823ADAC00A0EB18 /* MultipleCountry */,
 				5763EAD028238D4100A7F46D /* Components */,
 			);
 			path = WidgetViews;
@@ -914,7 +936,7 @@
 				57ADE4A8281E52D5002D378D /* MultipleCountryCovidConfirmedView.swift in Sources */,
 				57ADE4AF281E5436002D378D /* CountryEntryStubs.swift in Sources */,
 				5763EAC128237B8200A7F46D /* COVID_19_TrackerWidgetBundle.swift in Sources */,
-				5763EADF28239AC300A7F46D /* SingleCountryCovidConfirmedView.swift in Sources */,
+				5763EADF28239AC300A7F46D /* SingleCountryCovidView.swift in Sources */,
 				5763EAB028235BB500A7F46D /* WidgetIntents.intentdefinition in Sources */,
 				5763EABB2823629400A7F46D /* Country+Extensions.swift in Sources */,
 				5763EAD92823988000A7F46D /* SingleCountryWidget.swift in Sources */,
@@ -928,9 +950,11 @@
 				5763EACD28238BF100A7F46D /* NoDataView.swift in Sources */,
 				5745A112281FB5450013EB0C /* CovidCountriesDataStore.swift in Sources */,
 				5745A115281FBD780013EB0C /* DebugPrint.swift in Sources */,
+				579467992823ADCC00A0EB18 /* SingleCountryTwoChartView.swift in Sources */,
 				57ADE49C281E4BCE002D378D /* String+Extensions.swift in Sources */,
 				57ADE49D281E4BE2002D378D /* Number+Extensions.swift in Sources */,
 				57ADE4B6281E864D002D378D /* SharedStubs.swift in Sources */,
+				5794679B2823AE9F00A0EB18 /* SingleCountryOneChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

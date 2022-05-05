@@ -21,7 +21,7 @@ struct CountryDetailState: Equatable {
                 case .confirmed:
                     return data.confirmed
                 case .active:
-                    return data.confirmed - data.recovered - data.deaths
+                    return data.active
                 }
             }()
         

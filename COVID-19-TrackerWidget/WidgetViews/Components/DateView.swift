@@ -17,11 +17,9 @@ struct DateView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            Spacer()
             Text(date, style: .date)
             Text(date, style: .time)
                 .padding(.leading, 8)
-            Spacer()
         }
         .font(.system(size: 9).bold())
         .foregroundColor(.secondaryText)
