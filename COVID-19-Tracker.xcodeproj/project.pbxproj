@@ -34,6 +34,7 @@
 		5763EAB928235FE700A7F46D /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EAB128235C2900A7F46D /* Country+Extensions.swift */; };
 		5763EABB2823629400A7F46D /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EAB128235C2900A7F46D /* Country+Extensions.swift */; };
 		5763EABD2823646D00A7F46D /* SharedDateFormatter in Frameworks */ = {isa = PBXBuildFile; productRef = 5763EABC2823646D00A7F46D /* SharedDateFormatter */; };
+		5763EAC128237B8200A7F46D /* COVID_19_TrackerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5763EABF28237B4200A7F46D /* COVID_19_TrackerWidgetBundle.swift */; };
 		57ADE455281C52B4002D378D /* CovidInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE454281C52B4002D378D /* CovidInformationView.swift */; };
 		57ADE457281C53CD002D378D /* FootnoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE456281C53CD002D378D /* FootnoteView.swift */; };
 		57ADE459281C5E28002D378D /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ADE458281C5E28002D378D /* SFSafariView.swift */; };
@@ -170,6 +171,7 @@
 		5763EA9A28235B4200A7F46D /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		5763EAB128235C2900A7F46D /* Country+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+Extensions.swift"; sourceTree = "<group>"; };
 		5763EABE2823661400A7F46D /* COVID-19-TrackerIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "COVID-19-TrackerIntents.entitlements"; sourceTree = "<group>"; };
+		5763EABF28237B4200A7F46D /* COVID_19_TrackerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COVID_19_TrackerWidgetBundle.swift; sourceTree = "<group>"; };
 		57ADE454281C52B4002D378D /* CovidInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidInformationView.swift; sourceTree = "<group>"; };
 		57ADE456281C53CD002D378D /* FootnoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteView.swift; sourceTree = "<group>"; };
 		57ADE458281C5E28002D378D /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				57ADE4B8281E8C65002D378D /* COVID-19-TrackerWidgetExtension.entitlements */,
+				5763EABF28237B4200A7F46D /* COVID_19_TrackerWidgetBundle.swift */,
 				57ADE485281E4320002D378D /* COVID_19_TrackerWidget.swift */,
 				57ADE4AE281E542F002D378D /* Entries */,
 				57ADE4B0281E543B002D378D /* Timelines */,
@@ -872,6 +875,7 @@
 				57ADE4B5281E5DD9002D378D /* SortType.swift in Sources */,
 				57ADE4A8281E52D5002D378D /* CovidConfirmedRankingView.swift in Sources */,
 				57ADE4AF281E5436002D378D /* CovidEntryStubs.swift in Sources */,
+				5763EAC128237B8200A7F46D /* COVID_19_TrackerWidgetBundle.swift in Sources */,
 				5763EAB028235BB500A7F46D /* WidgetIntents.intentdefinition in Sources */,
 				5763EABB2823629400A7F46D /* Country+Extensions.swift in Sources */,
 				57ADE4C0281FAED6002D378D /* FileManager+Extensions.swift in Sources */,

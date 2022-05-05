@@ -13,10 +13,6 @@ extension Country {
         id = country.id
     }
     
-    static var topConfirmed: Country {
-        Country(identifier: "top-confirmed", display: "Top Confirmed")
-    }
-    
     static var none: Country {
         Country(identifier: "none", display: "None")
     }

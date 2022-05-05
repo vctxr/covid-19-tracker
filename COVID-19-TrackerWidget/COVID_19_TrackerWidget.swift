@@ -8,7 +8,6 @@
 import WidgetKit
 import SwiftUI
 
-@main
 struct COVID_19_TrackerWidget: Widget {
     let kind: String = "COVID_19_TrackerWidget"
 
