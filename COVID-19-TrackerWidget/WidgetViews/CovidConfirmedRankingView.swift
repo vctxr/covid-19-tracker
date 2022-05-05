@@ -12,7 +12,7 @@ import ColorPalette
 struct CovidConfirmedRankingView: View {
     // MARK: - Variables 📦
     
-    let entry: CovidTimelineProvider.Entry
+    let entry: CovidIntentTimelineProvider.Entry
 
     // MARK: - Body 🎨
     

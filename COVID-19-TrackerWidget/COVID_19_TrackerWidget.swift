@@ -13,17 +13,17 @@ struct COVID_19_TrackerWidget: Widget {
     let kind: String = "COVID_19_TrackerWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: CovidTimelineProvider()) { entry in
+        IntentConfiguration(kind: kind, intent: SelectCountryIntent.self, provider: CovidIntentTimelineProvider()) { entry in
             CovidConfirmedRankingView(
                 entry: CovidEntry(
                     date: entry.date,
-                    countriesData: Array(entry.countriesData.prefix(3)),
+                    countriesData: entry.countriesData,
                     isPreview: entry.isPreview
                 )
             )
         }
         .supportedFamilies([.systemMedium])
         .configurationDisplayName("COVID-19 Stats")
-        .description("View COVID-19 global ranking for confirmed count.")
+        .description("View COVID-19 countries confirmed count.")
     }
 }
