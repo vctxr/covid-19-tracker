@@ -45,7 +45,7 @@ class RefreshCovidCountriesService {
             switch result {
             case .success:
                 #if DEBUG
-                self.showLocalNotification(message:  "✅ Refresh success)")
+                self.showLocalNotification(message:  "✅ Refresh success")
                 #endif
 
                 WidgetCenter.shared.reloadAllTimelines()    // Reload widget to reflect new data.
