@@ -26,12 +26,13 @@ final class BGTaskService {
     
     func scheduleTasksIfNeeded() {
         BGTaskScheduler.shared.getPendingTaskRequests { [refreshService] tasks in
+            #if DEBUG
             tasks.forEach { task in
                 debugPrint("Pending task: \(task.identifier), earliest: \(task.earliestBeginDate?.description(with: .current) ?? "-")")
                 
-                // TODO: Remove this!
-                refreshService.showLocalNotification(message: "Pending task: \(task.identifier), earliest: \(task.earliestBeginDate?.description(with: .current) ?? "-")")
+                refreshService.showLocalNotification(message: "🟠 Pending task: \(task.identifier), earliest: \(task.earliestBeginDate?.description(with: .current) ?? "-")")
             }
+            #endif
             
             // Only schedule new app refresh task if the current pending task request doesnt already contain it.
             if !tasks.contains(where: { $0.identifier == refreshService.taskIdentitifier }) {

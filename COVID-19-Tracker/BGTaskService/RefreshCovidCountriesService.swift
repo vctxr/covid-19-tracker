@@ -14,9 +14,6 @@ class RefreshCovidCountriesService {
     /// The `BGRefreshTask` identifier permitted in the `Info.plist`.
     let taskIdentitifier = "com.example.COVID-19-Tracker.refresh"
     
-    /// The background task identifier.
-    var backgroundTaskID: UIBackgroundTaskIdentifier?
-
     /// Performs an app refresh operation.
     func handleAppRefresh(task: BGAppRefreshTask) {
         // Schedule a new refresh task.
@@ -32,8 +29,9 @@ class RefreshCovidCountriesService {
         task.expirationHandler = { [weak self] in
             debugPrint("❌ Refresh expired")
             
-            // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
+            #if DEBUG
             self?.showLocalNotification(message: "❌ Refresh expired")
+            #endif
             
             operationQueue.cancelAllOperations()
         }
@@ -44,28 +42,23 @@ class RefreshCovidCountriesService {
             
             debugPrint("🔄 Refresh completed with: \(result)")
             
-            // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
-            self.showLocalNotification(message:  "🔄 Refresh completed with: \(result)")
-            
             switch result {
             case .success:
+                #if DEBUG
+                self.showLocalNotification(message:  "✅ Refresh success)")
+                #endif
+
                 WidgetCenter.shared.reloadAllTimelines()    // Reload widget to reflect new data.
                 task.setTaskCompleted(success: true)
-            case .failure:
+            case .failure(let error):
+                #if DEBUG
+                self.showLocalNotification(message:  "❌ Refresh failed: \(error.localizedDescription)")
+                #endif
+
                 // Schedule a new refresh task ASAP because we failed.
                 self.scheduleAppRefresh(shouldScheduleASAP: true)
                 task.setTaskCompleted(success: false)
             }
-            
-            UIApplication.shared.endBackgroundTask(self.backgroundTaskID!)
-            self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
-        }
-        
-        // Request for extended execution time in the background for network request.
-        backgroundTaskID = UIApplication.shared.beginBackgroundTask {
-            // End the task if time expires.
-            UIApplication.shared.endBackgroundTask(self.backgroundTaskID!)
-            self.backgroundTaskID = UIBackgroundTaskIdentifier.invalid
         }
         
         // Start the operations.
@@ -83,9 +76,7 @@ class RefreshCovidCountriesService {
                 // Fetch no earlier than 15 mins from now.
                 return Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
             } else {
-                // Fetch no earlier than tomorrow midgnight.
-//                let tomorrow = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
-//                return Calendar.current.startOfDay(for: tomorrow)
+                // Fetch no earlier than one hour from now.
                 return Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
             }
         }()
@@ -93,8 +84,9 @@ class RefreshCovidCountriesService {
         request.earliestBeginDate = earliestBeginDate
         debugPrint("📝 Scheduling app refresh: \(taskIdentitifier), earliest: \(earliestBeginDate.description(with: .current))")
         
-        // TODO: Remove this!
+        #if DEBUG
         showLocalNotification(message: "📝 Scheduling app refresh: \(taskIdentitifier), earliest: \(earliestBeginDate.description(with: .current))")
+        #endif
         
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -103,7 +95,7 @@ class RefreshCovidCountriesService {
         }
     }
     
-    // TODO: REMOVE THIS, FOR DEBUG PURPOSES ONLY!
+    #if DEBUG
     func showLocalNotification(message: String) {
         let content = UNMutableNotificationContent()
         content.title = "Background app refresh"
@@ -115,4 +107,5 @@ class RefreshCovidCountriesService {
             debugPrint("❌ \(error.localizedDescription)")
         }
     }
+    #endif
 }
