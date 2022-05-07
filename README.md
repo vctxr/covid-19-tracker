@@ -19,5 +19,6 @@ iOS app to see COVID-19 statistics worldwide. It's built using the new *shiny~* 
 - SwiftUI + The Composable Architecture (https://github.com/pointfreeco/swift-composable-architecture)
 - Widget extensions with custom intent and deeplinks!
 - New Background app refresh API with operation queues
+- AppGroups to share data between multiple app extensions
 - Utilizes the new Swift Package Manager to manage remote and local dependencies
 - SwiftUI + UIKit bridging for some components (Charts, SFSafariViewController)
