@@ -1,9 +1,8 @@
 # COVID-19 Tracker 🦠
 
-iOS app to see COVID-19 statistics worldwide. It's built using the new *shiny~* ✨ `SwiftUI` framework with modern architecture as well as support to `Widgets` and custom `Intents`.
+iOS app to see COVID-19 statistics worldwide. It's built using the new *shiny~* ✨ `SwiftUI` framework with modern architecture ([TCA](https://github.com/pointfreeco/swift-composable-architecture)) as well as support to `Widgets` and custom `Intents`.
 
 
-iOS app that mimics App Store's Today page custom transition. Built using UIKit framework without any third-party dependencies. I built this app inspired by Andrei Blaj's ([link to his profile](https://github.com/andrei-blaj))  implementation on the same topic but with my own take with added modification and changes to make it even more awesome 😎.<br><br>
 > **Note:** The data is from CSSEGISandData/COVID-19 transformed into a JSON file by github user pomber. ([link to the repo](https://github.com/pomber/covid19))
 
 # 🌎 Demo
