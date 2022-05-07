@@ -7,8 +7,13 @@ iOS app that mimics App Store's Today page custom transition. Built using UIKit 
 > **Note:** The data is from CSSEGISandData/COVID-19 transformed into a JSON file by github user pomber. ([link to the repo](https://github.com/pomber/covid19))
 
 # 🌎 Demo
-tba
-
+| Sort | Filter | Detail |
+| - | - | - |
+| <img src="/Assets/sort.gif"/> | <img src="/Assets/filter.gif"/> | <img src="/Assets/detail.gif"/> |
+| Widget | Single Intent | Multiple Intent |
+| <img src="/Assets/widget.gif"/> | <img src="/Assets/single-intent.gif"/> | <img src="/Assets/multiple-intent.gif"/>
+  
+  
 # 🌈 Highlights
 - SwiftUI + The Composable Architecture (https://github.com/pointfreeco/swift-composable-architecture)
 - Widget extensions with custom intent and deeplinks!
