@@ -27,12 +27,15 @@ class RefreshCovidCountriesService {
         
         // Provide the background task with an expiration handler that cancels the operation.
         task.expirationHandler = { [weak self] in
+            guard let self = self else { return }
+            
             debugPrint("❌ Refresh expired")
             
             #if DEBUG
-            self?.showLocalNotification(message: "❌ Refresh expired")
+            self.showLocalNotification(message: "❌ Refresh expired")
             #endif
             
+            self.scheduleAppRefresh(shouldScheduleASAP: true)
             operationQueue.cancelAllOperations()
         }
         

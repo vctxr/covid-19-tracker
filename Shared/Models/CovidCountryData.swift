@@ -88,7 +88,7 @@ extension CovidDayData: Codable {
         dateString = try container.decode(String.self, forKey: .date)
         confirmed = try container.decode(Int.self, forKey: .confirmed)
         deaths = try container.decode(Int.self, forKey: .deaths)
-        recovered = try container.decode(Int.self, forKey: .recovered)
+        recovered = try container.decodeIfPresent(Int.self, forKey: .recovered) ?? 0
     }
     
     func encode(to encoder: Encoder) throws {
